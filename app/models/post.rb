@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
 	has_many :attachments, dependent: :destroy
-	has_many :contents, dependent: :destroy, inverse_of: :portfolio
+	has_many :contents, dependent: :destroy, inverse_of: :post
 
 	accepts_nested_attributes_for :contents, allow_destroy: true, reject_if: proc { |attributes| attributes['html'].blank? || attributes['ordering'].blank? }
 

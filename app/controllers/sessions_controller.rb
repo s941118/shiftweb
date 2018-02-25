@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
 	layout "plain"
-	before_action :authorize_session
 
 	def new
+		authorize :session, :new
 	end
 
 	def create
@@ -14,18 +14,14 @@ class SessionsController < ApplicationController
       flash.now[:danger] = "帳號或密碼錯誤。"
 			render :new
 		end
+		authorize :session, :create
 	end
 
   def destroy
+  	authorize :session, :destroy
     session.delete(:user_id)
     @current_user = nil
     flash.now[:success] = "已登出。"
     redirect_to root_path
-  end
-
-  private
-
-  def authorize_session
-  	authorize Session
   end
 end

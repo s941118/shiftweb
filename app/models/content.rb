@@ -1,6 +1,6 @@
 class Content < ApplicationRecord
-  belongs_to :portfolio, inverse_of: :contents
-  validates_presence_of :portfolio
+  belongs_to :post, inverse_of: :contents
+  validates_presence_of :post
   validates :html, :ordering, presence: true
 
   # 以下為協助資料維護相關
