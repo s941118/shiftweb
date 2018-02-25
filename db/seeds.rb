@@ -1,7 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+10.times do
+	Post.create({
+		content: "As much we admire the explorers traveling to the ends of the Earth on large scale Expeditons it’s the everyday man (or women) exploring their own backyard that often inspire the most. Guys like Chris Dahl-Bredine, who built an experimental aircraft in his garage in order to bring a new perspective to his life & creative vision. There isn’t much glamour in this type of exploration. No sponsors footing the bill. Just hard work, cold mornings & sometimes a bit of duct tape. Part cowboy, part photographer, part mechanic, Chris' work blends a blue collar work ethic with a special eye for landscapes and the interconnectedness of it all.",
+		title: "portfolio#{rand(1..10)}"
+	})
+end

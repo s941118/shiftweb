@@ -1,0 +1,10 @@
+.pointable {
+	cursor: pointer;
+}
+
+.link-no-decoration {
+	text-decoration: none !important;
+	&:focus {
+		outline: none !important;
+	}
+}

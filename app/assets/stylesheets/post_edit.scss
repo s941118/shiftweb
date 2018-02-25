@@ -1,0 +1,49 @@
+.content_wrapper_adjust.html_symbol {
+	font-size: 16px !important;
+}
+
+.template {
+	display: none;
+}
+
+.cke_dialog_tab[id^='cke_advanced_'] {
+	display: none;
+}
+
+#post_content img {
+	max-width: 100%;
+	height: auto;
+}
+
+input[name^='post[contents_attributes]'],
+textarea[name^='post[contents_attributes]'] {
+	display: none;
+}
+
+iframe {
+	max-width: 100% !important;
+}
+
+.admin.posts-controller.edit-action #form_content {
+	border: 1px dotted #999;
+}
+
+.content_wrapper {
+	// text-align: center;
+	// font-size: 1rem;
+	// line-height: 1.75;
+	// h1 {
+	// 	text-transform: uppercase;
+	// 	font-weight: bold;
+	// 	letter-spacing: 0.25px;
+	// 	word-break: break-word;
+	// 	font-size: 1.8rem;
+	// 	line-height: 0.85;
+	// }
+	table {
+		width: 100% !important;
+    max-width: 100%;
+    // margin-bottom: 1rem;
+    background-color: transparent;
+	}
+}
