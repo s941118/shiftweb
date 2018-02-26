@@ -1,8 +1,8 @@
 require 'test_helper'
-require 'generators/admintable/admintable_generator'
+require 'generators/dashboard/dashboard_generator'
 
-class AdmintableGeneratorTest < Rails::Generators::TestCase
-  tests AdmintableGenerator
+class DashboardGeneratorTest < Rails::Generators::TestCase
+  tests DashboardGenerator
   destination Rails.root.join('tmp/generators')
   setup :prepare_destination
 

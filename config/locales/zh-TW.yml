@@ -4,7 +4,13 @@ en:
       post:
         one: 作品
         other: 作品
+      tag:
+        one: 標籤
+        other: 標籤集
     attributes:
       post:
         id: "#"
         title: 標題
+      tag:
+        id: "#"
+        name: 名稱

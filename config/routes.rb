@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:index, :show]
   resources :attachments, only: [:show]
-  resources :tags, only: [:show]
 
 	get "admin", to: redirect("admin/posts")
 	

@@ -1,16 +1,10 @@
-<% byebug %>
-<% if namespaced? -%>
-require_dependency "<%= namespaced_path %>/application_controller"
-
-<% end -%>
-<% module_namespacing do -%>
-class <%= controller_class_name %>Controller < ApplicationController
+class <%= "#{options[:namespace].camelize}::#{controller_class_name}" %>Controller < <%= options[:namespace].camelize %>Controller
   before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
 
   # GET <%= route_url %>
   def index
-    @<%= plural_table_name %> = <%= orm_class.all(class_name) %>
-    authorize [:admin, @<%= plural_table_name %>]
+    @<%= plural_table_name %> = <%= orm_class.all(class_name) %>.order(updated_at: :desc)
+    authorize [:<%= options[:namespace] %>, @<%= plural_table_name %>]
   end
 
   # GET <%= route_url %>/1
@@ -20,7 +14,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   # GET <%= route_url %>/new
   def new
     @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
-    authorize [:admin, @<%= singular_table_name %>]
+    authorize [:<%= options[:namespace] %>, @<%= singular_table_name %>]
   end
 
   # GET <%= route_url %>/1/edit
@@ -30,10 +24,11 @@ class <%= controller_class_name %>Controller < ApplicationController
   # POST <%= route_url %>
   def create
     @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
-    authorize [:admin, @<%= singular_table_name %>]
+    authorize [:<%= options[:namespace] %>, @<%= singular_table_name %>]
 
     if @<%= orm_instance.save %>
-      redirect_to @<%= singular_table_name %>, notice: <%= "'#{human_name} was successfully created.'" %>
+      flash[:success] = "建立成功。 "
+      redirect_to [:<%= options[:namespace] %>, @<%= singular_table_name %>]
     else
       render :new
     end
@@ -42,7 +37,8 @@ class <%= controller_class_name %>Controller < ApplicationController
   # PATCH/PUT <%= route_url %>/1
   def update
     if @<%= orm_instance.update("#{singular_table_name}_params") %>
-      redirect_to @<%= singular_table_name %>, notice: <%= "'#{human_name} was successfully updated.'" %>
+      flash[:success] = "更新成功。 "
+      redirect_to [:<%= options[:namespace] %>, @<%= singular_table_name %>]
     else
       render :edit
     end
@@ -51,7 +47,8 @@ class <%= controller_class_name %>Controller < ApplicationController
   # DELETE <%= route_url %>/1
   def destroy
     @<%= orm_instance.destroy %>
-    redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully destroyed.'" %>
+    flash[:success] = "刪除成功。 "
+    redirect_to admin_<%= index_helper %>_url
   end
 
   private
@@ -59,7 +56,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_<%= singular_table_name %>
       @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
-    	authorize [:admin, @<%= singular_table_name %>]
+    	authorize [:<%= options[:namespace] %>, @<%= singular_table_name %>]
     end
 
     # Only allow a trusted parameter "white list" through.
@@ -71,4 +68,3 @@ class <%= controller_class_name %>Controller < ApplicationController
       <%- end -%>
     end
 end
-<% end -%>

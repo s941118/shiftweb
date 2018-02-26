@@ -1,0 +1,18 @@
+<%%= link_to admin_<%= plural_route_name %>_path, class: "btn btn-link" do %>
+  &#8592; 返回列表
+<%% end %>
+<%%= link_to "編輯", edit_admin_<%= singular_route_name %>_path(@<%= singular_table_name %>), class: "btn btn-success float-right" %>
+<%%= link_to '刪除', [:admin, @<%= singular_table_name %>], method: :delete, data: { confirm: '確認刪除？' }, class: "btn btn-danger float-right mr-2" %>
+
+<h1 class="h2"><%%= <%= singular_table_name.titleize.constantize %>.model_name.human %> #<%%= @<%= model_resource_name %>.id %></h1>
+
+<div class="list-group list-group-flush">
+  <% attributes_names.map do |name| %>
+  <li href="#" class="list-group-item flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"><%%= <%= singular_table_name.titleize.constantize %>.human_attribute_name("<%= name %>") %></h5>
+    </div>
+    <p class="mb-1"><%%= @<%= model_resource_name %>.<%= name %> %></p>
+  </li>
+  <% end %>
+</div>
