@@ -1,21 +1,22 @@
-// @media only screen and (min-width: 768px) {
-// 	.card.portfolio-card {
-// 		flex-direction: row;
-// 		.card-img-top {
-// 			max-width: 200px;
-// 		}
-// 		.card-body {
-// 			flex: auto 1 0;
-// 		}
-// 	}
-// }
-#portfolio_content img {
+.content_wrapper_adjust.html_symbol {
+	font-size: 16px !important;
+}
+
+.template {
+	display: none;
+}
+
+.cke_dialog_tab[id^='cke_advanced_'] {
+	display: none;
+}
+
+#post_content img {
 	max-width: 100%;
 	height: auto;
 }
 
-input[name^='portfolio[contents_attributes]'],
-textarea[name^='portfolio[contents_attributes]'] {
+input[name^='post[contents_attributes]'],
+textarea[name^='post[contents_attributes]'] {
 	display: none;
 }
 
@@ -23,7 +24,7 @@ iframe {
 	max-width: 100% !important;
 }
 
-.admin.portfolios-controller.edit-action #form_content {
+.admin.posts-controller.edit-action #form_content {
 	border: 1px dotted #999;
 }
 

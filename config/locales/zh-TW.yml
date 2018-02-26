@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    models:
+      post:
+        one: 作品
+        other: 作品
+    attributes:
+      post:
+        id: "#"
+        title: 標題

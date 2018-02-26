@@ -61,3 +61,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 4.0.0'
 gem 'awesome_rails_console'
 gem 'pundit'
+gem 'local_time'

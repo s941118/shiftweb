@@ -1,0 +1,23 @@
+<%= link_to admin_posts_path, class: "btn btn-link" do %>
+  &#8592; 返回列表
+<% end %>
+<%= link_to "編輯", edit_admin_post_path(@post), class: "btn btn-success float-right" %>
+<%= link_to '刪除', [:admin, @post], method: :delete, data: { confirm: '確認刪除？' }, class: "btn btn-danger float-right mr-2" %>
+
+<h1><%= @post.title %></h1>
+<div class="row" id="post_content">
+  <% @contents.each do |content| %>
+    <div class="content_wrapper <%= content.conditional_klass %>">
+      <%= raw content.html %>
+    </div>
+  <% end %>
+</div>
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

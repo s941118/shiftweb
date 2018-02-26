@@ -15,4 +15,5 @@
 //= require jquery.min
 //= require popper
 //= require bootstrap
-//= require_tree .
+//= require jquery.timeago
+//= require posts

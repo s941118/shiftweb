@@ -1,0 +1,42 @@
+<h1 class="h2">
+  <%%= <%= singular_table_name.titleize.constantize %>.model_name.human %>列表
+  <%%= link_to "新增", new_admin_<%= singular_table_name %>_path, class: "btn btn-success float-right" %>
+</h1>
+<table class="table">
+  <thead>
+    <tr><% singular_table_name.titleize.constantize.column_names.without("created_at", "updated_at").map do |column_name| %>
+      <th><%%= <%= singular_table_name.titleize.constantize %>.human_attribute_name("<%= column_name %>") %></th><% end %>
+      <th>建立於</th>
+      <th>最後更新</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr><% singular_table_name.titleize.constantize.column_names.without("created_at", "updated_at").map do |column_name| %>
+        <td><%%= <%= singular_table_name %>.<%= column_name %> %></td><% end %>
+        <td><%%= <%= singular_table_name %>.created_at.strftime("%F %T") %></td>
+        <td><%%= timeago(<%= singular_table_name %>.updated_at) %></td>
+        <td class="text-right">
+          <div class="dropdown">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+              操作
+            </button>
+            <div class="dropdown-menu">
+              <%%= link_to '檢視', [:admin, <%= model_resource_name %>], class: "dropdown-item" %>
+              <%%= link_to "編輯", edit_admin_<%= singular_route_name %>_path(<%= singular_table_name %>), class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%%= link_to '刪除', [:admin, <%= model_resource_name %>], method: :delete, data: { confirm: '確認刪除？' }, class: "dropdown-item" %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <%% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(function() {
+    $("time.timeago").timeago();
+  });
+</script>

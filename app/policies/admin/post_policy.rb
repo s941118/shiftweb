@@ -1,2 +1,2 @@
-class PostPolicy < ApplicationPolicy
+class Admin::PostPolicy < AdminPolicy
 end

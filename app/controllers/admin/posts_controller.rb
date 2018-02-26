@@ -1,11 +1,11 @@
 class Admin::PostsController < AdminController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_post
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
+    authorize [:admin, @posts]
   end
 
   # GET /posts/1
@@ -17,6 +17,7 @@ class Admin::PostsController < AdminController
   # GET /posts/new
   def new
     @post = Post.new
+    authorize [:admin, @post]
   end
 
   # GET /posts/1/edit
@@ -26,8 +27,8 @@ class Admin::PostsController < AdminController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new
-
+    @post = Post.new(post_params)
+    authorize [:admin, @post]
     respond_to do |format|
       if @post.save
         @post.contents.create(ordering: 1, html: "<p/>")
@@ -70,10 +71,7 @@ class Admin::PostsController < AdminController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
-    end
-
-    def authorize_post
-      authorize Post
+      authorize [:admin, @post]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

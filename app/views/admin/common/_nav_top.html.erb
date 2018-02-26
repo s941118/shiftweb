@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+  <a class="navbar-brand" href="#">管理者後台</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% ["post"].each do |singular_name| %>
+      <li class="nav-item active">
+        <a class="nav-link" href="/admin/<%= singular_name.pluralize %>"><%= singular_name.titleize.constantize.model_name.human %>管理<span class="sr-only">(current)</span></a>
+      </li>
+      <% end %>
+    </ul>
+    <% if user_signed_in? %>
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <%= link_to "登出", logout_path, class: "nav-link", method: :delete %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</nav>

@@ -1,0 +1,13 @@
+<%%= form_with model: [:admin, <%= model_resource_name %>], local: true do |f| %><% singular_table_name.titleize.constantize.column_names.without("id", "created_at", "updated_at").map do |column_name| %>
+  <div class="form-group">
+    <%%= f.label :<%= column_name %> %>
+    <%%= f.text_field :<%= column_name %>, class: "form-control #{<%= model_resource_name %>.errors[:<%= column_name %>].present? ? 'is-invalid' : ''}" %>
+    <%% if <%= model_resource_name %>.errors[:<%= column_name %>].present? %>
+	    <div class="text-danger">
+	      <%%= <%= model_resource_name %>.errors[:<%= column_name %>].join(", ") %>
+	    </div>
+    <%% end %>
+  </div><% end %>
+  <%%= link_to "放棄", admin_<%= plural_table_name %>_path, class: "btn btn-link text-danger" %>
+  <%%= f.submit "儲存", class: "btn btn-primary float-right" %>
+<%% end %>
