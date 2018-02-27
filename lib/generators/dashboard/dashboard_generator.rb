@@ -35,6 +35,10 @@ module Rails
         end
       end
 
+      def create_css_file
+      	template 'dashboard.scss', 'app/assets/stylesheets/dashboard.scss'
+      end
+
       def create_routes
       	resources_name = plural_name.to_sym
       	inject_into_file 'config/routes.rb', after: "namespace :admin do\n" do

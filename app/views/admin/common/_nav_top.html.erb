@@ -6,16 +6,29 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <% ["post", "tag"].each do |singular_name| %>
+      <% ["post"].each do |singular_name| %>
       <li class="nav-item active">
         <a class="nav-link" href="/admin/<%= singular_name.pluralize %>"><%= singular_name.titleize.constantize.model_name.human %>管理<span class="sr-only">(current)</span></a>
       </li>
       <% end %>
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">搜尋</button>
+    </form>
     <% if user_signed_in? %>
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-5">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            管理者
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">個人資料</a>
+            <div class="dropdown-divider"></div>
+            <%= link_to "登出", logout_path, class: "dropdown-item", method: :delete %>
+          </div>
+        </li>
         <li class="nav-item active">
-          <%= link_to "登出", logout_path, class: "nav-link", method: :delete %>
         </li>
       </ul>
     <% end %>
