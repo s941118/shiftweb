@@ -1,0 +1,13 @@
+<%= form_with model: [:admin, tag], local: true do |f| %>
+  <div class="form-group <%= tag.errors[:name].present? ? 'has-danger' : '' %>">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control #{tag.errors[:name].present? ? 'is-invalid' : ''}" %>
+    <% if tag.errors[:name].present? %>
+	    <div class="invalid-feedback">
+	      <%= tag.errors[:name].join(", ") %>
+	    </div>
+    <% end %>
+  </div>
+  <%= link_to "放棄", admin_tags_path, class: "btn btn-link text-danger" %>
+  <%= f.submit "儲存", class: "btn btn-primary float-right" %>
+<% end %>

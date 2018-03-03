@@ -9,13 +9,9 @@
     <%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
   </head>
   <body class='admin <%= "#{controller_name}-controller" %> <%= "#{action_name}-action" %>'>
-    <%= render "admin/common/nav_top" %>
+    <%= render "admin/common/nav_top" if user_signed_in? %>
     <div class="container">
       <%= yield %>
     </div>

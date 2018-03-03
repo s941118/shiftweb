@@ -1,9 +1,9 @@
 <%%= form_with model: [:admin, <%= model_resource_name %>], local: true do |f| %><% attributes_names.map do |name| %>
-  <div class="form-group">
+  <div class="form-group <%%= <%= model_resource_name %>.errors[:<%= name %>].present? ? 'has-danger' : '' %>">
     <%%= f.label :<%= name %> %>
     <%%= f.text_field :<%= name %>, class: "form-control #{<%= model_resource_name %>.errors[:<%= name %>].present? ? 'is-invalid' : ''}" %>
     <%% if <%= model_resource_name %>.errors[:<%= name %>].present? %>
-	    <div class="text-danger">
+	    <div class="invalid-feedback">
 	      <%%= <%= model_resource_name %>.errors[:<%= name %>].join(", ") %>
 	    </div>
     <%% end %>

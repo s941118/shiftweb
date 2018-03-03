@@ -1,0 +1,18 @@
+<%= link_to admin_tags_path, class: "btn btn-link" do %>
+  &#8592; 返回列表
+<% end %>
+<%= link_to "編輯", edit_admin_tag_path(@tag), class: "btn btn-success float-right" %>
+<%= link_to '刪除', [:admin, @tag], method: :delete, data: { confirm: '確認刪除？' }, class: "btn btn-danger float-right mr-2" %>
+
+<h1 class="h2"><%= Tag.model_name.human %> #<%= @tag.id %></h1>
+
+<div class="list-group list-group-flush">
+  
+  <li href="#" class="list-group-item flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"><%= Tag.human_attribute_name("name") %></h5>
+    </div>
+    <p class="mb-1"><%= @tag.name %></p>
+  </li>
+  
+</div>

@@ -1,6 +1,4 @@
-class SessionsController < ApplicationController
-	layout "plain"
-
+class Admin::SessionsController < AdminController
 	def new
 		authorize :session, :new
 	end
@@ -22,6 +20,6 @@ class SessionsController < ApplicationController
     session.delete(:user_id)
     @current_user = nil
     flash.now[:success] = "已登出。"
-    redirect_to root_path
+    redirect_to admin_path
   end
 end

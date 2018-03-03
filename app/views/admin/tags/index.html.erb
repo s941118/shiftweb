@@ -1,0 +1,44 @@
+<h1 class="h2">
+  <%= Tag.model_name.human %>列表
+  <%= link_to "新增", new_admin_tag_path, class: "btn btn-success float-right" %>
+</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= Tag.human_attribute_name('id') %></th>
+      <th><%= Tag.human_attribute_name('name') %></th>
+      <th>建立於</th>
+      <th>最後更新</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.id %></td>
+        <td><%= tag.name %></td>
+        <td><%= tag.created_at.strftime("%F %T") %></td>
+        <td><%= timeago(tag.updated_at) %></td>
+        <td class="text-right">
+          <div class="dropdown">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+              操作
+            </button>
+            <div class="dropdown-menu">
+              <%= link_to '檢視', [:admin, tag], class: "dropdown-item" %>
+              <%= link_to "編輯", edit_admin_tag_path(tag), class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to '刪除', [:admin, tag], method: :delete, data: { confirm: '確認刪除？' }, class: "dropdown-item" %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(function() {
+    $("time.timeago").timeago();
+  });
+</script>

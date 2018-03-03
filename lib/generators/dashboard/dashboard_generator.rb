@@ -40,9 +40,8 @@ module Rails
       end
 
       def create_routes
-      	resources_name = plural_name.to_sym
       	inject_into_file 'config/routes.rb', after: "namespace :admin do\n" do
-					"\t\tresources :#{resources_name}\n"
+					"\t\tresources :#{plural_name}\n"
 				end	
       end
 

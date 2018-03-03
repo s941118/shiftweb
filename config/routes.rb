@@ -3,16 +3,19 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:index, :show]
   resources :attachments, only: [:show]
-
-	get "admin", to: redirect("admin/posts")
 	
-	get "signin", to: "sessions#new"
-  post "signin", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  namespace :admin do
+	namespace :admin do
+    resources :tags
     resources :posts
     resources :attachments
   end
+	get 'admin', to: redirect('/admin/posts')
+	namespace :admin do
+		resources :users
+		get 'signin', to: 'sessions#new'
+		post 'signin', to: 'sessions#create'
+		delete 'logout', to: 'sessions#destroy'
+	end
 end
