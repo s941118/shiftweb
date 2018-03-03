@@ -15,5 +15,6 @@
 //= require jquery.min
 //= require popper
 //= require bootstrap
+//= require admin/ckeditor_config
 //= require jquery.timeago
-//= require posts
+//= require admin/posts

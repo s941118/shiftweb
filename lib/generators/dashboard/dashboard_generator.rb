@@ -36,7 +36,7 @@ module Rails
       end
 
       def create_css_file
-      	template 'dashboard.scss', 'app/assets/stylesheets/dashboard.scss'
+      	template 'dashboard.scss', "app/assets/stylesheets/#{options[:namespace]}/dashboard.scss"
       end
 
       def create_routes

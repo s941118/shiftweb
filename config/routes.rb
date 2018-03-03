@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-	root "posts#index"
+  root 'pages#home'
+
+  get "test", to: "pages#test"
 
   resources :posts, only: [:index, :show]
   resources :attachments, only: [:show]
