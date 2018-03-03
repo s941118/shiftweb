@@ -12,15 +12,15 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <meta property="og:description" content=""><meta name="apple-mobile-web-app-title" content="Shift Studio">
-<meta name="application-name" content="Shift Studio">
-<meta name="theme-color" content="#ffffff">
+		<meta name="application-name" content="Shift Studio">
+		<meta name="theme-color" content="#ffffff">
     <%= csrf_meta_tags %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
   </head>
 
   <body id="barba-wrapper">
