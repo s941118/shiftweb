@@ -23,7 +23,7 @@ document.addEventListener("removeOverlay",function(){
 function initialize_all_ck() {
 	for (editor of document.querySelectorAll(".editor")) {
 		CKEDITOR.inline(editor, {
-			customConfig: '<%= asset_path("ckeditor_config.js") %>'
+			customConfig: '<%= asset_path("admin/ckeditor_config.js") %>'
 		})
 	}
 }
@@ -62,11 +62,13 @@ function remove_all_column_class_of_(content_wrapper) {
 	return column_size
 }
 
-function $ordering_input_of(content_index_or_wrapper) {
+function ordering_input_of(content_index_or_wrapper) {
 	if (content_index_or_wrapper !== null && typeof(content_index_or_wrapper) === "object") {
 		var content_index = get_number_in($(content_index_or_wrapper).attr("id"))
+	} else {
+		var content_index = content_index_or_wrapper
 	}
-	return $(`input[name='${window.nested_attribute_name_prefix}[${content_index}][ordering]']`)
+	return document.querySelector(`input[name='${window.nested_attribute_name_prefix}[${content_index}][ordering]']`)
 }
 
 function paste_embed_html_and_reset($content_wrapper, $modal, $embed_url_input, html, position) {
@@ -111,7 +113,7 @@ function insert_new_textarea_around($content_wrapper, position) {
 	$new_text_area.wrap(`<div class='content_wrapper new_record ${window.content_default_wrapper_klass}' id='wrapper_${rand_form_num}'/>`)
 	// console.log($new_text_area)
 	CKEDITOR.inline($new_text_area[0], {
-		customConfig: '<%= asset_path("ckeditor_config.js") %>'
+		customConfig: '<%= asset_path("admin/ckeditor_config.js") %>'
 	})
 	$new_text_area.after(`<input type="text" value="" name="${attr_prefix}[ordering]">`)
 	$new_text_area.after(`<input type="text" value="${window.content_default_wrapper_klass}" name="${attr_prefix}[wrapper_klass]">`)
@@ -119,13 +121,13 @@ function insert_new_textarea_around($content_wrapper, position) {
 	refresh_all_ordering()
 	$("#newElementModal").attr("data-content-wrapper", "")
 	$("#newElementModal").attr("data-insert-position", "")
-	console.log(`new text area is ordered at ${$ordering_input_of(rand_form_num).val()}`)
+	console.log(`new text area is ordered at ${ordering_input_of(rand_form_num).value}`)
 }
 
 function refresh_all_ordering() {
 	// 除了加寬縮窄的兩顆按鈕外，五顆都要用到
 	for ([index, div] of document.querySelectorAll("div.content_wrapper").entries()) {
-		$ordering_input_of(div).val(index)
+		ordering_input_of(div).value = index
 		// console.log(`${div.getAttribute("id")} is at ${index}`)
 	}
 }
@@ -162,9 +164,6 @@ $(document).on("click", "#add_new_text_area", function () {
 	}
 	if ($content_wrapper.length > 0) {
 		insert_new_textarea_around($content_wrapper, $("#newElementModal").attr("data-insert-position"))
-	} else {
-		insert_new_textarea_around($content_wrapper, $("#newElementModal").attr("data-insert-position"))
-		// $(`#${window.form_content_id}`)
 	}
 })
 
