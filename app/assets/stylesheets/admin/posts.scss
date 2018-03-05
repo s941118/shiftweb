@@ -15,10 +15,24 @@
 	height: auto;
 }
 
+.content_wrapper.img_content, .content_wrapper.embed_content {
+	position: relative;
+}
+
 input[name^='post[contents_attributes]'],
 textarea[name^='post[contents_attributes]'] {
 	display: none;
 }
+
+.embed_button {
+	button.btn-sm {
+		padding: 0.2rem 0.5rem;
+	}
+	.btn.dropdown-toggle::before {
+		margin-left: 0px;
+	}	
+}
+
 
 iframe {
 	max-width: 100% !important;

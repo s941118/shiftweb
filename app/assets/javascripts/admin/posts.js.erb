@@ -7,9 +7,10 @@ document.addEventListener("DOMContentLoaded",function(){
 	})
 	if (document.querySelector(`#${window.form_content_id}`) !== null) {
 		setTimeout(function() {
-			for (div of document.querySelectorAll(".embed_content")) {
-				insert_embed_button_next_to(div)
-			}
+			refresh_all_embed_buttons()
+			// for (div of document.querySelectorAll(".embed_content")) {
+			// 	insert_embed_button_next_to(div)
+			// }
 			// document.dispatchEvent(event)
 		}, 4000)	
 	}
@@ -165,9 +166,9 @@ function insert_embed_button_next_to(embed_content) {
 	var right_base = document.querySelector("html").clientWidth - embed_content.offsetLeft - embed_content.clientWidth - 40
 	var $embed_button_template = $(".embed_button.template")
 	var $embed_button = $embed_button_template.clone().removeClass("template")
-	$(embed_content).after($embed_button)
+	$(embed_content).append($embed_button)
 	// console.log(`${embed_content.getAttribute("id")}'s height is ${embed_content.clientHeight}px now.`)
-	$embed_button.attr("style", `position: absolute; right: ${right_base}px; top: ${embed_content.offsetTop + (embed_content.clientHeight/2)}px;`)
+	$embed_button.attr("style", `position: absolute; right: -30px; top: 49.5%;`)
 	$embed_button.attr("id", `${embed_content.getAttribute("id")}_embed_button`)
 	$embed_button.find("a.content_wrapper_adjust").attr( "data-content-index", get_number_in(embed_content.getAttribute("id")) )
 }
@@ -176,6 +177,9 @@ function refresh_all_embed_buttons() {
 	// 除了加寬縮窄的兩顆按鈕外，五顆都要用到
 	remove_all_embed_button()
 	for (div of document.querySelectorAll("div.content_wrapper.embed_content:not(.d-none)")) {
+		insert_embed_button_next_to(div)
+	}
+	for (div of document.querySelectorAll("div.content_wrapper.img_content:not(.d-none)")) {
 		insert_embed_button_next_to(div)
 	}
 }
