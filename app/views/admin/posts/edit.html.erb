@@ -17,11 +17,17 @@
 					<%= raw content_form.object.html %>
           <%= content_form.text_area :html, class: "d-none" %>
         </div>
+      <% elsif content_form.object.img? %>
+        <div class="content_wrapper <%= content_form.object.img_html_klass %>" id="wrapper_<%= content_form.index %>">
+          <%= image_tag raw url_for(content_form.object.image) %>
+          <%= content_form.text_area :html, class: "d-none" %>
+        </div>
 			<% else %>
         <div class="content_wrapper <%= content_form.object.conditional_klass %>" id="wrapper_<%= content_form.index %>">
 					<%= content_form.text_area :html, class: "editor" %>
         </div>
 			<% end %>
+      <%= content_form.text_field :usage %>
 			<%= content_form.text_field :ordering %>
       <%= content_form.text_field :wrapper_klass, value: content_form.object.conditional_klass %>
 	    <%= content_form.check_box :_destroy %>
@@ -32,15 +38,14 @@
     <%= render "embed_button_template" %>
     <a href="javascript:void(0)" class="text-success link-no-decoration" id="add_new_block_btn" data-toggle="modal" data-target="#newElementModal" style="font-size: 60px">+</a>
   </div>
-  <div class="clearfix"/>
   <%= link_to "放棄", admin_posts_path, class: "btn btn-link text-danger" %>
   <%= f.submit "儲存", class: "btn btn-primary float-right" %>
 <% end %>
 
 
 <!-- newElementModal -->
-<div class="modal fade" id="newElementModal" tabindex="-1" role="dialog" aria-labelledby="newElementModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal" id="newElementModal" tabindex="-1" role="dialog" aria-labelledby="newElementModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newElementModalLabel">選擇一種內容</h5>
@@ -50,61 +55,39 @@
       </div>
       <div class="modal-body">
         <div class="list-group">
-				  <a href="javascript:void(0)" class="list-group-item list-group-item-action" id="add_new_text_area" data-dismiss="modal">一段可自由編輯的文字</a>
-				  <a href="javascript:void(0)" class="list-group-item list-group-item-action" data-dismiss="modal" data-toggle="modal" data-target="#EmbedModal">透過網址嵌入內容</a>
-				  <a href="javascript:void(0)" class="list-group-item list-group-item-action" data-dismiss="modal" data-toggle="modal" data-target="#uploadImgModal">上傳圖片</a>
+				  <li class="list-group-item list-group-item-action clickable py-5" id="add_new_text_area" data-dismiss="modal"><div>插入<span style="font-size: 20px;">自由</span>編輯的<span class="font-italic">文字段落</span></div></li>
+				  <li class="list-group-item list-group-item-action py-5">
+            透過網址嵌入內容
+            <input type="text" class="w-100 form-control" placeholder="支援 YouTube、Instagram、Facebook、Vimeo" id="embedURL">
+            <small id="embedLinkHelpBlock" class="form-text text-muted">
+              嵌入網址範例：https://www.youtube.com/watch?v=k2qgadSvNyU
+            </small>
+            <button type="button" class="btn btn-primary float-right" id="get_embed_html" data-dismiss="modal" >嵌入</button>
+          </li>
+				  <li class="list-group-item list-group-item-action py-5">
+            上傳圖片
+            <%= form_with url: admin_contents_path, class: "dropzone", id: "post-img-dropzone" do %>
+              <div class="dz-message">點擊 或者 拖放，每次最多十張圖片</div>
+              <input type="hidden" value="<%= params[:id] %>" name="post_id">
+              <div class="fallback">
+                <input name="file" type="file" multiple />
+              </div>
+            <% end %>
+          </li>
 				</div>
       </div>
       <div class="modal-footer text-left">
         <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary float-right">繼續</button>
+        <!-- <button type="button" class="btn btn-primary float-right">繼續</button> -->
       </div>
     </div>
   </div>
 </div>
 
-<!-- EmbedModal -->
-<div class="modal fade" id="EmbedModal" tabindex="-1" role="dialog" aria-labelledby="EmbedModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="EmbedModalLabel">貼上要嵌入的網址</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      	<input type="text" class="w-100 form-control" placeholder="目前支援 YouTube、Instagram、Facebook、Vimeo" autofocus="true" id="embedURL">
-      	<small id="embedLinkHelpBlock" class="form-text text-muted">
-				  嵌入網址範例：https://www.youtube.com/watch?v=k2qgadSvNyU
-				</small>
-      </div>
-      <div class="modal-footer text-left">
-        <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary float-right" id="get_embed_html">嵌入</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- uploadImgModal -->
-<div class="modal fade" id="uploadImgModal" tabindex="-1" role="dialog" aria-labelledby="uploadImgModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="uploadImgModalLabel">選擇要上傳的圖片</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      	<input type="file" multiple="true">
-      </div>
-      <div class="modal-footer text-left">
-        <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary float-right">上傳</button>
-      </div>
-    </div>
+<div class="template" id="imgContentWrapper">
+  <div class="content_wrapper_template <%= Content.new.img_html_klass %>">
+    <img src="" alt="">
+    <input type="text" value="" name="post[contents_attributes][][ordering]">
   </div>
 </div>
 

@@ -8,7 +8,13 @@
 <div class="row" id="post_content">
   <% @contents.each do |content| %>
     <div class="content_wrapper <%= content.conditional_klass %>">
-      <%= raw content.html %>
+      <% if content.embed? %>
+        <%= raw content.html %>
+      <% elsif content.img? %>
+        <%= image_tag raw url_for(content.image) %>
+      <% else %>
+        <%= raw content.html %>
+      <% end %>
     </div>
   <% end %>
 </div>

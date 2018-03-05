@@ -27,7 +27,7 @@ class <%= "#{options[:namespace].camelize}::#{controller_class_name}" %>Controll
     authorize [:<%= options[:namespace] %>, @<%= singular_table_name %>]
 
     if @<%= orm_instance.save %>
-      flash[:success] = "建立成功。 "
+      flash[:success] = "建立成功。"
       redirect_to [:<%= options[:namespace] %>, @<%= singular_table_name %>]
     else
       render :new
@@ -37,7 +37,7 @@ class <%= "#{options[:namespace].camelize}::#{controller_class_name}" %>Controll
   # PATCH/PUT <%= route_url %>/1
   def update
     if @<%= orm_instance.update("#{singular_table_name}_params") %>
-      flash[:success] = "更新成功。 "
+      flash[:success] = "更新成功。"
       redirect_to [:<%= options[:namespace] %>, @<%= singular_table_name %>]
     else
       render :edit
@@ -47,7 +47,7 @@ class <%= "#{options[:namespace].camelize}::#{controller_class_name}" %>Controll
   # DELETE <%= route_url %>/1
   def destroy
     @<%= orm_instance.destroy %>
-    flash[:success] = "刪除成功。 "
+    flash[:success] = "刪除成功。"
     redirect_to admin_<%= index_helper %>_url
   end
 

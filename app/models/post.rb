@@ -17,7 +17,7 @@ class Post < ApplicationRecord
 
   # 以下為幫助產生對應 html
 	def cover
-		"https://picsum.photos/200/200"
+		"https://images.unsplash.com/photo-1431629452562-165c8f49fc97?ixlib=rb-0.3.5&s=995930e5e5a391860e70cd6bd781546c&auto=format&fit=crop&w=1350&q=80"
 		# self.attachments.cover
 	end
 	# 以上為幫助產生對應 html

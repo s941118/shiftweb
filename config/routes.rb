@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 	namespace :admin do
     resources :tags
     resources :posts
-    resources :attachments
+    resources :contents
   end
 	get 'admin', to: redirect('/admin/posts')
 	namespace :admin do

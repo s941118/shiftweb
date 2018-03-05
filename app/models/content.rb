@@ -2,6 +2,9 @@ class Content < ApplicationRecord
   belongs_to :post, inverse_of: :contents
   validates_presence_of :post
   validates :html, :ordering, presence: true
+  has_one_attached :image
+
+  enum usage: { text: 0, embed: 1, img: 2 }
 
   # 以下為協助資料維護相關
     before_save :remove_fb_data_width
@@ -13,7 +16,13 @@ class Content < ApplicationRecord
 
   # 以下為幫助產生對應 html
     def conditional_klass
-    	embed? ? embed_html_klass : (wrapper_klass.present? ? wrapper_klass : Content.default_wrapper_klass)
+    	if embed?
+        embed_html_klass
+      elsif img?
+        img_html_klass
+      else
+        wrapper_klass.present? ? wrapper_klass : Content.default_wrapper_klass
+      end
     end
 
     def embed_html_klass(type = nil)
@@ -24,13 +33,17 @@ class Content < ApplicationRecord
       end
     end
 
+    def img_html_klass
+      "w-100 text-center img_content"
+    end
+
     def self.default_wrapper_klass
     	"col-md-12"
     end
 
-    def embed?
-    	iframe? || instagram? || facebook?
-    end
+    # def embed?
+    # 	iframe? || instagram? || facebook?
+    # end
 
     def iframe?
       html.to_s[/iframe/].present?

@@ -21,6 +21,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.fontSize_sizes = '12/12px;13/13px;15/15px;16/16px;18/18px;20/20px;22/22px;24/24px;36/36px;48/48px;';
 	config.format_tags = 'h1;h2;h3;h4;h5;p;address';
 	config.undoStackSize = 50;
+	// config.startupFocus = true;
 };
 
 CKEDITOR.on( 'dialogDefinition', function( ev ) {
