@@ -2,12 +2,12 @@ class Admin::ContentsController < AdminController
   # POST /contents
   def create
     @post = Post.find(params[:post_id])
-    @content = @post.contents.new(html: "<img/>", image: params[:file], usage: "img", ordering: params[:ordering] || "9999")
+    @content = @post.contents.new(html: "<p></p>", image: params[:file], usage: "img", ordering: params[:ordering] || "9999")
     authorize [:admin, @content]
 
     if @content.save
       flash[:success] = "建立成功。"
-      render json: { image_url: rails_blob_path(@content.image) }, status: :ok
+      render json: { content_id: @content.id ,image_url: rails_blob_path(@content.image), content_html: @content.html }, status: :ok
     else
       p @content.errors
       render :new

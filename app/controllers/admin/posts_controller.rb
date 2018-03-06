@@ -39,7 +39,7 @@ class Admin::PostsController < AdminController
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      @post.touch
+      # @post.touch
       flash[:success] = "更新成功。 "
       redirect_to [:admin, @post]
     else

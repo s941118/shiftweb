@@ -6,13 +6,14 @@ document.addEventListener("DOMContentLoaded",function(){
 		// console.log(e.editor.name)
 	})
 	if (document.querySelector(`#${window.form_content_id}`) !== null) {
-		setTimeout(function() {
 			refresh_all_embed_buttons()
-			// for (div of document.querySelectorAll(".embed_content")) {
-			// 	insert_embed_button_next_to(div)
-			// }
-			// document.dispatchEvent(event)
-		}, 4000)	
+		// setTimeout(function() {
+		// 	refresh_all_embed_buttons()
+		// 	// for (div of document.querySelectorAll(".embed_content")) {
+		// 	// 	insert_embed_button_next_to(div)
+		// 	// }
+		// 	// document.dispatchEvent(event)
+		// }, 4000)	
 	}
 });
 
@@ -25,14 +26,31 @@ Dropzone.options.postImgDropzone = {
 		this.on("success", function(file, resp) {
 			console.log(file)
 			console.log(resp.image_url)
-			var rand_form_num = rand_num()
-			var $imgFormTemplate = $("#imgContentWrapper.template").clone()
-			$imgFormTemplate.find("img").attr("src", resp.image_url)
-			$imgFormTemplate.find(".content_wrapper_template").removeClass("content_wrapper_template").addClass("content_wrapper")
-											.attr("id", `wrapper_${rand_form_num}`)
-			$imgFormTemplate.find("input[name*='[ordering]']").attr("name", `post[contents_attributes][${rand_form_num}][ordering]`)
-			// $imgFormTemplate.find("textarea[name*='[html]']").attr("name", `post[contents_attributes][${rand_form_num}][html]`)
-			$("#form_content").append($imgFormTemplate.html())
+			// var rand_form_num = rand_num()
+			var $imgForm = $("#imgContentWrapper.template").clone()
+			$imgForm.find("img").attr("src", resp.image_url)
+			$imgForm.find(".content_wrapper_template").removeClass("content_wrapper_template").addClass("content_wrapper")
+											.attr("id", `wrapper_${resp.content_id}`)
+			$imgForm.find("input[name*='[ordering]']").attr("name", `post[contents_attributes][${resp.content_id}][ordering]`)
+			$imgForm.find("input[name*='[id]']").attr("name", `post[contents_attributes][${resp.content_id}][id]`)
+																					.attr("value", resp.content_id)
+			$imgForm.find("input[name*='[html]']").attr("name", `post[contents_attributes][${resp.content_id}][html]`)
+																						.attr("value", resp.content_html)
+			// $imgForm.find("textarea[name*='[html]']").attr("name", `post[contents_attributes][${resp.content_id}][html]`)
+			// $("#form_content").append($imgForm.html())
+			var $modal = $("#newElementModal")
+			var content_wrapper_id = $modal.attr("data-content-wrapper")
+			if (content_wrapper_id !== undefined && content_wrapper_id.length > 0) {
+				var $content_wrapper = $(`#${$modal.attr("data-content-wrapper")}`)
+			} else {
+				var $content_wrapper = $("div.content_wrapper").last()
+			}
+			if ($modal.attr("data-insert-position") === "before") {
+				$content_wrapper.before($imgForm.html())
+			} else {
+				$content_wrapper.after($imgForm.html())
+			}
+			insert_embed_button_next_to(document.querySelector(`#wrapper_${resp.content_id}`))
 		})
 		this.on("queuecomplete", function() {
 			refresh_all_ordering()
