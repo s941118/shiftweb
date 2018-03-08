@@ -39,7 +39,7 @@ class Admin::PostsController < AdminController
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      # @post.touch
+      # @post.touch # 因為 ordering 不再是相對加一，而是每次更新，所以好像不需要順過了？
       flash[:success] = "更新成功。 "
       redirect_to [:admin, @post]
     else
