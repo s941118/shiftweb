@@ -1,115 +1,48 @@
-<!-- <div id="loader-wrapper" class="d-flex align-items-center justify-content-center">
-  <div class="sk-folding-cube">
-    <div class="sk-cube1 sk-cube"></div>
-    <div class="sk-cube2 sk-cube"></div>
-    <div class="sk-cube4 sk-cube"></div>
-    <div class="sk-cube3 sk-cube"></div>
-  </div>
-</div> -->
+<%= stylesheet_link_tag 'frontend/foundation', media: 'all' %>
+<%= stylesheet_link_tag 'frontend/styles', media: 'all' %>
 <%= form_with(model: [:admin, @post], local: true, class: "mb-5") do |f| %>
-	<div class="row" id="form_content">
-    <div class="col-md-12">
-      <%= f.text_area :title, placeholder: "文章標題", class: "border-0 link-no-decoration w-100 mb-0 p-0 h1", id: "article_title", rows: 1 %>
-    </div>
-		<%= f.fields_for :contents, @post.contents.order(ordering: :asc) do |content_form| %>
-      <% if content_form.object.embed? %>
-        <div class="content_wrapper <%= content_form.object.embed_html_klass %>" id="wrapper_<%= content_form.index %>">
-					<%= raw content_form.object.html %>
-          <%= content_form.text_area :html, class: "d-none" %>
+  <div class="single-work-content">
+  	<div class="single-work" id="form_content">
+      <div class="single-work-main-img"><img src="<%= asset_path('work1.png') %>"></div>
+      <div class="single-work-text-box">
+        <div class="single-work-tags">
+          <div class="tag-company">
+            <p>SHIFT work</p>
+          </div>
+          <div class="tag-hashtags">
+            <p class="work-year">#2018</p>
+            <p class="work-company">#SHIFT</p>
+            <p class="work-profile">#LeoSa</p>
+          </div>
+          <div class="clearfix"></div>
         </div>
-      <% elsif content_form.object.img? %>
-        <div class="content_wrapper <%= content_form.object.img_html_klass %>" id="wrapper_<%= content_form.index %>">
-          <%= image_tag raw url_for(content_form.object.image) %>
-          <%= content_form.text_area :html, class: "d-none" %>
+        <div class="single-work-title"> 
+          <p><%= f.text_area :title, placeholder: "文章標題", class: "border-0 link-no-decoration w-100 mb-0 p-0", id: "article_title", rows: 1 %></p>
         </div>
-			<% else %>
-        <div class="content_wrapper <%= content_form.object.conditional_klass %>" id="wrapper_<%= content_form.index %>">
-					<%= content_form.text_area :html, class: "editor" %>
+        <div class="single-work-number">
+          <p>13</p>
         </div>
-			<% end %>
-      <%= content_form.text_field :usage %>
-			<%= content_form.text_field :ordering %>
-      <%= content_form.text_field :wrapper_klass, value: content_form.object.conditional_klass %>
-	    <%= content_form.check_box :_destroy %>
-		<% end %>
-	</div>
-	<div class="text-center my-5">
+        <div class="clearfix"></div>
+        <div class="divider bg-black"></div>
+        <div class="single-work-text">
+      		<%= f.fields_for :contents, @post.contents.order(ordering: :asc) do |content_form| %>
+            <%= render "admin/contents/form", content_form: content_form %>
+      		<% end %>
+        </div>
+      </div>
+  	</div>
+  </div>
+  <div class="mt-5" id="post_buttons_wrapper">
     <%= render "cke_toolbar_template" %>
     <%= render "embed_button_template" %>
     <a href="javascript:void(0)" class="text-success link-no-decoration" id="add_new_block_btn" data-toggle="modal" data-target="#newElementModal" style="font-size: 60px">+</a>
+    <%= f.button class: "btn btn-primary" do %>
+      <i class="material-icons">&#xE161;</i>
+    <% end %>
+    <%= link_to admin_posts_path, class: "btn btn-warning", id: "btn-back", data: { confirm: "您的變更將不會儲存？" } do %>
+      <i class="material-icons">&#xE5C9;</i>
+    <% end %>
   </div>
-  <%= link_to "放棄", admin_posts_path, class: "btn btn-link text-danger" %>
-  <%= f.submit "儲存", class: "btn btn-primary float-right" %>
 <% end %>
 
-
-<!-- newElementModal -->
-<div class="modal" id="newElementModal" tabindex="-1" role="dialog" aria-labelledby="newElementModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="newElementModalLabel">選擇一種內容</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="list-group">
-				  <li class="list-group-item list-group-item-action clickable py-5" id="add_new_text_area" data-dismiss="modal"><div>插入<span style="font-size: 20px;">自由</span>編輯的<span class="font-italic">文字段落</span></div></li>
-				  <li class="list-group-item list-group-item-action py-5">
-            透過網址嵌入內容
-            <input type="text" class="w-100 form-control" placeholder="支援 YouTube、Instagram、Facebook、Vimeo" id="embedURL">
-            <small id="embedLinkHelpBlock" class="form-text text-muted">
-              嵌入網址範例：https://www.youtube.com/watch?v=k2qgadSvNyU
-            </small>
-            <button type="button" class="btn btn-primary float-right" id="get_embed_html" data-dismiss="modal" >嵌入</button>
-          </li>
-				  <li class="list-group-item list-group-item-action py-5">
-            上傳圖片
-            <%= form_with url: admin_contents_path, class: "dropzone", id: "post-img-dropzone" do %>
-              <div class="dz-message">點擊 或者 拖放，每次最多十張圖片</div>
-              <input type="hidden" value="<%= params[:id] %>" name="post_id">
-              <div class="fallback">
-                <input name="file" type="file" multiple />
-              </div>
-            <% end %>
-          </li>
-				</div>
-      </div>
-      <div class="modal-footer text-left">
-        <button type="button" class="btn btn-link" data-dismiss="modal">關閉</button>
-        <!-- <button type="button" class="btn btn-primary float-right">繼續</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="template" id="imgContentWrapper">
-  <div class="content_wrapper_template <%= Content.new.img_html_klass %>">
-    <img src="" alt="">
-    <input type="text" value="" name="post[contents_attributes][][ordering]">
-    <input type="text" value="" name="post[contents_attributes][][id]">
-    <input type="text" name="post[contents_attributes][][html]"></input>
-  </div>
-</div>
-
-<script type="text/javascript">
-  window.content_embed_klass = "<%= Content.new.embed_html_klass %>"
-  window.instagram_content_embed_klass = "<%= Content.new.embed_html_klass('instagram') %>"
-  window.content_default_wrapper_klass = "<%= Content.default_wrapper_klass %>"
-  window.responsive_wrapper_klass = "md"
-  window.nested_attribute_name_prefix = "post[contents_attributes]"
-  window.nested_attribute_id_prefix = "post_contents_attributes"
-  window.form_content_id = "form_content"
-  window.add_new_block_btn_id = "add_new_block_btn"
-</script>
-
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<%= render "edit_helpers" %>

@@ -15,11 +15,14 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'others', groups: [ 'others' ] },
 		{ name: 'about', groups: [ 'about' ] }
 	];
-
 	config.removeButtons = 'BidiLtr,BidiRtl,Language,Anchor,Flash,Image,SpecialChar,PageBreak,Iframe,Smiley,About,SelectAll,Scayt,Replace,Find,Checkbox,Radio,Textarea,Select,ImageButton,HiddenField,Print,Save,Templates,Copy,Paste,Cut,PasteText,Preview,NewPage,Form,TextField,Button,PasteFromWord,RemoveFormat,CopyFormatting,Styles,CreateDiv,Blockquote,Source,ShowBlocks,Maximize';
 	config.font_names = '新細明體;細明體;標楷體;微軟正黑體;Arial;Arial Black;Comic Sans MS;Courier New;Tahoma;Times New Roman;Verdana;';
 	config.fontSize_sizes = '12/12px;13/13px;15/15px;16/16px;18/18px;20/20px;22/22px;24/24px;36/36px;48/48px;';
-	config.format_tags = 'h1;h2;h3;h4;h5;p;address';
+	// config.format_tags = 'h1;h2;h3;h4;h5;p';
+	config.format_tags = 'inline_title;break_title;span';
+	config.format_inline_title = { name: "不換行標題", element: 'p', attributes : { 'class' : 'paragraph-title' } };
+	config.format_break_title = { name: "換行標題", element: 'p', attributes : { 'class' : 'paragraph-title p-break' } };
+	config.format_span = { name: "一般文字", element: 'span' };
 	config.undoStackSize = 50;
 	// config.startupFocus = true;
 };

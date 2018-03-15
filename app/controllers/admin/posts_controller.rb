@@ -10,6 +10,7 @@ class Admin::PostsController < AdminController
   # GET /posts/1
   def show
     @contents = Content.where(post_id: params[:id]).order(ordering: :asc)#.pluck(:html).join("")
+    render layout: "edit_post"
   end
 
   # GET /posts/new
@@ -20,6 +21,7 @@ class Admin::PostsController < AdminController
 
   # GET /posts/1/edit
   def edit
+    render layout: "edit_post"
   end
 
   # POST /posts

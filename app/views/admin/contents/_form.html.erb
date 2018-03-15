@@ -1,0 +1,19 @@
+<% if content_form.object.embed? %>
+  <div class="content_wrapper <%= content_form.object.embed_html_klass %>" id="wrapper_<%= content_form.index %>">
+		<%= raw content_form.object.html %>
+    <%= content_form.text_area :html, class: "d-none" %>
+  </div>
+<% elsif content_form.object.img? %>
+  <div class="content_wrapper <%= content_form.object.img_html_klass %>" id="wrapper_<%= content_form.index %>">
+    <%= image_tag raw url_for(content_form.object.image) %>
+    <%= content_form.text_area :html, class: "d-none" %>
+  </div>
+<% else %>
+  <div class="content_wrapper <%= content_form.object.conditional_klass %>" id="wrapper_<%= content_form.index %>">
+		<%= content_form.text_area :html, class: "editor" %>
+  </div>
+<% end %>
+<%= content_form.text_field :usage %>
+<%= content_form.text_field :ordering %>
+<%= content_form.text_field :wrapper_klass, value: content_form.object.conditional_klass %>
+<%= content_form.check_box :_destroy %>

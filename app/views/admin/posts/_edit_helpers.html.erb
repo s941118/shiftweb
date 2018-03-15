@@ -1,0 +1,70 @@
+<!-- newElementModal -->
+<div class="modal" id="newElementModal" tabindex="-1" role="dialog" aria-labelledby="newElementModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newElementModalLabel">選擇一種內容</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="list-group">
+          <li class="list-group-item list-group-item-action clickable py-5" id="add_new_text_area" data-dismiss="modal"><div>插入<span style="font-size: 20px;">自由</span>編輯的<span class="font-italic">文字段落</span></div></li>
+          <li class="list-group-item list-group-item-action py-5">
+            透過網址嵌入內容
+            <input type="text" class="w-100 form-control" placeholder="支援 YouTube、Instagram、Facebook、Vimeo" id="embedURL">
+            <small id="embedLinkHelpBlock" class="form-text text-muted">
+              嵌入網址範例：https://www.youtube.com/watch?v=k2qgadSvNyU
+            </small>
+            <button type="button" class="btn btn-primary float-right" id="get_embed_html" data-dismiss="modal" >嵌入</button>
+          </li>
+          <li class="list-group-item list-group-item-action py-5">
+            上傳圖片
+            <%= form_with url: admin_contents_path, class: "dropzone", id: "post-img-dropzone" do %>
+              <div class="dz-message">點擊 或者 拖放，每次最多十張圖片</div>
+              <input type="hidden" value="<%= params[:id] %>" name="post_id">
+              <div class="fallback">
+                <input name="file" type="file" multiple />
+              </div>
+            <% end %>
+          </li>
+        </div>
+      </div>
+      <div class="modal-footer text-left">
+        <button type="button" class="btn btn-link" data-dismiss="modal">關閉</button>
+        <!-- <button type="button" class="btn btn-primary float-right">繼續</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="template" id="imgContentWrapper">
+  <div class="content_wrapper_template <%= Content.new.img_html_klass %>">
+    <img src="" alt="">
+    <input type="text" value="" name="post[contents_attributes][][ordering]">
+    <input type="text" value="" name="post[contents_attributes][][id]">
+    <input type="text" name="post[contents_attributes][][html]"></input>
+  </div>
+</div>
+
+<script type="text/javascript">
+  window.content_embed_klass = "<%= Content.new.embed_html_klass %>"
+  window.instagram_content_embed_klass = "<%= Content.new.embed_html_klass('instagram') %>"
+  window.content_default_wrapper_klass = "<%= Content.default_wrapper_klass %>"
+  window.responsive_wrapper_klass = "md"
+  window.nested_attribute_name_prefix = "post[contents_attributes]"
+  window.nested_attribute_id_prefix = "post_contents_attributes"
+  window.form_content_id = "form_content"
+  window.add_new_block_btn_id = "add_new_block_btn"
+</script>
+
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

@@ -34,11 +34,11 @@ class Content < ApplicationRecord
     end
 
     def img_html_klass
-      "w-100 text-center img_content"
+      "img_content admin-paragragh-image"
     end
 
     def self.default_wrapper_klass
-    	"col-md-12"
+    	nil
     end
 
     # def embed?
