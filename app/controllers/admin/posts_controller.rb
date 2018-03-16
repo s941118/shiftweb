@@ -1,16 +1,20 @@
 class Admin::PostsController < AdminController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  layout 'edit_post', only: [:show, :edit, :update]
 
   # GET /posts
   def index
-    @posts = Post.all.order(updated_at: :desc)
+    @posts = if params[:tag].present?
+      Post.tagged_with(params[:tag]).order(updated_at: :desc)
+    else
+      Post.all.order(updated_at: :desc)
+    end
     authorize [:admin, @posts]
   end
 
   # GET /posts/1
   def show
     @contents = Content.where(post_id: params[:id]).order(ordering: :asc)#.pluck(:html).join("")
-    render layout: "edit_post"
   end
 
   # GET /posts/new
@@ -21,7 +25,6 @@ class Admin::PostsController < AdminController
 
   # GET /posts/1/edit
   def edit
-    render layout: "edit_post"
   end
 
   # POST /posts
@@ -41,6 +44,7 @@ class Admin::PostsController < AdminController
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
+      @post.update_tags!
       # @post.touch # 因為 ordering 不再是相對加一，而是每次更新，所以好像不需要順過了？
       flash[:success] = "更新成功。 "
       redirect_to [:admin, @post]
@@ -66,6 +70,6 @@ class Admin::PostsController < AdminController
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params.require(:post).permit(:title, contents_attributes: [ :id, :html, :ordering, :usage, :_destroy, :wrapper_klass ])
+      params.require(:post).permit(:title, :category, :top_tags, :number, contents_attributes: [ :id, :html, :ordering, :usage, :_destroy, :wrapper_klass ])
     end
 end

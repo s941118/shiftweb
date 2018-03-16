@@ -3,24 +3,21 @@
 <%= form_with(model: [:admin, @post], local: true, class: "mb-5") do |f| %>
   <div class="single-work-content">
   	<div class="single-work" id="form_content">
-      <div class="single-work-main-img"><img src="<%= asset_path('work1.png') %>"></div>
+      <div class="single-work-main-img"><img src="http://via.placeholder.com/1400x788/333.jpg"></div>
       <div class="single-work-text-box">
         <div class="single-work-tags">
-          <div class="tag-company">
-            <p>SHIFT work</p>
-          </div>
-          <div class="tag-hashtags">
-            <p class="work-year">#2018</p>
-            <p class="work-company">#SHIFT</p>
-            <p class="work-profile">#LeoSa</p>
-          </div>
+          <% if @post.category.present? %>
+            <div class="tag-company">
+              <p><%= f.select :category, ["SHIFT", "COOPERATION"], {}, style: "width: auto;" %> work</p>
+            </div>
+          <% end %>
           <div class="clearfix"></div>
         </div>
         <div class="single-work-title"> 
           <p><%= f.text_area :title, placeholder: "文章標題", class: "border-0 link-no-decoration w-100 mb-0 p-0", id: "article_title", rows: 1 %></p>
         </div>
         <div class="single-work-number">
-          <p>13</p>
+          <p><%= f.text_area :number, class: "border-0 link-no-decoration mb-0 p-0 text-right float-right", style: "max-width: 180px;", rows: 1 %></p>
         </div>
         <div class="clearfix"></div>
         <div class="divider bg-black"></div>
@@ -39,7 +36,7 @@
     <%= f.button class: "btn btn-primary" do %>
       <i class="material-icons">&#xE161;</i>
     <% end %>
-    <%= link_to admin_posts_path, class: "btn btn-warning", id: "btn-back", data: { confirm: "您的變更將不會儲存？" } do %>
+    <%= link_to admin_posts_path, class: "btn btn-warning", id: "btn-back", data: { confirm: "您的變更將不會儲存，確定離開？" } do %>
       <i class="material-icons">&#xE5C9;</i>
     <% end %>
   </div>

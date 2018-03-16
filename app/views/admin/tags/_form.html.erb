@@ -8,6 +8,15 @@
 	    </div>
     <% end %>
   </div>
+  <div class="form-group <%= tag.errors[:icon].present? ? 'has-danger' : '' %>">
+    <%= f.label :icon %>
+    <%= f.file_field :icon, class: "form-control #{tag.errors[:icon].present? ? 'is-invalid' : ''}" %>
+    <% if tag.errors[:icon].present? %>
+      <div class="invalid-feedback">
+        <%= tag.errors[:icon].join(", ") %>
+      </div>
+    <% end %>
+  </div>
   <%= link_to "放棄", admin_tags_path, class: "btn btn-link text-danger" %>
   <%= f.submit "儲存", class: "btn btn-primary float-right" %>
 <% end %>

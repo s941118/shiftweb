@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_05_110651) do
+ActiveRecord::Schema.define(version: 2018_03_08_191909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2018_03_05_110651) do
 
   create_table "contents", force: :cascade do |t|
     t.text "html"
+    t.text "processed_html"
     t.bigint "post_id"
     t.integer "ordering"
     t.string "wrapper_klass"
@@ -47,14 +48,29 @@ ActiveRecord::Schema.define(version: 2018_03_05_110651) do
     t.index ["post_id"], name: "index_contents_on_post_id"
   end
 
+  create_table "post_tags", force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_tags_on_post_id"
+    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
+  end
+
   create_table "posts", force: :cascade do |t|
+    t.string "number"
     t.string "title"
+    t.string "category"
+    t.string "top_tags"
+    t.integer "tags_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
+    t.integer "posts_count", default: 0
+    t.boolean "shown_on_front", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,4 +81,6 @@ ActiveRecord::Schema.define(version: 2018_03_05_110651) do
   end
 
   add_foreign_key "contents", "posts"
+  add_foreign_key "post_tags", "posts"
+  add_foreign_key "post_tags", "tags"
 end

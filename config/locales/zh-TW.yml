@@ -11,6 +11,9 @@ en:
       post:
         id: "#"
         title: 標題
+        category: 類別
       tag:
         id: "#"
         name: 名稱
+        posts_count: 文章數量
+        icon: 圖示

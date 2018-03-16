@@ -4,7 +4,7 @@
 <div class="single-work-content">
   <div class="single-work-card">
     <div class="work-block">
-      <div class="work-image"><img src="<%= asset_path 'work1.png' %>"></div>
+      <div class="work-image"><img src="http://via.placeholder.com/1400x788/333.jpg"></div>
       <div class="work-des">
         <p>#1 / SHIFT work</p>
         <p class="work-title"><%= @post.title %></p>
@@ -17,35 +17,36 @@
     </div>
   </div>
   <div class="single-work">
-    <div class="single-work-main-img"><img src="<%= asset_path 'work1.png' %>"></div>
+    <div class="single-work-main-img"><img src="http://via.placeholder.com/1400x788/333.jpg"></div>
     <div class="single-work-text-box">
       <div class="single-work-tags">
-        <div class="tag-company">
-          <p>SHIFT work</p>
-        </div>
-        <div class="tag-hashtags">
-          <p class="work-year">#2018</p>
-          <p class="work-company">#SHIFT</p>
-          <p class="work-profile">#LeoSa</p>
-        </div>
+        <% if @post.category.present? %>
+          <div class="tag-company">
+            <p><%= @post.category %> work</p>
+          </div>
+        <% end %>
         <div class="clearfix"></div>
       </div>
-      <div class="single-work-title"> 
-        <p>Rise from Music</p>
-      </div>
-      <div class="single-work-number">
-        <p>13</p>
-      </div>
+      <% if @post.title.present? %>
+        <div class="single-work-title"> 
+          <p><%= @post.title %></p>
+        </div>
+      <% end %>
+      <% if @post.number.present? %>
+        <div class="single-work-number">
+          <p><%= @post.number %></p>
+        </div>
+      <% end %>
       <div class="clearfix"></div>
       <div class="divider bg-black"></div>
       <div class="single-work-text">
         <% @contents.each do |content| %>
           <% if content.embed? %>
-            <%= raw content.html %>
+            <%#= raw content.html %>
           <% elsif content.img? %>
             <%#= image_tag raw url_for(content.image) %>
           <% else %>
-            <p class="paragraph-title"><%= raw content.html %></p>
+            <p class="paragraph-title"><%= raw content.processed_html %></p>
           <% end %>
         <% end %>
         <!-- <p class="paragraph-title">CLIENT<span> <a href="#">中央大學科學教育中心 </a></span></p>
