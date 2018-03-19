@@ -6,18 +6,25 @@
       <div class="single-work-main-img"><img src="http://via.placeholder.com/1400x788/333.jpg"></div>
       <div class="single-work-text-box">
         <div class="single-work-tags">
-          <% if @post.category.present? %>
-            <div class="tag-company">
-              <p><%= f.select :category, ["SHIFT", "COOPERATION"], {}, style: "width: auto;" %> work</p>
-            </div>
-          <% end %>
+          <div class="tag-company" style="width: 50%;">
+            <p><%= f.select :category, ["SHIFT", "COOPERATION"], {}, class: "form-control d-inline-block pr-0", style: "max-width: 145px; font-size: 18px; color: #2c2824;", onchange: "javascript:adaptSelectWidth(this)" %> work</p>
+          </div>
+          <script type="text/javascript">
+            function adaptSelectWidth(select) {
+              if (select.value === "SHIFT") {
+                select.style.maxWidth = '70px'
+              } else if (select.value === "COOPERATION") {
+                select.style.maxWidth = '145px'
+              }
+            }
+          </script>
           <div class="clearfix"></div>
         </div>
         <div class="single-work-title"> 
-          <p><%= f.text_area :title, placeholder: "文章標題", class: "border-0 link-no-decoration w-100 mb-0 p-0", id: "article_title", rows: 1 %></p>
+          <p><%= f.text_area :title, placeholder: "文章標題", class: "border-0 link-no-decoration w-100 mb-0 p-0", id: "article_title", rows: 1, required: true %></p>
         </div>
         <div class="single-work-number">
-          <p><%= f.text_area :number, class: "border-0 link-no-decoration mb-0 p-0 text-right float-right", style: "max-width: 180px;", rows: 1 %></p>
+          <p><%= f.text_area :number, class: "border-0 link-no-decoration mb-0 p-0 text-right float-right", style: "max-width: 180px;", rows: 1, required: true %></p>
         </div>
         <div class="clearfix"></div>
         <div class="divider bg-black"></div>

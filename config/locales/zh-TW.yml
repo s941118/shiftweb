@@ -12,6 +12,7 @@ en:
         id: "#"
         title: 標題
         category: 類別
+        top_tags: 標籤們
       tag:
         id: "#"
         name: 名稱

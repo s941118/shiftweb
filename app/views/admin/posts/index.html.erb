@@ -7,6 +7,8 @@
     <tr>
       <th><%= Post.human_attribute_name('id') %></th>
       <th><%= Post.human_attribute_name('title') %></th>
+      <th><%= Post.human_attribute_name('category') %></th>
+      <th><%= Post.human_attribute_name('top_tags') %></th>
       <th>建立於</th>
       <th>最後更新</th>
       <th></th>
@@ -17,6 +19,8 @@
       <tr>
         <td><%= post.number %></td>
         <td><%= post.title %></td>
+        <td><%= post.category %></td>
+        <td><%= post.top_tags_string %></td>
         <td><%= post.created_at.strftime("%F %T") %></td>
         <td><%= timeago(post.updated_at) %></td>
         <td class="text-right">

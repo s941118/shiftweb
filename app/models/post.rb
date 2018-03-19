@@ -1,16 +1,16 @@
 class Post < ApplicationRecord
-	has_many :contents, dependent: :destroy, inverse_of: :post, dependent: :destroy
-	has_many :post_tags, inverse_of: :post, dependent: :destroy
-	has_many :tags, through: :post_tags
+	validates :title, presence: { message: "請記得填寫標題" }
 
-	after_commit :clean_tags
+	has_many :contents, dependent: :destroy, inverse_of: :post
+	has_many :post_tags, dependent: :destroy, inverse_of: :post
+	has_many :tags, through: :post_tags
 
 	def update_tags!
 		tags_text = []
 		self.contents.text.each do |content|
-			tags_in_this_content = CGI.unescapeHTML(content.html).scan(/(?:#(\w+))/).flatten
+			tags_in_this_content = CGI.unescapeHTML(content.html).scan(/(?:#(\S+))/).flatten
 			tags_text << tags_in_this_content
-			content.update_column(:processed_html, CGI.unescapeHTML(content.html).gsub(/(?:#(\w+))/,'<a href="/tags/\1">#\1</a>'))
+			content.update_column(:processed_html, CGI.unescapeHTML(content.html).gsub(/(?:#(\S+))/,'<a href="/tags/\1">#\1</a>'))
 		end
 		tags_text = tags_text.flatten.uniq
 		self.tag_list = tags_text
@@ -18,8 +18,14 @@ class Post < ApplicationRecord
 		self.save
 	end
 
-	def clean_tags
-		Tag.where(posts_count: 0).destroy_all
+	def top_tags_string
+		if top_tags.to_s.present?
+			top_tags_arr = top_tags.to_s.split(",")
+			result = top_tags_arr.map { |text| "##{text}" }.join(", ")
+			return tags_count > 3 ? result + " ..." : result
+		else
+			""
+		end
 	end
 
 	def self.tagged_with(name)
@@ -41,11 +47,15 @@ class Post < ApplicationRecord
 	  end
 	end
 
-	validates :title, presence: { message: "不可空白" }
-
 	accepts_nested_attributes_for :contents, allow_destroy: true, reject_if: proc { |attributes| attributes['html'].blank? || attributes['ordering'].blank? }
 
 	# 以下為協助資料維護相關
+	after_commit :clean_tags
+
+	def clean_tags
+		Tag.where(posts_count: 0).destroy_all
+	end
+
 	after_touch :update_ordering
 
 	def update_ordering
