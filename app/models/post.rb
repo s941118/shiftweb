@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-	validates :title, presence: { message: "請記得填寫標題" }
+	validates :title, presence: { message: "請先填寫標題，之後可以隨時修改唷～" }
 
 	has_many :contents, dependent: :destroy, inverse_of: :post
 	has_many :post_tags, dependent: :destroy, inverse_of: :post
@@ -8,9 +8,9 @@ class Post < ApplicationRecord
 	def update_tags!
 		tags_text = []
 		self.contents.text.each do |content|
-			tags_in_this_content = CGI.unescapeHTML(content.html).scan(/(?:#(\S+))/).flatten
+			tags_in_this_content = Nokogiri.parse(content.html).text.scan(/(?:#([^\s,\.]+))/).flatten
 			tags_text << tags_in_this_content
-			content.update_column(:processed_html, CGI.unescapeHTML(content.html).gsub(/(?:#(\S+))/,'<a href="/tags/\1">#\1</a>'))
+			content.update_column(:processed_html, Nokogiri.parse(content.html).text.gsub(/(?:#([^\s,\.]+))/,'<a href="/tags/\1">#\1</a>'))
 		end
 		tags_text = tags_text.flatten.uniq
 		self.tag_list = tags_text

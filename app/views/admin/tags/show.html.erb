@@ -4,22 +4,26 @@
 <%= link_to "編輯", edit_admin_tag_path(@tag), class: "btn btn-success float-right" %>
 <%= link_to '刪除', [:admin, @tag], method: :delete, data: { confirm: '確認刪除？' }, class: "btn btn-danger float-right mr-2" %>
 
-<h1 class="h2"><%= Tag.model_name.human %> #<%= @tag.id %></h1>
+<h1 class="h2"><%= Tag.model_name.human %> #<%= @tag.name %></h1>
 
 <div class="list-group list-group-flush">
-  
-  <li href="#" class="list-group-item flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1"><%= Tag.human_attribute_name("name") %></h5>
-    </div>
-    <p class="mb-1"><%= @tag.name %></p>
-  </li>
 
   <li href="#" class="list-group-item flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1"><%= Tag.human_attribute_name("icon") %></h5>
     </div>
     <p class="mb-1"><%= image_tag @tag.icon %></p>
+  </li>
+
+  <li href="#" class="list-group-item flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">使用於下列作品中</h5>
+    </div>
+    <p class="mb-1">
+      <% @tag.posts.map do |post| %>
+        <%= link_to post.title, admin_post_path(post), class: "btn btn-link" %>
+      <% end %>
+    </p>
   </li>
   
 </div>

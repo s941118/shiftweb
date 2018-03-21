@@ -1,16 +1,18 @@
 <%= form_with model: [:admin, tag], local: true do |f| %>
   <div class="form-group <%= tag.errors[:name].present? ? 'has-danger' : '' %>">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control #{tag.errors[:name].present? ? 'is-invalid' : ''}" %>
+    <%= f.label :name, "名稱" %>
+    <%= f.text_field :name, class: "form-control #{tag.errors[:name].present? ? 'is-invalid' : ''}", readonly: true %>
     <% if tag.errors[:name].present? %>
 	    <div class="invalid-feedback">
 	      <%= tag.errors[:name].join(", ") %>
 	    </div>
     <% end %>
+    <small id="nameHelp" class="form-text text-muted">名稱是透過文章內容建立，無法在此修改。</small>
   </div>
   <div class="form-group <%= tag.errors[:icon].present? ? 'has-danger' : '' %>">
     <%= f.label :icon %>
     <%= f.file_field :icon, class: "form-control #{tag.errors[:icon].present? ? 'is-invalid' : ''}" %>
+    <img id="previewer"/>
     <% if tag.errors[:icon].present? %>
       <div class="invalid-feedback">
         <%= tag.errors[:icon].join(", ") %>

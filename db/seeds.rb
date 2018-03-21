@@ -5,7 +5,7 @@
 		category: "shift"
 	})
 	@p.contents.create({
-		html: "<p>As much we admire the explorers traveling to the ends of the Earth on large scale Expeditons it’s the everyday man (or women) exploring their own backyard that often inspire the most. Guys like Chris Dahl-Bredine, who built an experimental aircraft in his garage in order to bring a new perspective to his life & creative vision. There isn’t much glamour in this type of exploration. No sponsors footing the bill. Just hard work, cold mornings & sometimes a bit of duct tape. Part cowboy, part photographer, part mechanic, Chris' work blends a blue collar work ethic with a special eye for landscapes and the interconnectedness of it all.</p>",
+		html: "<p>Good Lord, it's massive. My biggest question is why? You realize that all modern languages have XML parsers, right? You can do all that in like 3 lines and be sure it'll work. Furthermore, do you also realize that pure regex is provably unable to do certain things? Unless you've created a hybrid regex/imperative code parser, but it doesn't look like you have. Can you compress random data as well?</p>",
 		ordering: @p.contents.size
 	})
 end

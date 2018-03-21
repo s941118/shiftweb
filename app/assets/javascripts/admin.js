@@ -7,3 +7,4 @@
 //= require dropzone.min
 //= require admin/ckeditor_config
 //= require admin/posts
+//= require admin/tags

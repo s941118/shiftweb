@@ -11,14 +11,14 @@
       <div class="modal-body">
         <div class="list-group">
           <li class="list-group-item list-group-item-action clickable py-5" id="add_new_text_area" data-dismiss="modal"><div>插入<span style="font-size: 20px;">自由</span>編輯的<span class="font-italic">文字段落</span></div></li>
-          <li class="list-group-item list-group-item-action py-5">
+          <!-- <li class="list-group-item list-group-item-action py-5">
             透過網址嵌入內容
             <input type="text" class="w-100 form-control" placeholder="支援 YouTube、Instagram、Facebook、Vimeo" id="embedURL">
             <small id="embedLinkHelpBlock" class="form-text text-muted">
               嵌入網址範例：https://www.youtube.com/watch?v=k2qgadSvNyU
             </small>
             <button type="button" class="btn btn-primary float-right" id="get_embed_html" data-dismiss="modal" >嵌入</button>
-          </li>
+          </li> -->
           <li class="list-group-item list-group-item-action py-5">
             上傳圖片
             <%= form_with url: admin_contents_path, class: "dropzone", id: "post-img-dropzone" do %>

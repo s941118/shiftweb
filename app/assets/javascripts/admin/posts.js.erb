@@ -269,38 +269,6 @@ $(document).on("click", "#get_embed_html", function () {
 	}
 })
 
-// $(document).on("change", "#imgFile", function(e) {
-// 	previewFile(document.querySelector("#previewer"), this)
-// })
-
-// $(document).on("click", "#upload_img", function(e) {
-// 	e.preventDefault()
-// 	var content_wrapper_id = $("#newElementModal").attr("data-content-wrapper")
-// 	if (content_wrapper_id !== undefined && content_wrapper_id.length > 0) {
-// 		var $content_wrapper = $(`#${$("#newElementModal").attr("data-content-wrapper")}`)
-// 	} else {
-// 		var $content_wrapper = $("div.content_wrapper").last()
-// 	}
-
-// 	// var $modal = $(this).parents(".modal")
-// 	var img_file_input = document.querySelector("#uploadImgModal #imgFile")
-// })
-
-// function previewFile(previewer, file_input){
-// 	var file    = file_input.files[0]; //sames as here
-// 	var reader  = new FileReader();
-
-// 	reader.onloadend = function () {
-// 	  previewer.src = reader.result;
-// 	}
-
-// 	if (file) {
-// 	  reader.readAsDataURL(file); //reads the data as a URL
-// 	} else {
-// 	  previewer.src = "";
-// 	}
-// }
-
 $(document).on("click", ".content_wrapper_adjust_narrower", function(e) {
 	var content_index = this.getAttribute("data-content-index")
 	var $content_wrapper = $(`div.content_wrapper#wrapper_${content_index}`)

@@ -5,5 +5,4 @@ class Tag < ApplicationRecord
 	has_one_attached :icon
 	# scope :shift, -> { where(category: "shift") }
 	# scope :cooperation, -> { where(category: "cooperation") }
-	# scope :front, -> { where(shown_on_front: true) }
 end

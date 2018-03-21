@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 2018_03_08_191909) do
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.integer "posts_count", default: 0
-    t.boolean "shown_on_front", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

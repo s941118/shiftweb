@@ -24,6 +24,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.format_break_title = { name: "換行標題", element: 'p', attributes : { 'class' : 'paragraph-title p-break' } };
 	config.format_span = { name: "一般文字", element: 'span' };
 	config.undoStackSize = 50;
+	config.forcePasteAsPlainText = true;
 	// config.startupFocus = true;
 };
 
