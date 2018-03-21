@@ -1,2 +1,4 @@
-<h1>編輯<%%= <%= singular_table_name.titleize.constantize %>.model_name.human %></h1>
-<%%= render "admin/<%= plural_table_name %>/form", <%= model_resource_name %>: @<%= model_resource_name %> %>
+<div class="offset-md-4 col-md-4">
+	<h1 class="h2">編輯<%%= <%= singular_table_name.titleize.constantize %>.model_name.human %></h1>
+	<%%= render "admin/<%= plural_table_name %>/form", <%= model_resource_name %>: @<%= model_resource_name %> %>
+</div>

@@ -2,44 +2,46 @@
   <%= Post.model_name.human %>列表
   <%= link_to "新增", new_admin_post_path, class: "btn btn-success float-right" %>
 </h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th><%= Post.human_attribute_name('id') %></th>
-      <th><%= Post.human_attribute_name('title') %></th>
-      <th><%= Post.human_attribute_name('category') %></th>
-      <th><%= Post.human_attribute_name('top_tags') %></th>
-      <th>建立於</th>
-      <th>最後更新</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @posts.each do |post| %>
+<div class="table-responsive-sm">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= post.number %></td>
-        <td><%= post.title %></td>
-        <td><%= post.category %></td>
-        <td><%= post.top_tags_string %></td>
-        <td><%= post.created_at.strftime("%F %T") %></td>
-        <td><%= timeago(post.updated_at) %></td>
-        <td class="text-right">
-          <div class="dropdown">
-            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
-              操作
-            </button>
-            <div class="dropdown-menu">
-              <%= link_to '檢視', [:admin, post], class: "dropdown-item" %>
-              <%= link_to "編輯", edit_admin_post_path(post), class: "dropdown-item" %>
-              <div class="dropdown-divider"></div>
-              <%= link_to '刪除', [:admin, post], method: :delete, data: { confirm: '確認刪除？' }, class: "dropdown-item" %>
-            </div>
-          </div>
-        </td>
+        <th><%= Post.human_attribute_name('id') %></th>
+        <th style="min-width: 70px;"><%= Post.human_attribute_name('title') %></th>
+        <th style="min-width: 50px;"><%= Post.human_attribute_name('category') %></th>
+        <th style="min-width: 70px;"><%= Post.human_attribute_name('top_tags') %></th>
+        <th style="min-width: 100px;">建立於</th>
+        <th style="min-width: 100px;">最後更新</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.number %></td>
+          <td><%= post.title %></td>
+          <td><%= post.category %></td>
+          <td><%= post.top_tags_string %></td>
+          <td><%= post.created_at.strftime("%F %H:%M") %></td>
+          <td><%= timeago(post.updated_at) %></td>
+          <td class="text-right">
+            <div class="dropdown">
+              <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                操作
+              </button>
+              <div class="dropdown-menu">
+                <%= link_to '檢視', [:admin, post], class: "dropdown-item" %>
+                <%= link_to "編輯", edit_admin_post_path(post), class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to '刪除', [:admin, post], method: :delete, data: { confirm: '確認刪除？' }, class: "dropdown-item" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <script type="text/javascript">
   $(function() {

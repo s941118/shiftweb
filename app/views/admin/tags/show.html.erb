@@ -10,9 +10,16 @@
 
   <li href="#" class="list-group-item flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"><%= Tag.human_attribute_name("category") %></h5>
+    </div>
+    <p class="mb-1" style="font-size: 18px;"><%= @tag.category.present? ? @tag.category : "不顯示" %></p>
+  </li>
+
+  <li href="#" class="list-group-item flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1"><%= Tag.human_attribute_name("icon") %></h5>
     </div>
-    <p class="mb-1"><%= image_tag @tag.icon %></p>
+    <p class="mb-1"><%= image_tag @tag.icon_or_default, style: "max-width: 100%;" %></p>
   </li>
 
   <li href="#" class="list-group-item flex-column align-items-start">
@@ -20,8 +27,12 @@
       <h5 class="mb-1">使用於下列作品中</h5>
     </div>
     <p class="mb-1">
-      <% @tag.posts.map do |post| %>
-        <%= link_to post.title, admin_post_path(post), class: "btn btn-link" %>
+      <% if @tag.posts_count > 0 %>
+        <% @tag.posts.map do |post| %>
+          <%= link_to "##{post.number} #{post.title}", admin_post_path(post), class: "btn btn-link" %>
+        <% end %>
+      <% else %>
+        無
       <% end %>
     </p>
   </li>

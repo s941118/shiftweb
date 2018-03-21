@@ -1,5 +1,5 @@
 <%= form_with model: [:admin, tag], local: true do |f| %>
-  <div class="form-group <%= tag.errors[:name].present? ? 'has-danger' : '' %>">
+  <div class="form-group mb-5 <%= tag.errors[:name].present? ? 'has-danger' : '' %>">
     <%= f.label :name, "名稱" %>
     <%= f.text_field :name, class: "form-control #{tag.errors[:name].present? ? 'is-invalid' : ''}", readonly: true %>
     <% if tag.errors[:name].present? %>
@@ -9,10 +9,19 @@
     <% end %>
     <small id="nameHelp" class="form-text text-muted">名稱是透過文章內容建立，無法在此修改。</small>
   </div>
+  <div class="form-group mb-5 <%= tag.errors[:category].present? ? 'has-danger' : '' %>">
+    <%= f.label :category, "側邊欄分類" %>
+    <%= f.select :category, ["SHIFT", "COOPERATION"], { include_blank: "不顯示" }, class: "form-control #{tag.errors[:category].present? ? 'is-invalid' : ''}" %>
+    <% if tag.errors[:category].present? %>
+      <div class="invalid-feedback">
+        <%= tag.errors[:category].join(", ") %>
+      </div>
+    <% end %>
+  </div>
   <div class="form-group <%= tag.errors[:icon].present? ? 'has-danger' : '' %>">
-    <%= f.label :icon %>
-    <%= f.file_field :icon, class: "form-control #{tag.errors[:icon].present? ? 'is-invalid' : ''}" %>
-    <img id="previewer"/>
+    <%= f.label :icon %><br>
+    <%= f.file_field :icon, class: "d-none previewable" %>
+    <%= image_tag tag.icon_or_default, style: "max-width: 100%;", id: "previewer", data: { file: "input#tag_icon" } %>
     <% if tag.errors[:icon].present? %>
       <div class="invalid-feedback">
         <%= tag.errors[:icon].join(", ") %>

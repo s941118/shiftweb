@@ -3,7 +3,10 @@
 <%= form_with(model: [:admin, @post], local: true, class: "mb-5") do |f| %>
   <div class="single-work-content">
   	<div class="single-work" id="form_content">
-      <div class="single-work-main-img"><img src="http://via.placeholder.com/1400x788/333.jpg"></div>
+      <div class="single-work-main-img">
+        <%= f.file_field :cover, class: "d-none previewable" %>
+        <%= image_tag @post.cover_or_default, id: "previewer", data: { file: "input#post_cover" } %>
+      </div>
       <div class="single-work-text-box">
         <div class="single-work-tags">
           <div class="tag-company" style="width: 50%;">

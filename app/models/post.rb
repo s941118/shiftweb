@@ -5,6 +5,8 @@ class Post < ApplicationRecord
 	has_many :post_tags, dependent: :destroy, inverse_of: :post
 	has_many :tags, through: :post_tags
 
+	has_one_attached :cover
+
 	def update_tags!
 		tags_text = []
 		self.contents.text.each do |content|
@@ -66,9 +68,8 @@ class Post < ApplicationRecord
   # 以上為協助資料維護相關
 
   # 以下為幫助產生對應 html
-	def cover
-		"https://images.unsplash.com/photo-1431629452562-165c8f49fc97?ixlib=rb-0.3.5&s=995930e5e5a391860e70cd6bd781546c&auto=format&fit=crop&w=1350&q=80"
-		# self.attachments.cover
+	def cover_or_default
+		cover.attached? ? cover : "http://via.placeholder.com/1400x788/333.jpg"
 	end
 	# 以上為幫助產生對應 html
 end

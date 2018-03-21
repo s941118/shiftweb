@@ -1,45 +1,53 @@
 <h1 class="h2">
   <%= Tag.model_name.human %>列表
-  <%= link_to "新增", new_admin_tag_path, class: "btn btn-success float-right" %>
+  <%#= link_to "新增", new_admin_tag_path, class: "btn btn-success float-right" %>
 </h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th><%= Tag.human_attribute_name('id') %></th>
-      <th><%= Tag.human_attribute_name('name') %></th>
-      <th><%= Tag.human_attribute_name('posts_count') %></th>
-      <th><%= Tag.human_attribute_name('icon') %></th>
-      <th>建立於</th>
-      <th>最後更新</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tags.each do |tag| %>
+<div class="table-responsive-sm">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= tag.id %></td>
-        <td><%= tag.name %></td>
-        <td><%= link_to tag.posts_count, admin_posts_path(tag: tag.name) %></td>
-        <td><%= image_tag(url_for(tag.icon), height: "100px") if tag.icon.attached? %></td>
-        <td><%= tag.created_at.strftime("%F %T") %></td>
-        <td><%= timeago(tag.updated_at) %></td>
-        <td class="text-right">
-          <div class="dropdown">
-            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
-              操作
-            </button>
-            <div class="dropdown-menu">
-              <%= link_to '檢視', [:admin, tag], class: "dropdown-item" %>
-              <%= link_to "編輯", edit_admin_tag_path(tag), class: "dropdown-item" %>
-              <div class="dropdown-divider"></div>
-              <%= link_to '刪除', [:admin, tag], method: :delete, data: { confirm: '確認刪除？' }, class: "dropdown-item" %>
-            </div>
-          </div>
-        </td>
+        <th><%= Tag.human_attribute_name('id') %></th>
+        <th style="min-width: 70px;"><%= Tag.human_attribute_name('name') %></th>
+        <th style="min-width: 90px;"><%= Tag.human_attribute_name('category') %></th>
+        <th style="min-width: 80px;"><%= Tag.human_attribute_name('posts_count') %></th>
+        <th style="min-width: 70px;"><%= Tag.human_attribute_name('icon') %></th>
+        <th style="min-width: 100px;">建立於</th>
+        <th style="min-width: 100px;">最後更新</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% if @tags.present? %>
+        <% @tags.each do |tag| %>
+          <tr>
+            <td><%= tag.id %></td>
+            <td><%= tag.name %></td>
+            <td><%= tag.category %></td>
+            <td><%= link_to tag.posts_count, admin_posts_path(tag: tag.name) %></td>
+            <td><%= image_tag(url_for(tag.icon), height: "100px") if tag.icon.attached? %></td>
+            <td><%= tag.created_at.strftime("%F %T") %></td>
+            <td><%= timeago(tag.updated_at) %></td>
+            <td class="text-right">
+              <div class="dropdown">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                  操作
+                </button>
+                <div class="dropdown-menu">
+                  <%= link_to '檢視', [:admin, tag], class: "dropdown-item" %>
+                  <%= link_to "編輯", edit_admin_tag_path(tag), class: "dropdown-item" %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to '刪除', [:admin, tag], method: :delete, data: { confirm: '確認刪除？' }, class: "dropdown-item" %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr><td colspan="8">目前還沒建立任何標籤。可以透過文章內容直接建立 hashtag。</td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <script type="text/javascript">
   $(function() {
