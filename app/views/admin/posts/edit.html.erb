@@ -5,7 +5,16 @@
   	<div class="single-work" id="form_content">
       <div class="single-work-main-img">
         <%= f.file_field :cover, class: "d-none previewable" %>
-        <%= image_tag @post.cover_or_default, id: "previewer", data: { file: "input#post_cover" } %>
+        <%= image_tag @post.cover_or_default, class: "previewer", data: { file: "input#post_cover" } %>
+        <% if f.object.cover.attached? %>
+          <div class="form-check float-right pt-2 pr-2">
+            <label class="form-check-label">
+              <%= f.check_box :remove_cover, class: "form-check-input mr-0" %>
+              <!-- <input class="form-check-input" type="checkbox" value="" checked=""> -->
+              移除目前封面
+            </label>
+          </div>
+        <% end %>
       </div>
       <div class="single-work-text-box">
         <div class="single-work-tags">

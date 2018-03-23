@@ -387,6 +387,9 @@ body {
   height: 100%;
   padding: 1.2%;
   min-height: 100%; }
+  @media (min-width: 1400px) {
+    .content {
+      padding: 10px; } }
 
 .clearfix {
   zoom: 1; }
@@ -789,14 +792,25 @@ header {
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 20px 0 20px 20px;
-    border-color: transparent transparent transparent #2c2824;
+    border-width: 24px 0 24px 24px;
+    border-color: transparent transparent transparent #4b7cb7;
     transform: rotate(0);
     display: none;
     -moz-transition: all 0.3s;
     -o-transition: all 0.3s;
     -webkit-transition: all 0.3s;
     transition: all 0.3s; }
+    .works-content .work-nav-arrow:before {
+      display: block;
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: -20px;
+      left: -22px;
+      border-style: solid;
+      border-width: 20px 0 20px 20px;
+      border-color: transparent transparent transparent #2c2824; }
     @media (max-width: 599px) {
       .works-content .work-nav-arrow {
         display: block; } }
@@ -929,15 +943,17 @@ header {
         left: -180px; } }
   .works-content .works-nav-open {
     left: 30px; }
+  .works-content .work-nav-hide {
+    left: -300px; }
   .works-content .works-map-wrapper {
     overflow: auto; }
-    @media (max-width: 599px) {
-      .works-content .works-map-wrapper {
-        padding: 20px; } }
     .works-content .works-map-wrapper .preview-wrapper {
       background: url(../images/workBG.png) top left repeat;
       background-size: 10px 10px;
       padding: 85px 20px 20px 245px; }
+      @media (max-width: 599px) {
+        .works-content .works-map-wrapper .preview-wrapper {
+          padding: 0; } }
     .works-content .works-map-wrapper .work-block {
       background: #f3dc11;
       width: 270px;
@@ -992,6 +1008,8 @@ header {
           transition: all 0.3s; }
       .works-content .works-map-wrapper .work-block:hover {
         background: #fff2cc; }
+    .works-content .works-map-wrapper .work-block-hide {
+      margin-top: 100%; }
   .works-content .preview-box {
     background: #2c2824;
     position: fixed;
@@ -1105,10 +1123,7 @@ header {
   padding: 6% 2% 2% 2%;
   position: relative; }
   .single-work-content .single-work-card {
-    width: 270px;
-    height: 280px;
-    max-height: 280px;
-    display: inline-block;
+    display: none;
     margin: 10px;
     vertical-align: top;
     position: fixed;
@@ -1159,9 +1174,17 @@ header {
           -o-transition: all 0.3s;
           -webkit-transition: all 0.3s;
           transition: all 0.3s; }
+    @media (min-width: 900px) {
+      .single-work-content .single-work-card {
+        width: 270px;
+        height: 280px;
+        max-height: 280px;
+        display: inline-block; } }
+  .single-work-content .single-work-card-hide {
+    margin-top: 100%; }
   .single-work-content .single-work {
     width: 100%;
-    max-width: calc(100% - 300px);
+    max-width: 100%;
     height: auto;
     background: white; }
     .single-work-content .single-work .single-work-text-box {
@@ -1192,12 +1215,19 @@ header {
           -webkit-transition: all 0.3s;
           transition: all 0.3s; }
       .single-work-content .single-work .single-work-text-box .single-work-title p, .single-work-content .single-work .single-work-text-box .single-work-number p {
-        font-size: 4em; }
+        font-size: 4em;
+        font-weight: bold; }
+        @media (max-width: 599px) {
+          .single-work-content .single-work .single-work-text-box .single-work-title p, .single-work-content .single-work .single-work-text-box .single-work-number p {
+            line-height: 1; } }
       .single-work-content .single-work .single-work-text-box .single-work-title {
         float: left;
         max-width: 600px; }
       .single-work-content .single-work .single-work-text-box .single-work-number {
         float: right; }
+        @media (max-width: 599px) {
+          .single-work-content .single-work .single-work-text-box .single-work-number {
+            float: none; } }
       .single-work-content .single-work .single-work-text-box .single-work-text {
         margin-top: 35px; }
         .single-work-content .single-work .single-work-text-box .single-work-text .paragraph-title {
@@ -1208,6 +1238,11 @@ header {
           margin: 30px 0 10px 0; }
     .single-work-content .single-work .paragraph-image {
       margin: 20px 0 0 0; }
+    @media (min-width: 900px) {
+      .single-work-content .single-work {
+        max-width: calc(100% - 300px); } }
+  .single-work-content .single-work-hide {
+    margin-top: 100%; }
   .single-work-content .related-works .related-work-card {
     width: 270px;
     height: 280px;
@@ -1269,6 +1304,169 @@ header {
   top: 0;
   position: relative;
   opacity: 1; }
+
+.member-content {
+  background: url(../images/workBG.png) top left repeat;
+  background-size: 10px 10px;
+  width: 100%;
+  height: 100%; }
+  .member-content .members {
+    width: 100%;
+    height: auto;
+    padding: 65px;
+    background: url(../images/membersBG.png) center 30px no-repeat;
+    background-size: 100%; }
+    .member-content .members .member-head {
+      margin-top: 100px;
+      -moz-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s; }
+      @media (min-width: 1400px) {
+        .member-content .members .member-head {
+          margin-top: 200px; } }
+      @media (min-width: 1800px) {
+        .member-content .members .member-head {
+          margin-top: 300px; } }
+      .member-content .members .member-head .member-title {
+        padding: 30px;
+        width: 400px;
+        height: auto;
+        background-color: #2c2824;
+        float: left; }
+        .member-content .members .member-head .member-title p {
+          font-weight: bold;
+          font-size: 3.125em;
+          line-height: 1.2;
+          margin-bottom: 0; }
+      .member-content .members .member-head .member-info {
+        float: right; }
+        .member-content .members .member-head .member-info .member-info-block {
+          width: 140px;
+          height: auto;
+          display: inline-block;
+          margin: 0 15px; }
+          .member-content .members .member-head .member-info .member-info-block p {
+            font-size: 1.063em;
+            text-align: center; }
+          .member-content .members .member-head .member-info .member-info-block span {
+            display: inline-block;
+            width: 100%;
+            background: #2c2824;
+            font-size: 6em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2em;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            -moz-border-radius: 10px;
+            -o-border-radius: 10px; }
+    .member-content .members .member-thumbnail-wrap {
+      margin-top: 75px; }
+      .member-content .members .member-thumbnail-wrap .member-thumbnail-block {
+        width: 360px;
+        height: 255px;
+        background: none;
+        perspective: 1200px;
+        cursor: pointer;
+        margin-bottom: 20px; }
+        @media (min-width: 1200px) {
+          .member-content .members .member-thumbnail-wrap .member-thumbnail-block {
+            width: 350px; } }
+        @media (min-width: 1400px) {
+          .member-content .members .member-thumbnail-wrap .member-thumbnail-block {
+            width: 360px; } }
+        .member-content .members .member-thumbnail-wrap .member-thumbnail-block img {
+          height: 255px; }
+        .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card {
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          -moz-transition: all 0.5s;
+          -o-transition: all 0.5s;
+          -webkit-transition: all 0.5s;
+          transition: all 0.5s; }
+        .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-front {
+          background: #4b7cb7;
+          height: 100%;
+          backface-visibility: hidden;
+          position: absolute;
+          overflow: hidden;
+          width: 100%; }
+          .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-front p {
+            color: #fff2cc; }
+          .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-front .front-left {
+            float: left;
+            width: 50%;
+            height: 100%;
+            padding: 15px 20px;
+            position: relative; }
+            .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-front .front-left .fcard-title {
+              font-size: 0.938em;
+              margin-bottom: 5px; }
+            .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-front .front-left .fcard-name {
+              font-size: 1.875em;
+              line-height: 1; }
+            .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-front .front-left .front-bottom {
+              width: 100%;
+              margin-top: 100%; }
+              .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-front .front-left .front-bottom .divider {
+                margin-bottom: 5px; }
+              .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-front .front-left .front-bottom .fcard-role:before {
+                content: '';
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: url(../images/card-time.svg);
+                margin-right: 5px; }
+          .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-front .front-right {
+            float: right;
+            width: 50%; }
+        .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-back {
+          background: #2c2824;
+          height: 100%;
+          backface-visibility: hidden;
+          position: absolute;
+          overflow: hidden;
+          width: 100%;
+          transform: rotateY(180deg); }
+          .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-back p {
+            color: #fff2cc; }
+          .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-back .back-right {
+            float: left;
+            width: 50%;
+            height: 100%;
+            padding: 15px 20px;
+            position: relative; }
+            .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-back .back-right .bcard-title {
+              font-size: 0.938em;
+              margin-bottom: 5px; }
+            .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-back .back-right .bcard-name {
+              font-size: 1.875em;
+              line-height: 1; }
+            .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-back .back-right .back-bottom {
+              width: 100%;
+              margin-top: 100%; }
+              .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-back .back-right .back-bottom .divider {
+                margin-bottom: 5px; }
+              .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-back .back-right .back-bottom .bcard-role:before {
+                content: '';
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: url(../images/card-time.svg);
+                margin-right: 5px; }
+          .member-content .members .member-thumbnail-wrap .member-thumbnail-block .member-card-back .back-left {
+            float: right;
+            width: 50%; }
+        .member-content .members .member-thumbnail-wrap .member-thumbnail-block:hover .member-card {
+          transform: rotateY(540deg); }
+          .member-content .members .member-thumbnail-wrap .member-thumbnail-block:hover .member-card .member-card-front p, .member-content .members .member-thumbnail-wrap .member-thumbnail-block:hover .member-card .member-card-front .divider {
+            opacity: 0;
+            -moz-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s; }
 
 .copyright {
   width: 100%;
@@ -1488,6 +1686,9 @@ button:focus {
   @media (max-width: 599px) {
     .chat-box img {
       opacity: 1; } }
+  @media (min-width: 1400px) {
+    .chat-box {
+      margin: 10px; } }
 
 .chat-box-pulse {
   animation: pulse 1s infinite; }

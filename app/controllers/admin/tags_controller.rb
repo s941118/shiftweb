@@ -37,6 +37,12 @@ class Admin::TagsController < AdminController
   # PATCH/PUT /tags/1
   def update
     if @tag.update(tag_params)
+      if ActiveModel::Type::Boolean.new.cast tag_params[:remove_icon]
+        @tag.icon.purge_later
+      end
+      if ActiveModel::Type::Boolean.new.cast tag_params[:remove_member_bg]
+        @tag.member_bg.purge_later
+      end
       flash[:success] = "更新成功。 "
       redirect_to [:admin, @tag]
     else
@@ -61,6 +67,6 @@ class Admin::TagsController < AdminController
 
     # Only allow a trusted parameter "white list" through.
     def tag_params
-      params.require(:tag).permit(:name, :category, :icon)
+      params.require(:tag).permit(:name, :category, :icon, :remove_icon, :member_bg, :remove_member_bg)
     end
 end

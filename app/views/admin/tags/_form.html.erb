@@ -21,10 +21,42 @@
   <div class="form-group <%= tag.errors[:icon].present? ? 'has-danger' : '' %>">
     <%= f.label :icon %><br>
     <%= f.file_field :icon, class: "d-none previewable" %>
-    <%= image_tag tag.icon_or_default, style: "max-width: 100%;", id: "previewer", data: { file: "input#tag_icon" } %>
+    <%= image_tag tag.icon_or_default, style: "max-width: 100%;", class: "previewer", data: { file: "input#tag_icon" } %>
+    <% if f.object.icon.attached? %>
+      <div class="text-right">
+        <div class="form-check pt-2 pr-2">
+          <label class="form-check-label">
+            <%= f.check_box :remove_icon, class: "form-check-input mr-0" %>
+            <!-- <input class="form-check-input" type="checkbox" value="" checked=""> -->
+            移除圖示
+          </label>
+        </div>
+      </div>
+    <% end %>
     <% if tag.errors[:icon].present? %>
       <div class="invalid-feedback">
         <%= tag.errors[:icon].join(", ") %>
+      </div>
+    <% end %>
+  </div>
+  <div class="form-group <%= tag.errors[:member_bg].present? ? 'has-danger' : '' %>">
+    <%= f.label :member_bg %><br>
+    <%= f.file_field :member_bg, class: "d-none previewable" %>
+    <%= image_tag tag.member_bg_or_default, style: "max-width: 100%;", class: "previewer", data: { file: "input#tag_member_bg" } %>
+    <% if f.object.member_bg.attached? %>
+      <div class="text-right">
+        <div class="form-check pt-2 pr-2">
+          <label class="form-check-label">
+            <%= f.check_box :remove_member_bg, class: "form-check-input mr-0" %>
+            <!-- <input class="form-check-input" type="checkbox" value="" checked=""> -->
+            移除成員背景
+          </label>
+        </div>
+      </div>
+    <% end %>
+    <% if tag.errors[:member_bg].present? %>
+      <div class="invalid-feedback">
+        <%= tag.errors[:member_bg].join(", ") %>
       </div>
     <% end %>
   </div>

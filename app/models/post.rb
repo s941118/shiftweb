@@ -6,6 +6,7 @@ class Post < ApplicationRecord
 	has_many :tags, through: :post_tags
 
 	has_one_attached :cover
+	attr_accessor :remove_cover
 
 	def update_tags!
 		tags_text = []

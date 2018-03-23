@@ -45,6 +45,9 @@ class Admin::PostsController < AdminController
   def update
     if @post.update(post_params)
       @post.update_tags!
+      if ActiveModel::Type::Boolean.new.cast post_params[:remove_cover]
+        @post.cover.purge_later
+      end
       # @post.touch # 因為 ordering 不再是相對加一，而是每次更新，所以好像不需要順過了？
       flash[:success] = "更新成功。 "
       redirect_to [:admin, @post]
@@ -70,6 +73,6 @@ class Admin::PostsController < AdminController
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params.require(:post).permit(:title, :cover, :category, :top_tags, :number, contents_attributes: [ :id, :html, :ordering, :usage, :_destroy, :wrapper_klass ])
+      params.require(:post).permit(:title, :cover, :remove_cover, :category, :top_tags, :number, contents_attributes: [ :id, :html, :ordering, :usage, :_destroy, :wrapper_klass ])
     end
 end
