@@ -22,6 +22,6 @@ function previewFile(previewer, file_input){
 	if (file) {
 	  reader.readAsDataURL(file); //reads the data as a URL
 	} else {
-	  previewer.src = "";
+	  // previewer.src = "";
 	}
 }
