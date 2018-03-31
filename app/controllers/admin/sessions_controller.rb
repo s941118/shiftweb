@@ -1,4 +1,5 @@
 class Admin::SessionsController < AdminController
+	layout "plain"
 	def new
 		authorize [:admin, :session], :new?
 	end

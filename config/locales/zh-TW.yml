@@ -37,6 +37,7 @@ zh-TW:
         user:
           attributes:
             name:
+              blank: 請填寫使用者名稱，作為登入帳號使用
               taken: 名稱已被使用
             password:
               blank: 密碼不可空白

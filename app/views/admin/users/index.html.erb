@@ -5,7 +5,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%= User.human_attribute_name('id') %></th>
       <th><%= User.human_attribute_name('name') %></th>
       <th>建立於</th>
       <th>最後更新</th>
@@ -15,7 +14,6 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td><%= user.created_at.strftime("%F %T") %></td>
         <td><%= timeago(user.updated_at) %></td>
