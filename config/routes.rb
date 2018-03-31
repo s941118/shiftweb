@@ -15,14 +15,19 @@ Rails.application.routes.draw do
 
 	namespace :admin do
     resources :tags
-    resources :posts
+    resources :posts do
+      member do
+        post "publish"
+        post "draft"
+      end
+    end
     resources :contents
   end
 	get 'admin', to: redirect('/admin/posts')
 	namespace :admin do
 		resources :users
-		get 'signin', to: 'sessions#new'
-		post 'signin', to: 'sessions#create'
-		delete 'logout', to: 'sessions#destroy'
 	end
+  get 'signin', to: 'sessions#new'
+  post 'signin', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 end

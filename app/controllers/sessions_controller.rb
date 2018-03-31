@@ -1,4 +1,5 @@
-class Admin::SessionsController < AdminController
+class SessionsController < ApplicationController
+	layout "admin"
 	def new
 		authorize :session, :new
 	end
@@ -7,7 +8,7 @@ class Admin::SessionsController < AdminController
 		@user = User.find_by_name(params[:session][:user_name])
 		if @user.present? && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-			redirect_to (params[:session][:back_path] || root_path)
+			redirect_to (params[:session][:back_path] || admin_path)
 		else
       flash.now[:danger] = "帳號或密碼錯誤。"
 			render :new

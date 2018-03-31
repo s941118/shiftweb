@@ -1,5 +1,5 @@
 class Admin::PostsController < AdminController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :publish, :draft]
   layout 'edit_post', only: [:show, :edit, :update]
 
   # GET /posts
@@ -12,7 +12,7 @@ class Admin::PostsController < AdminController
     else
       posts.order(updated_at: :desc)
     end
-    authorize [:admin, @posts]
+    authorize @posts
   end
 
   # GET /posts/1
@@ -23,7 +23,7 @@ class Admin::PostsController < AdminController
   # GET /posts/new
   def new
     @post = Post.new
-    authorize [:admin, @post]
+    authorize @post
   end
 
   # GET /posts/1/edit
@@ -33,7 +33,7 @@ class Admin::PostsController < AdminController
   # POST /posts
   def create
     @post = Post.new(post_params)
-    authorize [:admin, @post]
+    authorize @post
 
     if @post.save
       @post.contents.create(ordering: 1, html: "<p/>")
@@ -66,12 +66,24 @@ class Admin::PostsController < AdminController
     redirect_to admin_posts_url
   end
 
+  def publish
+    @post.publish! if @post.draft?
+    flash[:success] = "作品已公開。"
+    redirect_to admin_posts_url
+  end
+
+  def draft
+    @post.draft! if @post.publish?
+    flash[:success] = "作品已撤下轉為草稿。"
+    redirect_to admin_posts_url
+  end
+
   private
 
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
-    	authorize [:admin, @post]
+    	authorize @post
     end
 
     # Only allow a trusted parameter "white list" through.

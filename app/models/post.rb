@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+	enum status: { draft: 0, publish: 1 }
+
 	validates :title, presence: { message: "請先填寫標題，之後可以隨時修改唷～" }
 
 	has_many :contents, dependent: :destroy, inverse_of: :post

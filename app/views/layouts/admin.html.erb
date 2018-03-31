@@ -13,6 +13,7 @@
   <body class='admin <%= "#{controller_name}-controller" %> <%= "#{action_name}-action" %>'>
     <%= render "admin/common/nav_top" if user_signed_in? %>
     <div class="container">
+      <%= notice_message %>
       <%= yield %>
     </div>
   </body>
