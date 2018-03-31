@@ -2,7 +2,6 @@ var Home = Barba.BaseView.extend({
     namespace: "home",
     onEnter: function () {},
     onEnterCompleted: function () {
-    	preloaderTimeline();
         initHome();
     },
     onLeave: function () {},
@@ -15,7 +14,6 @@ var Works = Barba.BaseView.extend({
     namespace: "works",
     onEnter: function () {},
     onEnterCompleted: function () {
-    	preloaderTimeline();
         initWorks();
     },
     onLeave: function () {},
@@ -24,12 +22,23 @@ var Works = Barba.BaseView.extend({
 		$('.mobile-nav').removeClass('mobile-nav-open', 300);
     }
 });
-var Test = Barba.BaseView.extend({
-    namespace: "about",
+var Members = Barba.BaseView.extend({
+    namespace: "members",
     onEnter: function () {},
     onEnterCompleted: function () {
-    	preloaderTimeline();
-        initAbout();
+        initMembers();
+    },
+    onLeave: function () {},
+    onLeaveCompleted: function () {
+    	$('.menu-button').removeClass('close');
+		$('.mobile-nav').removeClass('mobile-nav-open', 300);
+    }
+});
+var Contact = Barba.BaseView.extend({
+    namespace: "contact",
+    onEnter: function () {},
+    onEnterCompleted: function () {
+        initContact();
     },
     onLeave: function () {},
     onLeaveCompleted: function () {
@@ -68,14 +77,14 @@ function preloaderTimeline() {
 		});
 	});
 }
-
 $(function () {
 	Home.init();
 	Works.init();
-
+	Members.init();
+	Contact.init();
+	preloaderTimeline();
 	Barba.Pjax.init();
     Barba.Prefetch.init();
-
     var FadeTransition = Barba.BaseTransition.extend({
 	  start: function() {
 	    Promise
@@ -128,7 +137,8 @@ $(function () {
 		  easing: 'easeInQuart',
 		  duration: 1000,
 		  complete: function(){
-		  	_this.done()
+		  	$('.content').removeClass('content-loading');
+		  	_this.done();
 		  }
 		});
 
@@ -143,6 +153,9 @@ $(function () {
 });
 
 function initGlobal() {
+	$(window).load(function(){
+		$('.content').removeClass('content-loading');
+	});
 	$(document).foundation();
 	$('.menu-button').click(function(e) {
 		var open = $(this).hasClass('close');
@@ -163,6 +176,10 @@ function initGlobal() {
 			$(this).removeClass('has-link');
 		}
 		if(contentAttr == 'works') {
+			$(".nav-menu ul").addClass('works-nav');
+		} else if(contentAttr == 'members') {
+			$(".nav-menu ul").addClass('works-nav');
+		} else if(contentAttr == 'contact') {
 			$(".nav-menu ul").addClass('works-nav');
 		} else {
 			$(".nav-menu ul").removeClass('works-nav');
@@ -211,9 +228,15 @@ function initWorks() {
 			return $(this).offset().top == top;
 		};
 	}
+	setTimeout(function(){
+		$('.works-nav').removeClass('work-nav-hide');
+	}, 1000);
+	setTimeout(function(){
+		$('.work-block').removeClass('work-block-hide');
+	}, 1200);
 	var el = $('.work-block:first');
 	var elWidth = el.outerWidth(true);
-	var mapSize = (Math.round(Math.sqrt($('.work-block').length)) + 1);
+	var mapSize = (Math.round(Math.sqrt($('.work-block').length)) + 2);
 	var wHeight = $(window).innerHeight();
 	var outerBorder = $('.content').outerHeight() - $('.content').height();
 	var innerBorder = $('.works-map-wrapper').outerHeight() - $('.works-map-wrapper').height();
@@ -221,6 +244,7 @@ function initWorks() {
 	var windowRatio = $(window).innerWidth() - 245;
 	var previewInnerW = ($(window).innerWidth() - 245) / $('.preview-wrapper').innerWidth();
 	$('.works-map').width((elWidth * mapSize) + 100);
+	
 	$('.works-content').kinetic();
 	$('.works-map').mouseout(function(){
 		$('.works-map-wrapper').kinetic('detach');
@@ -313,7 +337,14 @@ function initWorks() {
 		$('.single-work-box').fadeIn();
 		$('.single-work-box').promise().done(function(){
 		    $('.single-work-loader').load('work1.html .single-work-content', function(){
-		    	$('.single-work-loader').addClass('single-work-loader-up');
+		    	$('.single-work-loader').addClass('single-work-loader-up', {
+		    		complete: function() {
+		    			$('.single-work').removeClass('single-work-hide');
+		    			setTimeout(function(){
+		    				$('.single-work-card').removeClass('single-work-card-hide');
+		    			}, 500);
+		    		}
+		    	});
 		   //  	$('.related-works .work-block').click(function(){
 		   //  		$('.single-work-loader').scrollTop(0).fadeOut();
 		   //  		$('.single-work-loader').promise().done(function(){
@@ -375,12 +406,25 @@ function initWorks() {
 	// 	console.log()
 	// }, 100);	
 }
-
-
-
-
-
-
+function initMembers() {
+	initGlobal();
+	if($('.content').not('.content-loading')) {
+		setTimeout(function(){
+			$('.member-title').removeClass('member-title-hide');
+		}, 1000);
+		setTimeout(function(){
+			$('.member-info').removeClass('member-info-hide');
+		}, 1200);
+		setTimeout(function(){
+			$('.member-thumbnail-wrap').removeClass('member-thumbnail-hide')
+		}, 1400);
+	};
+	
+}
+function initContact() {
+	initGlobal();
+	
+}
 
 
 

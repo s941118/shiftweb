@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  get "test", to: "pages#test"
+  controller :pages do
+  	get "works"
+  	get "member"
+  	get "about"
+  	get "contact"
+  end
 
   resources :posts, only: [:index, :show]
   resources :attachments, only: [:show]

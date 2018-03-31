@@ -3,8 +3,16 @@ class PagesController < ApplicationController
   def home
   end
 
-  def test
+  def works
   	
+  end
+
+  def about
+    
+  end
+
+  def member
+    
   end
 
   private

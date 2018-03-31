@@ -2,4 +2,5 @@
 //= require frontend/foundation.min
 //= require frontend/barba.min
 //= require frontend/anime.min
+//= require frontend/jquery.kinetic.min
 //= require frontend/app
