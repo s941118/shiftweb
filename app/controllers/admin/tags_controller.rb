@@ -3,7 +3,10 @@ class Admin::TagsController < AdminController
 
   # GET /tags
   def index
-    @tags = Tag.all.order(updated_at: :desc)
+    @search_param = :name_cont
+    @q = Tag.ransack(params[:q])
+    tags = @q.result(distinct: true)
+    @tags = tags.order(updated_at: :desc)
     authorize [:admin, @tags]
   end
 

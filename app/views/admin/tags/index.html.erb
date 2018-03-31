@@ -23,7 +23,11 @@
             <td><%= tag.id %></td>
             <td><%= tag.name %></td>
             <td><%= tag.category %></td>
-            <td><%= link_to tag.posts_count, admin_posts_path(tag: tag.name) %></td>
+            <td>
+              <%= link_to admin_posts_path(tag: tag.name) do %>
+                <span class="badge badge-pill badge-primary"><%= tag.posts_count %></span>
+              <% end %>
+            </td>
             <td><%= image_tag(url_for(tag.icon), height: "100px") if tag.icon.attached? %></td>
             <td><%= tag.created_at.strftime("%F %T") %></td>
             <td><%= timeago(tag.updated_at) %></td>

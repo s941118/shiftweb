@@ -4,10 +4,13 @@ class Admin::PostsController < AdminController
 
   # GET /posts
   def index
+    @search_param = :title_or_tags_name_or_contents_processed_html_cont
+    @q = Post.ransack(params[:q])
+    posts = @q.result(distinct: true)
     @posts = if params[:tag].present?
-      Post.tagged_with(params[:tag]).order(updated_at: :desc)
+      posts.tagged_with(params[:tag]).order(updated_at: :desc)
     else
-      Post.all.order(updated_at: :desc)
+      posts.order(updated_at: :desc)
     end
     authorize [:admin, @posts]
   end
