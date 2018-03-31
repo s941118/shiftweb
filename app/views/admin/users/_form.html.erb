@@ -1,0 +1,42 @@
+<%= form_with model: [:admin, user], local: true do |f| %>
+	<div class="form-group mb-5 <%= user.errors[:name].present? ? 'has-danger' : '' %>">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control #{user.errors[:name].present? ? 'is-invalid' : ''}" %>
+    <% if user.errors[:name].present? %>
+	    <div class="invalid-feedback">
+	      <%= user.errors[:name].join(", ") %>
+	    </div>
+    <% end %>
+  </div>
+  <div class="form-group mb-5 <%= user.errors[:password].present? ? 'has-danger' : '' %>">
+  	<% if f.object.persisted? %>
+    	<%= f.label :new_password %>
+    <% else %>
+    	<%= f.label :password %>
+    <% end %>
+    <%= f.password_field :password, class: "form-control #{user.errors[:password].present? ? 'is-invalid' : ''}" %>
+    <% if user.errors[:password].present? %>
+	    <div class="invalid-feedback">
+	      <%= user.errors[:password].join(", ") %>
+	    </div>
+    <% end %>
+    <% if f.object.persisted? %>
+    	<small id="nameHelp" class="form-text text-muted">若不修改密碼請留空。</small>
+    <% end %>
+  </div>
+  <div class="form-group mb-5 <%= user.errors[:password_confirmation].present? ? 'has-danger' : '' %>">
+  	<% if f.object.persisted? %>
+	    <%= f.label :new_password_confirmation %>
+    <% else %>
+    	<%= f.label :password_confirmation %>
+    <% end %>
+    <%= f.password_field :password_confirmation, class: "form-control #{user.errors[:password_confirmation].present? ? 'is-invalid' : ''}" %>
+    <% if user.errors[:password_confirmation].present? %>
+	    <div class="invalid-feedback">
+	      <%= user.errors[:password_confirmation].join(", ") %>
+	    </div>
+    <% end %>
+  </div>
+  <%= link_to "放棄", admin_users_path, class: "btn btn-link text-danger" %>
+  <%= f.submit "儲存", class: "btn btn-primary float-right" %>
+<% end %>

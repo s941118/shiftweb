@@ -12,7 +12,7 @@ class Admin::PostsController < AdminController
     else
       posts.order(updated_at: :desc)
     end
-    authorize @posts
+    authorize [:admin, @posts]
   end
 
   # GET /posts/1
@@ -23,7 +23,7 @@ class Admin::PostsController < AdminController
   # GET /posts/new
   def new
     @post = Post.new
-    authorize @post
+    authorize [:admin, @post]
   end
 
   # GET /posts/1/edit
@@ -33,7 +33,7 @@ class Admin::PostsController < AdminController
   # POST /posts
   def create
     @post = Post.new(post_params)
-    authorize @post
+    authorize [:admin, @post]
 
     if @post.save
       @post.contents.create(ordering: 1, html: "<p/>")
@@ -83,7 +83,7 @@ class Admin::PostsController < AdminController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
-    	authorize @post
+    	authorize [:admin, @post]
     end
 
     # Only allow a trusted parameter "white list" through.

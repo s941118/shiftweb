@@ -16,7 +16,7 @@ class AdminPolicy < ApplicationPolicy
   end
 
   def update?
-    user.present?
+    user.present? && record.present?
   end
 
   def edit?

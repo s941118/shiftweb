@@ -1,22 +1,7 @@
-class Admin::UserPolicy < ApplicationPolicy
-	def index?
-    user.present?
-  end
-
-  def show?
-    user.present?
-  end
-
-  def create?
-    user.present?
-  end
-
-  def new?
-    create?
-  end
-
+class Admin::UserPolicy < AdminPolicy
   def update?
-    user.present?
+    user.present?# && user == record
+    # 因為沒有 admin, 先設定為大家可以互相修改
   end
 
   def edit?
@@ -24,6 +9,6 @@ class Admin::UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.present?
+    update?
   end
 end

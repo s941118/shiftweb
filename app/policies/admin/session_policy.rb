@@ -1,13 +1,13 @@
-class SessionPolicy < AdminPolicy
-	def new
+class Admin::SessionPolicy < AdminPolicy
+	def new?
 		true
 	end
 
-	def create
+	def create?
 		true
 	end
 
-	def destroy
+	def destroy?
 		user.present?
 	end
 end

@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     flash[:warning] = "請先登入。"
-    redirect_to admin_signin_path(back_path: request.fullpath)
+    redirect_to admin_login_path(back_path: request.fullpath)
   end
 end

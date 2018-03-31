@@ -1,0 +1,44 @@
+<h1 class="h2">
+  <%= User.model_name.human %>列表
+  <%= link_to "新增", new_admin_user_path, class: "btn btn-success float-right" %>
+</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= User.human_attribute_name('id') %></th>
+      <th><%= User.human_attribute_name('name') %></th>
+      <th>建立於</th>
+      <th>最後更新</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.created_at.strftime("%F %T") %></td>
+        <td><%= timeago(user.updated_at) %></td>
+        <td class="text-right">
+          <div class="dropdown">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+              操作
+            </button>
+            <div class="dropdown-menu">
+              <%= link_to '檢視', [:admin, user], class: "dropdown-item" %>
+              <%= link_to "編輯", edit_admin_user_path(user), class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to '刪除', [:admin, user], method: :delete, data: { confirm: '確認刪除？' }, class: "dropdown-item" %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(function() {
+    $("time.timeago").timeago();
+  });
+</script>
