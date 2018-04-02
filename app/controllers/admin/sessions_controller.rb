@@ -2,6 +2,11 @@ class Admin::SessionsController < AdminController
 	layout "plain"
 	def new
 		authorize [:admin, :session], :new?
+		if user_signed_in?
+			flash.clear
+			# flash[:success] = "您已經登入。"
+			redirect_to admin_path
+		end
 	end
 
 	def create
