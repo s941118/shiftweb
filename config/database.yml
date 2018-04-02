@@ -80,11 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
-  # database: shiftweb_production
-  # username: shiftweb
-  # password: <%= ENV['SHIFTWEB_DATABASE_PASSWORD'] %>
+  database: <%= Rails.application.credentials.dig(:production_db_name) %>
+  username: <%= Rails.application.credentials.dig(:production_db_user) %>
+  password: <%= Rails.application.credentials.dig(:production_db_password) %>
