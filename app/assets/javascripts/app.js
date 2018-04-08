@@ -337,7 +337,7 @@ function initWorks() {
 		var $workBlock = $(this)
 		$('.single-work-box').fadeIn();
 		$('.single-work-box').promise().done(function(){
-		    $('.single-work-loader').load('/works/' + $workBlock.attr('data-work-id') + ' .single-work-content', function(){
+		    $('.single-work-loader').load('/works/' + $workBlock.attr('data-work-id') + '?js=true .single-work-content', function(){
 		    	$('.single-work-loader').addClass('single-work-loader-up', {
 		    		complete: function() {
 		    			$('.single-work').removeClass('single-work-hide');

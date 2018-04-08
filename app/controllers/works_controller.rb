@@ -10,6 +10,10 @@ class WorksController < ApplicationController
   # GET /works/1
   def show
     @contents = Content.where(work_id: params[:id]).order(ordering: :asc)
+    unless params[:js] == "true"
+      @works = Work.all
+      render "pages/works"
+    end
   end
 
   private

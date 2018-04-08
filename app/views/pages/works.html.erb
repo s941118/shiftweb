@@ -48,3 +48,10 @@
     <div class="single-work-loader"></div>
   </div>
 </div>
+<% if @work.present? %>
+  <script type="text/javascript">
+    $(document).on("ready", function(){
+      $(".work-block[data-work-id='<%= @work.id %>']").trigger("click")
+    })
+  </script>
+<% end %>
