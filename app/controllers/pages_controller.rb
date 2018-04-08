@@ -11,7 +11,7 @@ class PagesController < ApplicationController
     
   end
 
-  def member
+  def members
     
   end
 

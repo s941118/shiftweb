@@ -1,0 +1,120 @@
+button:focus {
+	outline: none;
+}
+.lines-button {
+	display: inline-block;
+	padding: $button-size/2 $button-size/4;
+	transition: .3s;
+	cursor: pointer;
+	user-select: none;
+	border: none;
+	background: none;
+	line-height: 50%;
+	vertical-align: middle;
+	position: absolute;
+	right: 5px;
+	background: none;
+	margin-top: 3px;
+	&:hover {
+		background: none;
+		.lines {
+			background: $blue;
+			&:before {
+				background: $blue;
+			}
+		}
+	}
+
+	&:active {
+		transition: 0;
+	}
+}
+.lines {
+	@include line;
+	position: relative;
+	&:before {
+		@include line;
+		position: absolute;
+		left:0;
+		content: '';
+		-webkit-transform-origin: 50% 50%;
+                transform-origin: 50% 50%;
+		-webkit-transform: rotate3d(0,0,1,90deg); 
+                transform: rotate3d(0,0,1,90deg);
+	}
+}
+.lines-button.x.close{
+	.lines {
+    	background: none;
+    	&:before{
+        -webkit-transform-origin: 50% 50%;
+                transform-origin: 50% 50%;
+        top:0;
+        width: $button-size;
+    }
+    &:before{
+        -webkit-transform: rotate3d(0,0,1,360deg); 
+                transform: rotate3d(0,0,1,360deg); 
+    }
+  }
+}
+.menu-button {
+	display: inline-block;
+	padding: $button-size/3 $button-size/5;
+	transition: .3s;
+	cursor: pointer;
+	user-select: none;
+	border: none;
+	background: none;
+	line-height: 50%;
+	vertical-align: middle;
+	z-index: 999;
+	position: absolute;
+	margin-top: 7px;
+	right: 5px;
+	background: none;
+	&:hover {
+		opacity: 1;
+		background: none;
+	}
+
+	&:active {
+		transition: 0;
+	}
+}
+.menu-lines {
+	@include line;
+	position: relative; 
+	&:before, &:after {
+		@include line;
+		position: absolute;
+		left:0;
+		content: '';
+		transform-origin: $button-size/14 center;
+	}
+	&:before { 
+		top: $button-size/4; 
+	}
+	&:after { 
+		top: -$button-size/4;
+	}
+}
+.menu-button.x.close{
+	.menu-lines {
+    	background: none;
+    	&:before, &:after{
+        -webkit-transform-origin: 50% 50%;
+                transform-origin: 50% 50%;
+        top:0;
+        width: $button-size;
+    }
+    &:before{
+        -webkit-transform: rotate3d(0,0,1,45deg); 
+                transform: rotate3d(0,0,1,45deg); 
+    }
+    &:after{
+        -webkit-transform: rotate3d(0,0,1,-45deg); 
+                transform: rotate3d(0,0,1,-45deg); 
+    }
+  }
+}

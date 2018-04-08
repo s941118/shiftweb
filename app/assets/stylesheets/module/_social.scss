@@ -1,0 +1,36 @@
+.social-menu {
+	z-index: 500;
+	position: absolute;
+	right: 35px;
+	top: 35px;
+	background-color: $black;
+	text-align: center;
+	width: 46px;
+	height: 46px;
+	overflow: hidden;
+	padding: 0;
+	@include radius(46px);
+	// @include transition(all .3s);
+	.social-share {
+		margin: 45px 0 10px 0;
+		a {
+			display: block;
+			padding-bottom: 5px;
+			color: $white;
+			white-space: nowrap;
+			@include transition(all .3s);
+			&:hover {
+				color: $blue;
+			}
+		}
+	}
+	@include for-phone-only {
+		display: none;
+	}
+}
+.social-menu-open {
+	width: auto;
+	height: auto;
+	@include radius(5px);
+	padding: 0 10px;
+}

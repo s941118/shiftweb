@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   controller :pages do
   	get "works"
-  	get "member"
+  	get "members"
   	get "about"
   	get "contact"
   end

@@ -1,0 +1,123 @@
+footer {
+	background: $black url(../images/footerBG.png) no-repeat;
+	background-size: 50%;
+	background-position: top right;
+	width: 100%;
+	height: auto;
+	position: relative;
+	padding: 70px 0 50px 0;
+	z-index: 3;
+	.footer-sitemap {
+		float: left;
+		margin-left: 0%;
+		@include clearfix;
+		@include for-phone-only {
+			float: none;
+			margin-right: 50px;
+		}
+		@include for-tablet-portrait-up {
+			margin-left: 5%;
+		}
+		@include for-small-desktop-up {
+			margin-left: 10%;
+		}
+		@include for-tablet-landscape-up {
+			margin-left: 35%;
+		}
+		ul {
+			@include for-phone-only {
+				float: right;
+			}
+			li {
+				list-style: none;
+				a {
+					color: $white;
+					font-size: 1.5em;
+					@include transition(all .3s);
+					&:hover {
+						color: $blue;
+					}
+				}
+			}
+		}
+	}
+	.footer-subscription {
+		float: right;
+		margin-right: 5%;
+		@include for-phone-only {
+			float: none;
+			margin-left: 5%;
+		}
+		@include for-small-desktop-up {
+			margin-right: 10%;
+		}
+		p {
+			font-size: 1.5em;
+			margin-bottom: 5px;
+		}
+		.subscription-box {
+			position: relative;
+			width: 342px;
+			@include for-phone-only {
+				width: 100%;
+			}
+			.sub-email {
+				height: 40px;
+				background: url(../images/sub-mail.svg) $white 10px center no-repeat;
+				background-size: 18px 12px;
+				padding: 0 65px 0 35px;
+				border: none;
+				outline: none;
+				width: 100%;
+			}
+			button {
+				position: absolute;
+				right: 5px;
+				top: 5px;
+				border: none;
+				background: $blue;
+				width: 55px;
+				height: 30px;
+				text-align: center;
+				color: $white;
+				font-weight: bold;
+			}
+		}
+		.footer-social {
+			margin-top: 30px;
+			a {
+				width: 30px;
+				height: 30px;
+				display: inline-block;
+				margin-right: 30px;
+				vertical-align: top;
+				@include transition(all .3s);
+				svg {
+					fill: $white;
+					@include transition(all .3s);
+				}
+				&:hover {
+					svg {
+						fill: $blue;
+					}
+				}
+			}
+			.f-social-youtube {
+				width: 34px;
+				padding-top: 2px;
+			}
+		}	
+	}
+	.footer-copyright {
+		position: absolute;
+		left: 15px;
+		bottom: 15px;
+		@include for-phone-only {
+			position: relative;
+			text-align: center;
+			left: 0;
+			bottom: 0;
+			margin-top: 20px;
+		}
+	}
+}

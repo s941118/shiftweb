@@ -1,0 +1,242 @@
+.index-content {
+	background: $yellow url(asset-path("indexBG.png")) center no-repeat;
+	background-size: 85%;
+	width: 100%;
+	min-height: 100%;
+	overflow: no-scroll;
+	@include for-phone-only {
+		background-size: 200%;
+	}
+	.new-work-wrap {
+		position: absolute;
+		left: -250px;
+		top: 0;
+		bottom: 0;
+		width: 230px;
+		background: $black url(asset-path("newWorkBG.png")) 30% 150% no-repeat;
+		background-size: 200%;
+		z-index: 10;
+		padding-top: 60px;
+		@include transition(all .5s);
+		h2 {
+			@include font(1.5em, 700, none, 1.2em);
+			text-align: center;
+			margin-top: 30px;
+		}
+		.divider {
+			width: 40px;
+			margin: 30px auto;
+		}
+		.new-work {
+			width: 230px;
+			background: $yellow;
+			margin-bottom: 25px;
+			margin-left: 20px;
+			display: block;
+			@include transition(all .3s);
+			.new-work-des {
+				padding: 3% 5%;
+				@include font(1em, normal, none, 1.2em);
+				.new-work-des-bottom {
+					margin-top: 5px;
+					.new-work-title {
+						font-size: 1.125em;
+						line-height: 1em;
+						margin-bottom: 0;
+						color: $black;
+					}
+				}
+			}
+			&:hover {
+				color: $black;
+				background: $blue;
+			}
+		}
+		.new-work-box {
+			position: absolute;
+			display: block;
+			height: 100%;
+			min-height: 100%;
+			width: 40px;
+			right: -80px;
+			top: 0;
+			@include transition(all .3s);
+			&:hover {
+				.new-work-button {
+					left: 15px;
+				}
+			}
+			.new-work-button {
+				position: absolute;
+				left: 10px;
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 20px 0 20px 20px;
+				border-color: transparent transparent transparent $black;
+				top: 50%;
+				transform: rotate(0);
+				@include transition(all .3s);
+			}
+			.new-work-button-open {
+				transform: rotate(180deg);
+			}
+		}
+		.see-more {
+			display: none;
+			right: 25px;
+			bottom: 70px;
+			font-size: 1.5em;
+			text-align: right;
+			margin-top: 20px;
+		}
+		.new-work-box-open {
+			left: 250px;
+		}
+		@include for-phone-only {
+			position: fixed;
+			left: 0;
+			width: 100%;
+			top: 100%;
+			padding: 0 0.9375em;
+			background-position: -120% 120%;
+			background-size: 120%;
+			.new-work:first-of-type {
+				display: block;
+			}
+			.new-work {
+				width: 100%;
+				margin: 0;
+				display: none;
+				.new-work-image {
+					display: inline-block;
+					width: 190px;
+					vertical-align: top;
+				}
+				.new-work-des {
+					display: inline-block;
+					width: calc(100% - 200px);
+					.new-work-des-bottom {
+						font-size: 0.875em;
+					}
+				}
+			}
+			.new-work-box {
+				right: 0;
+				left: 0;
+				top: -50px;
+				width: 80%;
+				margin: auto;
+				min-height: 0;
+				height: 50px;
+				.new-work-button {
+					left: 0;
+					right: 0;
+					margin: auto;
+					top: 0;
+					border-width: 0 20px 20px 20px;
+					border-color: transparent transparent $black transparent;
+				}
+				&:hover {
+					.new-work-button {
+						left: 0;
+					}
+				}
+			}
+			.see-more {
+				display: block;
+			}
+		}
+		@include for-mid-desktop-up {
+			width: 280px;
+			left: -250px;
+			h2 {
+				@include font(1.75em, 700, none, 1.2em);
+			}
+			.new-work {
+				width: 273px;
+				.new-work-des {
+					@include font(1.125em, normal, none, 1.2em);
+					.new-work-des-bottom {
+						.new-work-title {
+							font-size: 1.313em;
+						}
+					}
+				}
+			}
+			.new-work-box-open {
+				left: 300px;
+			}
+		}
+	}
+	.new-work-wrap-open {
+		left: 0;
+		@include for-phone-only {
+			top: 50%;
+		}
+	}
+	.c-info {
+		position: absolute;
+		right: 1.2%;
+		top: 50%;
+    	transform: translateY(-50%);
+    	background: none;
+    	@include for-phone-only {
+			display: none;
+		}
+		@include for-tablet-portrait-up {
+			width: 120px;
+			.c-info-number {
+				height: 85px;
+				span {
+					font-size: 4em;
+					top: 10px;
+				}
+			}	
+		}
+		@include for-mid-desktop-up {
+			width: 140px;
+			.c-info-number {
+				height: 105px;
+				span {
+					font-size: 6em;
+					top: 0px;
+				}
+			}
+		}
+    	.c-info-box {
+    		text-align: center;
+    		position: relative;
+			p {
+    			font-size: 0.875em;
+    			font-weight: bold;
+    			margin-bottom: 5px;
+    		}
+    		.c-info-number {
+    			position: relative;
+    			background: $black;
+    			margin: 0 auto 12px auto;
+    			span {
+    				position: absolute;
+    				margin: auto;
+    				left: 0;
+    				right: 0;
+    				bottom: 0;
+    				line-height: 1;
+    			}
+    		}
+    		&:after {
+    			content: '';
+    			display: block;
+    			position: absolute;
+    			top: 35px;
+    			right: 5px;
+    			width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 0 5px 8.7px 5px;
+				border-color: transparent transparent $blue transparent;
+    		}
+    	}
+	}
+}

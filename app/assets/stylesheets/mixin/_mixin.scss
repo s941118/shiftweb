@@ -1,0 +1,113 @@
+@mixin clearfix {
+    zoom:1;
+    &:before, &:after {
+        content: "\0020"; 
+        display: block; 
+        height: 0; 
+        overflow: hidden; 
+    }
+    &:after {
+        clear: both;
+    }
+} 
+$button-size : 1.5rem; 
+$transition: .3s; 
+$blue: #4b7cb7;
+$yellow: #f3dc11;
+$black: #2c2824;
+$white: #fff2cc;
+$default: white;
+$text: #2c2824;
+@mixin line {
+  display: inline-block;
+  width: $button-size;
+  height: $button-size/12;
+  background: $white;
+  border-radius: $button-size/12; 
+  transition: $transition;
+}
+
+@mixin font($font-size: 1em, $font-weight: normal, $text-deco: none, $line-height: 1.2em) {
+	font-size: $font-size;
+	font-weight: $font-weight;
+	text-decoration: $text-deco;
+  line-height: $line-height;
+}
+@mixin transition($transition...) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
+@mixin transition-property($property...) {
+    -moz-transition-property:    $property;
+    -o-transition-property:      $property;
+    -webkit-transition-property: $property;
+    transition-property:         $property;
+}
+@mixin transition-duration($duration...) {
+    -moz-transition-property:    $duration;
+    -o-transition-property:      $duration;
+    -webkit-transition-property: $duration;
+    transition-property:         $duration;
+}
+@mixin transition-timing-function($timing...) {
+    -moz-transition-timing-function:    $timing;
+    -o-transition-timing-function:      $timing;
+    -webkit-transition-timing-function: $timing;
+    transition-timing-function:         $timing;
+}
+@mixin transition-delay($delay...) {
+    -moz-transition-delay:    $delay;
+    -o-transition-delay:      $delay;
+    -webkit-transition-delay: $delay;
+    transition-delay:         $delay;
+}
+@mixin radius($radius) {
+	-webkit-border-radius: $radius;
+	border-radius: $radius;
+	-moz-border-radius: $radius;
+	-o-border-radius: $radius;
+}
+@mixin circle($width, $color, $margin, $height:1.6em) {
+	width: $width;
+	height: $width;
+	background: $color;
+	-webkit-border-radius: $width/2;
+	-moz-border-radius: $width/2;
+	-o-border-radius: $width/2;
+	border-radius: $width/2;
+	display: inline-block;
+	text-align: center;
+	margin: $margin;
+	line-height: $height;
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .ratio-hack {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

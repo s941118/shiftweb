@@ -1,0 +1,317 @@
+.about-content {
+	position: relative;
+	.about-content-info {
+		span {
+			color: $yellow;
+			font-size: 1.25em;
+			border: 1px solid $white;
+			padding: 5px 20px;
+			@include radius(20px);
+		}
+		p {
+			color: white;
+			font-size: 0.938em;
+		}
+		.about-title {
+			font-size: 4.5em;
+			font-weight: bold;
+			line-height: 1;
+			margin-top: 10px;
+			color: $yellow;
+		}
+		a {
+			font-size: 1.875em;
+			color: $yellow;
+			display: inline-block;
+			&:after {
+				content: '';
+				display: block;
+				width: 0%;
+				height: 1px;
+				background: $yellow;
+				@include transition(all .3s);
+			}
+			&:hover {
+				&:after {
+					width: 100%;
+				}
+			}
+		}
+	}		
+	.creative-production-block {
+		background: $blue;
+		width: 100%;
+		padding-top: 200px;
+		position: relative;
+		z-index: 2;
+		@include for-phone-only {
+			padding-top: 100px;
+		}
+		@include for-desktop-up {
+			padding-top: 260px;
+		}
+		img {
+			width: 100%;
+			float: none;
+			margin-left: 0;
+			@include transition(all .5s);
+			@include for-tablet-landscape-up {
+				width: 50%;
+				float: left;
+				margin-left: 1%;
+			}
+			@include for-desktop-up {
+				margin-left: 7%;
+			}
+		}
+		.creative-img-hide {
+			margin-left: -100%;
+		}
+		.creative-production-info {
+			float: none;
+			margin-top: 30px;
+			margin-left: 0;
+			width: 100%;
+			opacity: 1;
+			padding: 0 0.9375em;
+			@include transition(all .5s);
+			@include for-tablet-landscape-up {
+				float: left;
+				width: 45%;
+				margin-left: 30px;
+				margin-top: 0;
+				padding: 0;
+			}
+			@include for-desktop-up {
+				margin-top: 10%;
+				max-width: 420px;
+			}
+		}
+		.creative-production-info-hide {
+			opacity: 0;
+		}
+	}
+	.strategy-block {
+		position: fixed;
+		top: 50px;
+		right: 2%;
+		z-index: 1;
+		@include for-phone-only {
+			padding-top: 0;
+		}
+		img {
+			width: 50%;
+			float: right;
+			@include transition(all .5s);
+			@include for-phone-only {
+				width: 100%;
+				float: none;
+			}
+		}
+		.strategy-flake {
+			position: absolute;
+			right: 5%;
+			top: 15%;
+			width: 40%;
+		}
+		.strategy-info {
+			float: left;
+			margin-top: 10%;
+			margin-left: 5%;
+			width: 40%;
+			max-width: 420px;
+			opacity: 1;
+			@include transition(all .5s);
+			@include for-phone-only {
+				width: 100%;
+				margin-top: 7%;
+				margin-right: 0;
+				padding: 0 0.9375em;
+				float: none;
+				margin-left: 0;
+				max-width: 100%;
+			}
+			@include for-tablet-landscape-up {
+				margin-left: 10%;
+			}
+			p {
+				color: $blue;
+			}
+			span {
+				color: $white;
+				border-color: $blue;
+			}
+			.about-title {
+				color: $white;
+			}
+		}
+		.strategy-img-hide {
+			margin-right: -100%;
+		}
+		.strategy-flake-hide {
+			right: -100%;
+		}
+		.strategy-info-hide {
+			opacity: 0;
+		}
+	}
+	.performance-block {
+		margin-top: 700px;
+		background: $yellow;
+		padding-top: 0;
+		position: relative;
+		z-index: 2;
+		img {
+			width: 100%;
+			float: left;
+			margin-left: 1%;
+			padding-top: 10%;
+			@include transition(all .5s);
+			@include for-phone-only {
+				float: none;
+			}
+			@include for-small-desktop-up {
+				width: 50%;
+			}
+			@include for-desktop-up {
+				margin-left: 0;
+				padding-top: 0;
+			}
+		}
+		.performance-img-hide {
+			margin-left: -100%;
+		}
+		.performance-info {
+			float: right;
+			margin-top: 5%;
+			margin-right: 0;
+			width: 100%;
+			opacity: 1;
+			padding: 0 0.9375em;
+			@include transition(all .5s);
+			@include for-small-desktop-up {
+				width: 43%;
+				margin-top: 2%;
+			}
+			@include for-desktop-up {
+				width: 43%;
+				max-width: 500px;
+				margin-right: 5%;
+			}
+			@include for-mid-desktop-up {
+				margin-right: 10%;
+			}
+			@include for-big-desktop-up {
+				margin-right: 15%;
+			}
+			span {
+				color: $blue;
+				border-color: $black;
+			}
+			p {
+				max-width: 420px;
+				color: $black;
+				@include for-desktop-up {
+					max-width: 100%;
+				}
+			}
+			.about-title {
+				color: $blue;
+				max-width: 500px;
+				@include for-desktop-up {
+					max-width: 100%;
+				}
+			}
+		}
+		.performance-info-hide {
+			opacity: 0;
+		}
+	}
+	.team-block {
+		background: $yellow;
+		padding-top: 50px;
+		position: relative;
+		z-index: 2;
+		.team-img {
+			position: relative;
+			background: url(../images/teamBG-grid.svg) top left repeat;
+			background-size: 10px 10px;
+			img {
+				margin-top: 30px;
+				width: 100%;
+				@include transition(all .5s);
+			}
+			&:after {
+				content: '';
+				display: block;
+				width: 100%;
+				height: 0%;
+				position: absolute;
+				top: 0;
+				right: 0;
+				background: $yellow;
+				@include transition(all 1s);
+			}
+		}
+		.team-info {
+			margin: 0 auto;
+			max-width: 600px;
+			text-align: center;
+			@include transition(all .3s);
+			span {
+				display: inline-block;
+				color: $blue;
+				border-color: $black;
+			}
+			p {
+				color: $black;
+				margin-top: 30px;
+				max-width: 420px;
+				margin-right: auto;
+				margin-left: auto;
+			}
+			.about-title {
+				color: $blue;
+				margin-top: 10px;
+				max-width: 100%;
+			}
+			a {
+				color: $blue;
+				&:after {
+					background: $blue;
+				}
+			}
+		}
+		.team-info-hide {
+			transform: translateX(200%);
+		}
+		.team-img-hide {
+			&:after {
+				height: 100%;
+			}
+		}
+	}
+	.creative-production-triangle {
+		background-image: linear-gradient(to right bottom, $blue 0%, $blue 50%, transparent 50%);
+		position: absolute;
+		width: 100%;
+		height: 140px;
+		left: 0;
+		z-index: 2;
+		@include for-phone-only {
+			height: 50px;
+		}
+	}
+	.performance-triangle {
+		background-image: linear-gradient(to left top, $yellow 0%, $yellow 50%, transparent 50%);
+		position: absolute;
+		width: 100%;
+		height: 140px;
+		left: 0;
+		top: -140px;
+		@include for-phone-only {
+			height: 50px;
+			top: -50px;
+		}
+	}
+}

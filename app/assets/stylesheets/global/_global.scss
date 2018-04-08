@@ -1,0 +1,82 @@
+.clearfix {
+	@include clearfix;
+}
+.is-loading {
+	overflow: hidden;
+}
+.divider {
+	width: 100%;
+	height: 1px;
+}
+.bg-yellow {
+	background-color: $yellow;
+}
+.bg-blue {
+	background-color: $blue;
+}
+.bg-black {
+	background-color: $black;
+}
+.bg-white {
+	background-color: $white;
+}
+.font-yellow {
+	color: $yellow;
+}
+.font-blue {
+	color: $blue;
+}
+.font-black {
+	color: $black;
+}
+.font-white {
+	color: $white;
+}
+
+.loader-top {
+	z-index: 9999;
+	position: fixed;
+	width: 100%;
+	height: 50%;
+	top: 0;
+	left: 0;
+	background: $black;
+}
+.loader-bottom {
+	z-index: 9999;
+	position: fixed;
+	width: 100%;
+	height: 50%;
+	bottom: 0;
+	left: 0;
+	background: $black;
+}
+.border-hack-top, .border-hack-bottom {
+	width: 100%;
+	height: 15px;
+	background: $black; 
+	position: fixed;
+	z-index: 999;
+}
+.border-hack-top {
+	top: 0
+}
+.border-hack-bottom {
+	bottom: 0;
+}
+.border-hack-left, .border-hack-right {
+	height: 100%;
+	width: 15px;
+	background: $black; 
+	position: fixed;
+	z-index: 999;
+}
+.border-hack-left {
+	left: 0;
+}
+.border-hack-right {
+	right: 0;
+}
+.blur {
+	filter: blur(5px);
+}

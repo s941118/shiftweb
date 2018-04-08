@@ -17,10 +17,12 @@
     <%= csrf_meta_tags %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <%= javascript_include_tag 'application' %>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+    <%= javascript_include_tag 'application', media: 'all' %>
+    <link rel="stylesheet" href="https://use.typekit.net/eff8rai.css">
     <%= stylesheet_link_tag    'application', media: 'all' %>
-		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+	<script>try{Typekit.load({ async: true });}catch(e){}</script>
   </head>
 
   <body id="barba-wrapper">
