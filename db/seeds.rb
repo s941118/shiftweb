@@ -5,7 +5,7 @@
 		category: "shift"
 	})
 	@p.contents.create({
-		html: "<p>Good Lord, it's massive. My biggest question is why? You realize that all modern languages have XML parsers, right? You can do all that in like 3 lines and be sure it'll work. Furthermore, do you also realize that pure regex is provably unable to do certain things? Unless you've created a hybrid regex/imperative code parser, but it doesn't look like you have. Can you compress random data as well?</p>",
+		html: "<p>這次設計專案視覺主要傳達親近和諧的感覺，為了貼近K-12年齡層的學生，我們團隊最終決定藉著吉祥物「科科」去作為溝通與行銷的媒介，為了象徵性的代表六大活動的視覺，科科被設計在六種不同的活動情境，利用不同物件呈現從戶外主題活動到實驗室演示實驗的情境，成功地拉近親子與品牌間的距離，孩童們更主動的喜愛上科學，這正是利用視覺傳達成功解決問題與優化方法的案例。</p>",
 		ordering: @p.contents.size
 	})
 end
