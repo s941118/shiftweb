@@ -4,7 +4,8 @@ class PagesController < ApplicationController
   end
 
   def works
-  	
+  	authorize :work, :index?
+    @works = Work.all
   end
 
   def about

@@ -1,130 +1,20 @@
-<%= render "header" %>
+<%= render "common/header" %>
 <div class="content barba-container content-loading" data-namespace="works">
-  <%= render "mobile_nav" %>
+  <%= render "common/mobile_nav" %>
   <div class="works-content">
     <section class="works-map-wrapper">
       <div class="works-map">
-        <div class="preview-wrapper"><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work1.png') %>"></div>
-            <div class="work-des">
-              <p>#1 / SHIFT work</p>
-              <p class="work-title">Barry Chen X MJ116 Taichung Concert</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div>
-            </div></a><a class="work-block work-block-hide" data-work-id="1">
-            <div class="work-image"><img src="<%= asset_path('work2.png') %>"></div>
-            <div class="work-des">
-              <p>#2 / SHIFT work</p>
-              <p class="work-title">Rise from Music</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work3.png') %>"></div>
-            <div class="work-des">
-              <p>#3 / Cooperations work</p>
-              <p class="work-title">Adidas Prophere Series</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#COOP">#COOP</span><span class="work-profile" data-profile="#BlueDesign">#BlueDesign</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work4.png') %>"></div>
-            <div class="work-des">
-              <p>#4 / Cooperations work</p>
-              <p class="work-title">Human Zoo</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#COOP">#COOP</span><span class="work-profile" data-profile="#ChiaHao">#ChiaHao</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work5.png') %>"></div>
-            <div class="work-des">
-              <p>#5 / SHIFT work</p>
-              <p class="work-title">Cloud Nine Music Video</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#ChiaHao">#ChiaHao</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work1.png') %>"></div>
-            <div class="work-des">
-              <p>#6 / SHIFT work</p>
-              <p class="work-title">Barry Chen X MJ116 Taichung Concert</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work2.png') %>"></div>
-            <div class="work-des">
-              <p>#7 / SHIFT work</p>
-              <p class="work-title">Rise from Music</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work3.png') %>"></div>
-            <div class="work-des">
-              <p>#8 / Cooperations work</p>
-              <p class="work-title">Adidas Prophere Series</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#COOP">#COOP</span><span class="work-profile" data-profile="#BlueDesign">#BlueDesign</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work4.png') %>"></div>
-            <div class="work-des">
-              <p>#9 / Cooperations work</p>
-              <p class="work-title">Human Zoo</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#COOP">#COOP</span><span class="work-profile" data-profile="#ChiaHao">#ChiaHao</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work5.png') %>"></div>
-            <div class="work-des">
-              <p>#10 / SHIFT work</p>
-              <p class="work-title">Cloud Nine Music Video</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#ChiaHao">#ChiaHao</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work1.png') %>"></div>
-            <div class="work-des">
-              <p>#11 / SHIFT work</p>
-              <p class="work-title">Barry Chen X MJ116 Taichung Concert</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work2.png') %>"></div>
-            <div class="work-des">
-              <p>#12 / SHIFT work</p>
-              <p class="work-title">Rise from Music</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work3.png') %>"></div>
-            <div class="work-des">
-              <p>#13 / Cooperations work</p>
-              <p class="work-title">Adidas Prophere Series</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#COOP">#COOP</span><span class="work-profile" data-profile="#BlueDesign">#BlueDesign</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work4.png') %>"></div>
-            <div class="work-des">
-              <p>#14 / Cooperations work</p>
-              <p class="work-title">Human Zoo</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#COOP">#COOP</span><span class="work-profile" data-profile="#ChiaHao">#ChiaHao</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work5.png') %>"></div>
-            <div class="work-des">
-              <p>#15 / SHIFT work</p>
-              <p class="work-title">Cloud Nine Music Video</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#ChiaHao">#ChiaHao</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work1.png') %>"></div>
-            <div class="work-des">
-              <p>#6 / SHIFT work</p>
-              <p class="work-title">Barry Chen X MJ116 Taichung Concert</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work2.png') %>"></div>
-            <div class="work-des">
-              <p>#16 / SHIFT work</p>
-              <p class="work-title">Rise from Music</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work3.png') %>"></div>
-            <div class="work-des">
-              <p>#17 / Cooperations work</p>
-              <p class="work-title">Adidas Prophere Series</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#COOP">#COOP</span><span class="work-profile" data-profile="#BlueDesign">#BlueDesign</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work4.png') %>"></div>
-            <div class="work-des">
-              <p>#18 / Cooperations work</p>
-              <p class="work-title">Human Zoo</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#COOP">#COOP</span><span class="work-profile" data-profile="#ChiaHao">#ChiaHao</span></div>
-            </div></a><a class="work-block work-block-hide">
-            <div class="work-image"><img src="<%= asset_path('work5.png') %>"></div>
-            <div class="work-des">
-              <p>#19 / SHIFT work</p>
-              <p class="work-title">Cloud Nine Music Video</p>
-              <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#ChiaHao">#ChiaHao</span></div>
-            </div></a>
+        <div class="preview-wrapper">
+          <% @works.each do |work| %>
+            <a class="work-block work-block-hide" data-work-id="<%= work.id %>">
+              <div class="work-image"><img src="<%= asset_path('work'+rand(1..5).to_s+'.png') %>"></div>
+              <div class="work-des">
+                <p>#2 / SHIFT work</p>
+                <p class="work-title">Rise from Music</p>
+                <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div>
+              </div>
+            </a>
+          <% end %>
         </div>
       </div>
     </section><a class="work-nav-arrow"></a>
@@ -151,7 +41,7 @@
       <button class="lines-button x" type="button" role="button" aria-label="Toggle Navigation"><span class="lines"></span></button>
       <div class="social-share"><a href="#">Facebook</a><a href="#">Instagram</a></div>
     </div>
-    <%= render "chat" %>
+    <%= render "common/chat" %>
   </div>
   <div class="single-work-box"><a class="single-work-close"></a>
     <div class="work-overlay"></div>

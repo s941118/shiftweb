@@ -3,12 +3,13 @@ class WorksController < ApplicationController
 
   # GET /works
   def index
-    @works = Work.all
     authorize @works
+    @works = Work.all
   end
 
   # GET /works/1
   def show
+    @contents = Content.where(work_id: params[:id]).order(ordering: :asc)
   end
 
   private
