@@ -1,8 +1,8 @@
 class Admin::ContentsController < AdminController
-  # POST /contents
+  # work /contents
   def create
-    @post = Post.find(params[:post_id])
-    @content = @post.contents.new(html: "<p></p>", image: params[:file], usage: "img", ordering: params[:ordering] || "9999")
+    @work = Work.find(params[:work_id])
+    @content = @work.contents.new(html: "<p></p>", image: params[:file], usage: "img", ordering: params[:ordering] || "9999")
     authorize [:admin, @content]
 
     if @content.save

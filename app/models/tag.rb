@@ -1,7 +1,7 @@
 class Tag < ApplicationRecord
 	validates :name, presence: true, uniqueness: true
-	has_many :post_tags, inverse_of: :tag, dependent: :destroy
-	has_many :posts, through: :post_tags
+	has_many :work_tags, inverse_of: :tag, dependent: :destroy
+	has_many :works, through: :work_tags
 	has_one_attached :icon
 	attr_accessor :remove_icon
 	has_one_attached :member_bg

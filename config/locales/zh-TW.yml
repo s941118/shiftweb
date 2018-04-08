@@ -1,7 +1,7 @@
 zh-TW:
   activerecord:
     models:
-      post:
+      work:
         one: 作品
         other: 作品
       tag:
@@ -11,7 +11,7 @@ zh-TW:
         one: 使用者
         other: 使用者
     attributes:
-      post:
+      work:
         id: "#"
         title: 標題
         category: 類別
@@ -20,7 +20,7 @@ zh-TW:
         id: "#"
         name: 名稱
         category: 側邊欄分類
-        posts_count: 文章數量
+        works_count: 文章數量
         icon: 圖示
         member_bg: 成員背景圖
       user:
@@ -29,7 +29,7 @@ zh-TW:
         password_confirmation: 確認密碼
         new_password: 新密碼
         new_password_confirmation: 確認新密碼
-    post_status:
+    work_status:
       draft: 草稿
       publish: 已公開
     errors:

@@ -1,0 +1,63 @@
+<%= stylesheet_link_tag 'application', media: 'all' %>
+<%= form_with(model: [:admin, @work], local: true, class: "mb-5") do |f| %>
+  <div class="single-work-content">
+  	<div class="single-work" id="form_content">
+      <div class="single-work-main-img">
+        <%= f.file_field :cover, class: "d-none previewable" %>
+        <%= image_tag @work.cover_or_default, class: "previewer", data: { file: "input#work_cover" } %>
+        <% if f.object.cover.attached? %>
+          <div class="form-check float-right pt-2 pr-2">
+            <label class="form-check-label">
+              <%= f.check_box :remove_cover, class: "form-check-input mr-0" %>
+              <!-- <input class="form-check-input" type="checkbox" value="" checked=""> -->
+              移除目前封面
+            </label>
+          </div>
+        <% end %>
+      </div>
+      <div class="single-work-text-box">
+        <div class="single-work-tags">
+          <div class="tag-company" style="width: 50%;">
+            <p><%= f.select :category, ["SHIFT", "COOPERATION"], {}, class: "form-control d-inline-block pr-0", style: "max-width: 145px; font-size: 18px; color: #2c2824;", onchange: "javascript:adaptSelectWidth(this)" %> work</p>
+          </div>
+          <script type="text/javascript">
+            function adaptSelectWidth(select) {
+              if (select.value === "SHIFT") {
+                select.style.maxWidth = '70px'
+              } else if (select.value === "COOPERATION") {
+                select.style.maxWidth = '145px'
+              }
+            }
+          </script>
+          <div class="clearfix"></div>
+        </div>
+        <div class="single-work-title"> 
+          <p><%= f.text_area :title, placeholder: "文章標題", class: "border-0 link-no-decoration w-100 mb-0 p-0", id: "article_title", rows: 1, required: true %></p>
+        </div>
+        <div class="single-work-number">
+          <p><%= f.text_area :number, class: "border-0 link-no-decoration mb-0 p-0 text-right float-right", style: "max-width: 180px;", rows: 1, required: true %></p>
+        </div>
+        <div class="clearfix"></div>
+        <div class="divider bg-black"></div>
+        <div class="single-work-text">
+      		<%= f.fields_for :contents, @work.contents.order(ordering: :asc) do |content_form| %>
+            <%= render "admin/contents/form", content_form: content_form %>
+      		<% end %>
+        </div>
+      </div>
+  	</div>
+  </div>
+  <div class="mt-5" id="work_buttons_wrapper">
+    <%= render "cke_toolbar_template" %>
+    <%= render "embed_button_template" %>
+    <a href="javascript:void(0)" class="text-success link-no-decoration" id="add_new_block_btn" data-toggle="modal" data-target="#newElementModal" style="font-size: 60px">+</a>
+    <%= f.button class: "btn btn-primary" do %>
+      <i class="material-icons">&#xE161;</i>
+    <% end %>
+    <%= link_to admin_works_path, class: "btn btn-warning", id: "btn-back", data: { confirm: "您的變更將不會儲存，確定離開？" } do %>
+      <i class="material-icons">&#xE5C9;</i>
+    <% end %>
+  </div>
+<% end %>
+
+<%= render "edit_helpers" %>

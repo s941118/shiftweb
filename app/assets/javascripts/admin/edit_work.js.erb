@@ -1,0 +1,379 @@
+document.addEventListener("DOMContentLoaded",function(){
+	var event = new Event('removeOverlay');
+	initialize_all_ck()	
+	CKEDITOR.on("instanceReady", function(e) {
+		setup_content_wrapper_adjust_btns(e.editor.name)
+		// console.log(e.editor.name)
+	})
+	if (document.querySelector(`#${window.form_content_id}`) !== null) {
+		refresh_all_embed_buttons()
+	}
+});
+
+// Dropzone.prototype.defaultOptions.dictDefaultMessage = "點擊 或者 拖放，每次最多十張圖片"
+// Dropzone.prototype.defaultOptions.maxFiles = 3
+// Dropzone.prototype.defaultOptions.maxFilesize = 5 // 5MB
+Dropzone.options.workImgDropzone = {
+	acceptedFiles: "image/*",
+	init: function() {
+		this.on("success", function(file, resp) {
+			console.log(file)
+			console.log(resp.image_url)
+			// var rand_form_num = rand_num()
+			var $imgForm = $("#imgContentWrapper.template").clone()
+			$imgForm.find("img").attr("src", resp.image_url)
+			$imgForm.find(".content_wrapper_template").removeClass("content_wrapper_template").addClass("content_wrapper")
+											.attr("id", `wrapper_${resp.content_id}`)
+			$imgForm.find("input[name*='[ordering]']").attr("name", `work[contents_attributes][${resp.content_id}][ordering]`)
+			$imgForm.find("input[name*='[id]']").attr("name", `work[contents_attributes][${resp.content_id}][id]`)
+																					.attr("value", resp.content_id)
+			$imgForm.find("input[name*='[html]']").attr("name", `work[contents_attributes][${resp.content_id}][html]`)
+																						.attr("value", resp.content_html)
+			// $imgForm.find("textarea[name*='[html]']").attr("name", `work[contents_attributes][${resp.content_id}][html]`)
+			// $("#form_content").append($imgForm.html())
+			var $modal = $("#newElementModal")
+			var content_wrapper_id = $modal.attr("data-content-wrapper")
+			if (content_wrapper_id !== undefined && content_wrapper_id.length > 0) {
+				var $content_wrapper = $(`#${$modal.attr("data-content-wrapper")}`)
+			} else {
+				var $content_wrapper = $("div.content_wrapper").last()
+			}
+			if ($modal.attr("data-insert-position") === "before") {
+				$content_wrapper.before($imgForm.html())
+			} else {
+				$content_wrapper.after($imgForm.html())
+			}
+			insert_embed_button_next_to(document.querySelector(`#wrapper_${resp.content_id}`))
+		})
+		this.on("queuecomplete", function() {
+			refresh_all_ordering()
+		})
+	}
+}
+
+document.addEventListener("removeOverlay",function(){
+	document.getElementById("loader-wrapper").classList.remove("d-flex")
+	document.getElementById("loader-wrapper").classList.add("d-none")
+});
+
+function initialize_all_ck() {
+	for (editor of document.querySelectorAll(".editor")) {
+		CKEDITOR.inline(editor, {
+			customConfig: '<%= asset_path("admin/ckeditor_config.js") %>'
+		})
+	}
+}
+
+function setup_content_wrapper_adjust_btns(editor_name) {
+	var content_index = get_number_in(editor_name)
+	var $toolbar_template = $(`.cke_toolbar_wrapper.template`)
+	// 寬窄上下按鈕都依賴 data-content-index 找出控制目標
+	var $toolbar_clone = $toolbar_template.clone().removeClass("template")//.attr("data-content-index", content_index)
+	$(`#cke_${editor_name}`).find(".cke_toolbar_break").before($toolbar_clone)
+	$toolbar_clone.find("a.content_wrapper_adjust").attr("data-content-index", content_index)
+	// console.log(editor_name)
+}
+
+function rand_num() {
+	return Math.round(Math.random()*10000000000)
+}
+
+function get_number_in(string) {
+	return parseInt( string.match(/[0-9]+/)[0] )
+}
+
+function remove_all_column_class_of_(content_wrapper) {
+	var class_names = content_wrapper[0].classList.value.split(" ")
+	var column_size = 0
+	for (name of class_names) {
+		if (name.match(/col-/)) {
+			content_wrapper.removeClass(name)
+			var number_in_class = get_number_in(name)
+			if (number_in_class > column_size) {
+				column_size = number_in_class
+				var column_class = name
+			}
+		}
+	}
+	return column_size
+}
+
+function ordering_input_of(content_index_or_wrapper) {
+	if (content_index_or_wrapper !== null && typeof(content_index_or_wrapper) === "object") {
+		var content_index = get_number_in($(content_index_or_wrapper).attr("id"))
+	} else {
+		var content_index = content_index_or_wrapper
+	}
+	return document.querySelector(`input[name='${window.nested_attribute_name_prefix}[${content_index}][ordering]']`)
+}
+
+function paste_embed_html_and_reset($content_wrapper, $modal, $embed_url_input, html) {
+	remove_all_embed_button()
+	var rand_form_num = rand_num()
+	if (html.match(/fb-/)) {
+		// 加入 facebook 的 class 才知道調整寬窄時，要不要執行 FB.XFBML.parse
+		var $new_embed_content = $(`<div class='content_wrapper facebook ${window.content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
+	} else if (html.match(/www\.instagram\.com\/embed\.js/)) {
+		var $new_embed_content = $(`<div class='content_wrapper ${window.instagram_content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
+	} else {
+		var $new_embed_content = $(`<div class='content_wrapper ${window.content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
+	}
+	if ($modal.attr("data-insert-position") === "before") {
+		$content_wrapper.before($new_embed_content)
+	} else {
+		$content_wrapper.after($new_embed_content)
+	}
+	// $(`#${window.form_content_id}`).append($new_embed_content)
+	$embed_url_input.val("");
+	var attr_prefix = `${window.nested_attribute_name_prefix}[${rand_form_num}]`
+	var $text_area = $(`<textarea name="${attr_prefix}[html]" id="${window.nested_attribute_id_prefix}_${rand_form_num}_html">${html}</textarea>`)
+	$(`#${window.form_content_id}`).append($text_area)
+																	.append(`<input type="text" value="" name="${attr_prefix}[ordering]">`)
+																	.append(`<input type="text" value="embed" name="${attr_prefix}[usage]">`)
+	FB.XFBML.parse(null, function(){
+		insert_embed_button_next_to($new_embed_content[0])
+		refresh_all_embed_buttons()
+	});
+	refresh_all_ordering()
+	$("#newElementModal").attr("data-content-wrapper", "")
+	$("#newElementModal").attr("data-insert-position", "")
+}
+
+function insert_new_textarea_around($content_wrapper, position) {
+	var rand_form_num = rand_num()
+	var attr_prefix = `${window.nested_attribute_name_prefix}[${rand_form_num}]`
+	var $new_text_area = $(`<textarea class='editor' name='${attr_prefix}[html]' id='${window.nested_attribute_id_prefix}_${rand_form_num}_html'></textarea>`)
+	if (position === "before") {
+		$content_wrapper.before($new_text_area)
+	} else {
+		$content_wrapper.after($new_text_area)
+	}
+	$new_text_area.wrap(`<div class='content_wrapper new_record ${window.content_default_wrapper_klass}' id='wrapper_${rand_form_num}'/>`)
+	// console.log($new_text_area)
+	CKEDITOR.inline($new_text_area[0], {
+		customConfig: '<%= asset_path("admin/ckeditor_config.js") %>',
+		startupFocus: true
+	})
+	$new_text_area.after(`<input type="text" value="text" name="${attr_prefix}[usage]">`)
+	$new_text_area.after(`<input type="text" value="" name="${attr_prefix}[ordering]">`)
+	$new_text_area.after(`<input type="text" value="${window.content_default_wrapper_klass}" name="${attr_prefix}[wrapper_klass]">`)
+	refresh_all_embed_buttons()
+	refresh_all_ordering()
+	$("#newElementModal").attr("data-content-wrapper", "")
+	$("#newElementModal").attr("data-insert-position", "")
+	console.log(`new text area is ordered at ${ordering_input_of(rand_form_num).value}`)
+}
+
+function refresh_all_ordering() {
+	// 除了加寬縮窄的兩顆按鈕外，五顆都要用到
+	for ([index, div] of document.querySelectorAll("div.content_wrapper").entries()) {
+		ordering_input_of(div).value = index
+		// console.log(`${div.getAttribute("id")} is at ${index}`)
+	}
+	console.log("ordering refreshed")
+}
+
+function insert_embed_button_next_to(embed_content) {
+	var right_base = document.querySelector("html").clientWidth - embed_content.offsetLeft - embed_content.clientWidth - 40
+	var $embed_button_template = $(".embed_button.template")
+	var $embed_button = $embed_button_template.clone().removeClass("template")
+	$(embed_content).append($embed_button)
+	// console.log(`${embed_content.getAttribute("id")}'s height is ${embed_content.clientHeight}px now.`)
+	$embed_button.attr("style", `position: absolute; right: -30px; top: 49.5%;`)
+	$embed_button.attr("id", `${embed_content.getAttribute("id")}_embed_button`)
+	$embed_button.find("a.content_wrapper_adjust").attr( "data-content-index", get_number_in(embed_content.getAttribute("id")) )
+}
+
+function refresh_all_embed_buttons() {
+	// 除了加寬縮窄的兩顆按鈕外，五顆都要用到
+	remove_all_embed_button()
+	for (div of document.querySelectorAll("div.content_wrapper.embed_content:not(.d-none)")) {
+		insert_embed_button_next_to(div)
+	}
+	for (div of document.querySelectorAll("div.content_wrapper.img_content:not(.d-none)")) {
+		insert_embed_button_next_to(div)
+	}
+}
+
+function remove_all_embed_button() {
+	$(`div.embed_button:not(.template)`).remove()
+}
+
+$(document).on("click", "#add_new_text_area", function () {
+	var content_wrapper_id = $("#newElementModal").attr("data-content-wrapper")
+	if (content_wrapper_id !== undefined && content_wrapper_id.length > 0) {
+		var $content_wrapper = $(`#${$("#newElementModal").attr("data-content-wrapper")}`)
+	} else {
+		var $content_wrapper = $("div.content_wrapper").last()
+	}
+	if ($content_wrapper.length > 0) {
+		insert_new_textarea_around($content_wrapper, $("#newElementModal").attr("data-insert-position"))
+	}
+})
+
+$(document).on("click", "#get_embed_html", function () {
+	var $modal = $("#newElementModal")
+	var content_wrapper_id = $modal.attr("data-content-wrapper")
+	if (content_wrapper_id !== undefined && content_wrapper_id.length > 0) {
+		var $content_wrapper = $(`#${$("#newElementModal").attr("data-content-wrapper")}`)
+	} else {
+		var $content_wrapper = $("div.content_wrapper").last()
+	}
+
+	var $embed_url_input = $modal.find("#embedURL")
+	var url = $embed_url_input.val()
+	if (url.match(/insta/)) {
+		$.ajax({
+			url: `https://api.instagram.com/oembed/?url=${url}`,
+			method: "get",
+			dataType: "json"
+		}).done(function (data) {
+			var html = data.html
+			// insert_new_textarea_around($content_wrapper, $("#newElementModal").attr("data-insert-position"))
+			paste_embed_html_and_reset($content_wrapper, $modal, $embed_url_input, html)
+		})
+	} else if (url.match(/youtu/)) {
+		if (url.match(/watch\?v\=/)) {
+			var youtube_video_hash = url.split(/watch\?v\=/)[1]
+		} else if (url.match(/youtu\.be/)) {
+			var youtube_video_hash = url.split(/youtu\.be\//)[1]
+		} else if (url.match(/youtube.com\/embed\//)) {
+			var youtube_video_hash = url.split(/youtube.com\/embed\//)[1]
+		}
+		var html = `<iframe width="750" height="422" src="https://www.youtube.com/embed/${youtube_video_hash}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
+		paste_embed_html_and_reset($content_wrapper, $modal, $embed_url_input, html)
+		// paste_embed_html_and_reset($modal, $embed_url_input, html)
+	} else if (url.match(/facebook/)) {
+		if (url.match(/videos/)) {
+			var html = `<!-- Your embedded video player code -->
+								  <div class="fb-video" data-href="${url}" data-show-text="false" data-width="">
+								    <div class="fb-xfbml-parse-ignore">
+								      <blockquote cite="${url}"><a href="${url}"></a></blockquote>
+								    </div>
+								  </div>`
+		} else {
+			var html = `<div class="fb-post" data-href="${url}" data-width=""></div>`
+		}
+		paste_embed_html_and_reset($content_wrapper, $modal, $embed_url_input, html)
+		// paste_embed_html_and_reset($modal, $embed_url_input, html)
+	} else if (url.match(/iframe/)) {
+		var html = url
+		paste_embed_html_and_reset($content_wrapper, $modal, $embed_url_input, html)
+	}
+})
+
+$(document).on("click", ".content_wrapper_adjust_narrower", function(e) {
+	var content_index = this.getAttribute("data-content-index")
+	var $content_wrapper = $(`div.content_wrapper#wrapper_${content_index}`)
+	// console.log($content_wrapper)
+	column_size = remove_all_column_class_of_($content_wrapper)
+	if (column_size > 1) {
+		var new_class_name = `col-${window.responsive_wrapper_klass}-${column_size - 1}`
+		$content_wrapper.addClass(new_class_name)
+	} else if (column_size === 1) {
+		var new_class_name = `col-${window.responsive_wrapper_klass}-1`
+		$content_wrapper.addClass(`col-${window.responsive_wrapper_klass}-1`)
+	}
+	$(`input[name='${window.nested_attribute_name_prefix}[${content_index}][wrapper_klass]']`).val(new_class_name)
+	// if ($content_wrapper.hasClass("facebook")) {
+	// 	$content_wrapper.find(".fb_iframe_widget")
+	// 	FB.XFBML.parse()
+	// }
+})
+
+$(document).on("click", ".content_wrapper_adjust_wider", function(e) {
+	var content_index = this.getAttribute("data-content-index")
+	var $content_wrapper = $(`div.content_wrapper#wrapper_${content_index}`)
+	column_size = remove_all_column_class_of_($content_wrapper)
+	if (column_size < 12) {
+		var new_class_name = `col-${window.responsive_wrapper_klass}-${column_size + 1}`
+		$content_wrapper.addClass(new_class_name)
+	} else if (column_size === 12) {
+		var new_class_name = `col-${window.responsive_wrapper_klass}-12`
+		$content_wrapper.addClass(`col-${window.responsive_wrapper_klass}-12`)
+	}
+	$(`input[name='${window.nested_attribute_name_prefix}[${content_index}][wrapper_klass]']`).val(new_class_name)
+	// if ($content_wrapper.hasClass("facebook")) {
+	// 	$content_wrapper.find(".fb_iframe_widget")
+	// 	FB.XFBML.parse()
+	// }
+})
+
+$(document).on("click", ".content_wrapper_adjust_delete", function(e) {
+	var ok = confirm("確定要刪除嗎？")
+	if (ok) {
+		var content_index = this.getAttribute("data-content-index")
+		var $content_wrapper = $(`div.content_wrapper#wrapper_${content_index}`)
+		if ($content_wrapper.hasClass("new_record")) {
+			$content_wrapper.remove()
+		} else {
+			$content_wrapper.addClass("d-none")
+		}
+		$(`input[name='${window.nested_attribute_name_prefix}[${content_index}][_destroy]'][type='checkbox']`).prop("checked", true)
+		$(`#wrapper_${content_index}_embed_button`).addClass("d-none")
+		// console.log($(`input[name='${window.nested_attribute_name_prefix}[${content_index}][_destroy]'][type='checkbox']`))	
+		refresh_all_embed_buttons()
+		refresh_all_ordering()
+	}
+})
+
+$(document).on("click", ".content_wrapper_adjust_insert_top", function (e) {
+	var content_index = this.getAttribute("data-content-index")
+	$("#newElementModal").attr("data-content-wrapper", `wrapper_${content_index}`)
+	$("#newElementModal").attr("data-insert-position", "before")
+	$("#newElementModal").modal("show")
+})
+
+$(document).on("click", ".content_wrapper_adjust_insert_bottom", function (e) {
+	var content_index = this.getAttribute("data-content-index")
+	$("#newElementModal").attr("data-content-wrapper", `wrapper_${content_index}`)
+	$("#newElementModal").modal("show")
+})
+
+$(document).on("click", ".content_wrapper_adjust_up", function(e) {
+	var content_index = this.getAttribute("data-content-index")
+	var $content_wrapper = $(`div.content_wrapper#wrapper_${content_index}`)
+	for (div of document.querySelectorAll("div.content_wrapper:not(.d-none)")) {
+		if (div.getAttribute("id") === `wrapper_${content_index}`) {
+			var target_id = prev_div.getAttribute("id")
+			console.log(`${prev_div.getAttribute("id")} will be moved down.`)
+		}
+		var prev_div = div
+	}
+	var $last_content_wrapper = $(`#${target_id}`)
+	var last_content_index = get_number_in(target_id)
+	$last_content_wrapper.before($content_wrapper)
+
+	refresh_all_embed_buttons()
+	refresh_all_ordering()
+})
+
+$(document).on("click", ".content_wrapper_adjust_down", function(e) {
+	var content_index = this.getAttribute("data-content-index")
+	var $content_wrapper = $(`div.content_wrapper#wrapper_${content_index}`)
+	var found = false
+	for (div of document.querySelectorAll("div.content_wrapper:not(.d-none)")) {
+		if (found) {
+			var target_id = div.getAttribute("id")
+			console.log(`${target_id} will be moved up.`)
+			found = false
+		}
+		if (div.getAttribute("id") === `wrapper_${content_index}`) {
+			found = true
+		}
+	}
+	var $next_content_wrapper = $(`#${target_id}`)
+	var next_content_index = get_number_in(target_id)
+	$next_content_wrapper.after($content_wrapper)
+
+	refresh_all_embed_buttons()
+	refresh_all_ordering()
+})
+
+$(document).on("keydown", "#article_title", function(e) {
+	// console.log(e.keyCode)
+	if (e.keyCode == 13) {
+		e.preventDefault()
+		$("div.content_wrapper").first().find("div[contenteditable='true']").focus()
+	}
+})

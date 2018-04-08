@@ -1,6 +1,6 @@
 class Content < ApplicationRecord
-  belongs_to :post, inverse_of: :contents
-  validates_presence_of :post
+  belongs_to :work, inverse_of: :contents
+  validates_presence_of :work
   validates :html, :ordering, presence: true
   has_one_attached :image
 

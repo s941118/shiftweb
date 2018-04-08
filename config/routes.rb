@@ -8,13 +8,13 @@ Rails.application.routes.draw do
   	get "contact"
   end
 
-  resources :posts, only: [:show]
+  resources :works, only: [:show]
   resources :tags, only: [:show]
 	
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 	namespace :admin do
     resources :tags
-    resources :posts do
+    resources :works do
       member do
         post "publish"
         post "draft"
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
     resources :contents
   end
-	get 'admin', to: redirect('/admin/posts')
+	get 'admin', to: redirect('/admin/works')
 	namespace :admin do
 		resources :users
     get 'login', to: 'sessions#new'

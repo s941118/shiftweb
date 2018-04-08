@@ -1,0 +1,13 @@
+<%= form_with model: [:admin, work], local: true do |f| %>
+  <div class="form-group <%= work.errors[:title].present? ? 'has-danger' : '' %>">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control #{work.errors[:title].present? ? 'is-invalid' : ''}" %>
+    <% if work.errors[:title].present? %>
+      <div class="text-danger">
+        <%= work.errors[:title].join(", ") %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "取消", admin_works_path, class: "btn btn-secondary" %>
+  <%= f.submit "儲存", class: "btn btn-primary float-right" %>
+<% end %>

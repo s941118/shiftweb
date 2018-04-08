@@ -1,0 +1,57 @@
+<h1 class="h2">
+  <%= Work.model_name.human %>列表
+  <%= link_to "新增", new_admin_work_path, class: "btn btn-primary float-right" %>
+</h1>
+<div class="table-responsive-sm">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= Work.human_attribute_name('id') %></th>
+        <th style="min-width: 70px;"><%= Work.human_attribute_name('title') %></th>
+        <th style="min-width: 50px;"><%= Work.human_attribute_name('category') %></th>
+        <th style="min-width: 70px;"><%= Work.human_attribute_name('top_tags') %></th>
+        <th style="min-width: 100px;">建立於</th>
+        <th style="min-width: 100px;">最後更新</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @works.each do |work| %>
+        <tr>
+          <td><%= work.number %></td>
+          <td><%= work.title %></td>
+          <td><%= work.category %></td>
+          <td><%= work.top_tags_string %></td>
+          <td><%= work.created_at.strftime("%F %H:%M") %></td>
+          <td><%= timeago(work.updated_at) %></td>
+          <td><%= render_work_status(work) %></td>
+          <td class="text-right">
+            <div class="dropdown">
+              <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                操作
+              </button>
+              <div class="dropdown-menu">
+                <%= link_to '檢視', [:admin, work], class: "dropdown-item" %>
+                <%= link_to "編輯", edit_admin_work_path(work), class: "dropdown-item" %>
+                <% if work.draft? %>
+                  <%= link_to '轉為公開', publish_admin_work_path(work), method: :post, class: "dropdown-item" %>
+                <% else %>
+                  <%= link_to '轉為草稿', draft_admin_work_path(work), method: :post, class: "dropdown-item" %>
+                <% end %>
+                <div class="dropdown-divider"></div>
+                <%= link_to '刪除', [:admin, work], method: :delete, data: { confirm: '確認刪除？' }, class: "dropdown-item" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    $("time.timeago").timeago();
+  });
+</script>

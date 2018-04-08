@@ -39,39 +39,19 @@ ActiveRecord::Schema.define(version: 2018_03_31_041520) do
   create_table "contents", force: :cascade do |t|
     t.text "html"
     t.text "processed_html"
-    t.bigint "post_id"
+    t.bigint "work_id"
     t.integer "ordering"
     t.string "wrapper_klass"
     t.integer "usage", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_contents_on_post_id"
-  end
-
-  create_table "post_tags", force: :cascade do |t|
-    t.bigint "tag_id"
-    t.bigint "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_post_tags_on_post_id"
-    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.string "number"
-    t.string "title"
-    t.string "category"
-    t.string "top_tags"
-    t.integer "tags_count", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "status", default: 0
+    t.index ["work_id"], name: "index_contents_on_work_id"
   end
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.string "category"
-    t.integer "posts_count", default: 0
+    t.integer "works_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,7 +63,27 @@ ActiveRecord::Schema.define(version: 2018_03_31_041520) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "contents", "posts"
-  add_foreign_key "post_tags", "posts"
-  add_foreign_key "post_tags", "tags"
+  create_table "work_tags", force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_work_tags_on_tag_id"
+    t.index ["work_id"], name: "index_work_tags_on_work_id"
+  end
+
+  create_table "works", force: :cascade do |t|
+    t.string "number"
+    t.string "title"
+    t.string "category"
+    t.string "top_tags"
+    t.integer "tags_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+  end
+
+  add_foreign_key "contents", "works"
+  add_foreign_key "work_tags", "tags"
+  add_foreign_key "work_tags", "works"
 end

@@ -1,7 +1,7 @@
 10.times do
-	@p = Post.create({
-		number: Post.all.size + 1,
-		title: "post#{rand(1..10)}",
+	@p = Work.create({
+		number: Work.all.size + 1,
+		title: "Work#{rand(1..10)}",
 		category: "shift"
 	})
 	@p.contents.create({

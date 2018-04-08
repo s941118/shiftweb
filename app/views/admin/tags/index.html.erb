@@ -9,7 +9,7 @@
         <th><%= Tag.human_attribute_name('id') %></th>
         <th style="min-width: 70px;"><%= Tag.human_attribute_name('name') %></th>
         <th style="min-width: 90px;"><%= Tag.human_attribute_name('category') %></th>
-        <th style="min-width: 80px;"><%= Tag.human_attribute_name('posts_count') %></th>
+        <th style="min-width: 80px;"><%= Tag.human_attribute_name('works_count') %></th>
         <th style="min-width: 70px;"><%= Tag.human_attribute_name('icon') %></th>
         <th style="min-width: 100px;">建立於</th>
         <th style="min-width: 100px;">最後更新</th>
@@ -24,8 +24,8 @@
             <td><%= tag.name %></td>
             <td><%= tag.category %></td>
             <td>
-              <%= link_to admin_posts_path(tag: tag.name) do %>
-                <span class="badge badge-pill badge-primary"><%= tag.posts_count %></span>
+              <%= link_to admin_works_path(tag: tag.name) do %>
+                <span class="badge badge-pill badge-primary"><%= tag.works_count %></span>
               <% end %>
             </td>
             <td><%= image_tag(url_for(tag.icon), height: "100px") if tag.icon.attached? %></td>

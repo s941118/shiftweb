@@ -34,9 +34,9 @@
       <h5 class="mb-1">使用於下列作品中</h5>
     </div>
     <p class="mb-1">
-      <% if @tag.posts_count > 0 %>
-        <% @tag.posts.map do |post| %>
-          <%= link_to "##{post.number} #{post.title}", admin_post_path(post), class: "btn btn-link" %>
+      <% if @tag.works_count > 0 %>
+        <% @tag.works.map do |work| %>
+          <%= link_to "##{work.number} #{work.title}", admin_work_path(work), class: "btn btn-link" %>
         <% end %>
       <% else %>
         無
