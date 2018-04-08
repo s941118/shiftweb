@@ -185,7 +185,7 @@
 	.works-map-wrapper {
 		overflow: auto;
 		.preview-wrapper {
-			background: url(../images/workBG.png) top left repeat;
+			background: url(asset-path('workBG.png')) top left repeat;
 			background-size: 10px 10px;
 			padding: 85px 20px 20px 245px;
 			@include for-phone-only {
@@ -270,7 +270,7 @@
 		right: 2%;
 		top: 50%;
 		transform:  translate(0,-50%);
-		background: url(../images/direction-arrow.svg) no-repeat;
+		background: url(asset-path('direction-arrow.svg')) no-repeat;
 	}
 	.map-more-top {
 		height: 50px;
@@ -281,7 +281,7 @@
 		right: 0;
 		display: none;
 		transform: translate(-50%,0) rotate(270deg);
-		background: url(../images/direction-arrow.svg) no-repeat;
+		background: url(asset-path('direction-arrow.svg')) no-repeat;
 		@include for-phone-only {
 			top: 2%;
 		}
@@ -293,7 +293,7 @@
 		left: 230px;
 		top: 50%;
 		transform: translateY(-50%) rotate(180deg);
-		background: url(../images/direction-arrow.svg) no-repeat;
+		background: url(asset-path('direction-arrow.svg')) no-repeat;
 		display: none;
 		@include for-phone-only {
 			left: 2%;
@@ -306,7 +306,7 @@
 		bottom: 2%;
 		left: 50%;
 		transform: translate(-50%,0) rotate(90deg);
-		background: url(../images/direction-arrow.svg) no-repeat;
+		background: url(asset-path('direction-arrow.svg')) no-repeat;
 	}
 }
 .single-work-box {

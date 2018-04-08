@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 300.9 485.2" style="enable-background:new 0 0 300.9 485.2;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#4B7CB7;stroke:#2C2824;stroke-width:5;stroke-miterlimit:10;}
-</style>
-<title>direction-arrow</title>
-<path class="st0" d="M0,242.6L121.3,0H182L60.7,242.6L182,485.2h-60.7L0,242.6z"/>
-<path class="st0" d="M119,242.6L240.3,0h60.6L179.6,242.6l121.3,242.6h-60.6L119,242.6z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45"><defs><style>.cls-1{fill:#f3dc11;}.cls-2{fill:#2c2824;}.cls-3{fill:#4b7cb7;}</style></defs><title>作品箭頭</title><g id="圖層_2" data-name="圖層 2"><g id="圖層_1-2" data-name="圖層 1"><circle class="cls-1" cx="22.5" cy="22.5" r="22"/><path class="cls-2" d="M22.5,45A22.5,22.5,0,1,1,45,22.5,22.52,22.52,0,0,1,22.5,45Zm0-44A21.5,21.5,0,1,0,44,22.5,21.52,21.52,0,0,0,22.5,1Z"/><path class="cls-3" d="M19.09,35.62a2,2,0,0,1-1.41-3.41l9.94-9.94-9.48-9.48A2,2,0,1,1,21,10L31.86,20.85a2,2,0,0,1,.58,1.42,2,2,0,0,1-.58,1.41L20.51,35A2,2,0,0,1,19.09,35.62Z"/></g></g></svg>

@@ -1,12 +1,12 @@
 .member-content {
-	background: url(../images/workBG.png) top left repeat;
+	background: url(asset-path('workBG.png')) top left repeat;
 	background-size: 10px 10px;
 	background-attachment: fixed;
 	position: relative;
 	width: 100%;
 	height: auto;
 	.members {
-		background: url(../images/member-hero.png) center 0 no-repeat;
+		background: url(asset-path('member-hero.png')) center 0 no-repeat;
 		background-size: 100%;
 		background-attachment: fixed;
 		width: 100%;
@@ -156,7 +156,7 @@
 									display: inline-block;
 									width: 12px;
 									height: 12px;
-									background: url(../images/card-time.svg);
+									background: url(asset-path('card-time.svg'));
 									margin-right: 5px;
 								}
 							}
@@ -204,7 +204,7 @@
 									display: inline-block;
 									width: 12px;
 									height: 12px;
-									background: url(../images/card-time.svg);
+									background: url(asset-path('card-time.svg'));
 									margin-right: 5px;
 								}
 							}

@@ -234,7 +234,7 @@
 		z-index: 2;
 		.team-img {
 			position: relative;
-			background: url(../images/teamBG-grid.svg) top left repeat;
+			background: url(asset-path('teamBG-grid.svg')) top left repeat;
 			background-size: 10px 10px;
 			img {
 				margin-top: 30px;

@@ -1,5 +1,5 @@
 footer {
-	background: $black url(../images/footerBG.png) no-repeat;
+	background: $black url(asset-path('footerBG.png')) no-repeat;
 	background-size: 50%;
 	background-position: top right;
 	width: 100%;
@@ -63,7 +63,7 @@ footer {
 			}
 			.sub-email {
 				height: 40px;
-				background: url(../images/sub-mail.svg) $white 10px center no-repeat;
+				background: url(asset-path('sub-mail.svg')) $white 10px center no-repeat;
 				background-size: 18px 12px;
 				padding: 0 65px 0 35px;
 				border: none;

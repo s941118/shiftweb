@@ -2,10 +2,10 @@
 <div class="content barba-container content-loading" data-namespace="about">
   <%= render "mobile_nav" %>
   <div class="about-content">
-    <div class="creative-production-block"><img class="creative-img-hide" src="images/about-adv1.png">
+    <div class="creative-production-block"><img class="creative-img-hide" src="<%= asset_path('about-adv1.png') %>">
       <div class="about-content-info creative-production-info creative-production-info-hide"><span>Advantage 1</span>
         <p class="about-title">Creative & Production</p>
-        <p>It is not the traditional dual antithesis.It is two commentary to always, flexibly deliver results tailored plements rooting form two poles respectively, balfor the needs of every project. ancing but not weakening each other. </p><a href="works.html">WORKS >></a>
+        <p>It is not the traditional dual antithesis.It is two commentary to always, flexibly deliver results tailored plements rooting form two poles respectively, balfor the needs of every project. ancing but not weakening each other. </p><a href="/works">WORKS >></a>
       </div>
       <div class="clearfix"></div>
     </div>
@@ -14,7 +14,7 @@
       <div class="about-content-info strategy-info strategy-info-hide"><span>Advantage 2</span>
         <p class="about-title">Strategy & Insight</p>
         <p>It is not the traditional dual antithesis.It is two commentary to always, flexibly deliver results tailored plements rooting form two poles respectively, balfor the needs of every project. ancing but not weakening each other. </p>
-      </div><img class="strategy-img-hide" src="images/strategyBG.png"><img class="strategy-flake strategy-flake-hide" src="images/strategyBG-flake.svg">
+      </div><img class="strategy-img-hide" src="<%= asset_path('strategyBG.png') %>"><img class="strategy-flake strategy-flake-hide" src="<%= asset_path('strategyBG-flake.svg') %>">
       <div class="clearfix"></div>
     </div>
     <div class="performance-block">
@@ -22,24 +22,24 @@
       <div class="about-content-info performance-info performance-info-hide"><span>Advantage 3</span>
         <p class="about-title">Distribution & Preformance</p>
         <p>It is not the traditional dual antithesis.It is two commentary to always, flexibly deliver results tailored plements rooting form two poles respectively, balfor the needs of every project. ancing but not weakening each other. </p>
-      </div><img class="performance-img-hide" src="images/performanceBG.png">
+      </div><img class="performance-img-hide" src="<%= asset_path('performanceBG.png') %>">
       <div class="clearfix"></div>
     </div>
     <div class="team-block">
       <div class="about-content-info team-info team-info-hide"><span>Advantage 4</span>
         <p class="about-title">Young</p>
         <p class="about-title">Powerful Team</p>
-        <p>It is not the traditional dual antithesis.It is two commentary to always, flexibly deliver results tailored plements rooting form two poles respectively, balfor the needs of every project. ancing but not weakening each other. </p><a href="members.html">MEMBERS >></a>
+        <p>It is not the traditional dual antithesis.It is two commentary to always, flexibly deliver results tailored plements rooting form two poles respectively, balfor the needs of every project. ancing but not weakening each other. </p><a href="/members">MEMBERS >></a>
       </div>
-      <div class="team-img team-img-hide"><img src="images/teamBG.png"></div>
+      <div class="team-img team-img-hide"><img src="<%= asset_path('teamBG.png') %>"></div>
     </div>
     <footer>
       <div class="footer-sitemap">
         <ul>
-          <li><a href="works.html">Works</a></li>
-          <li><a href="members.html">Members</a></li>
-          <li><a href="about.html">About us</a></li>
-          <li><a href="contact.html">Contact us</a></li>
+          <li><a href="/works">Works</a></li>
+          <li><a href="/members">Members</a></li>
+          <li><a href="/about">About us</a></li>
+          <li><a href="/contact">Contact us</a></li>
         </ul>
       </div>
       <div class="footer-subscription">
