@@ -6,8 +6,8 @@ class Tag < ApplicationRecord
 	attr_accessor :remove_icon
 	has_one_attached :member_bg
 	attr_accessor :remove_member_bg
-	# scope :shift, -> { where(category: "shift") }
-	# scope :cooperation, -> { where(category: "cooperation") }
+	scope :shift, -> { where(category: "SHIFT") }
+	scope :cooperation, -> { where(category: "COOPERATION") }
 
 	# 以下為幫助產生對應 html
 	def icon_or_default

@@ -12,8 +12,15 @@
                 <div class="work-image"><img src="<%= asset_path('work'+rand(1..5).to_s+'.png') %>"></div>
                 <div class="work-des">
                   <p>#<%= index + 1 + x * x_index %> / SHIFT work</p>
-                  <p class="work-title">Rise from Music</p>
-                  <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div>
+                  <p class="work-title"><%= work.title %></p>
+                  <!-- <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div> -->
+                  <% if work.top_tags.present? %>
+                    <div class="work-tags">
+                      <% work.top_tags.split(",").each do |top_tag| %>
+                        <span>#<%= raw top_tag %></span>
+                      <% end %>
+                    </div>
+                  <% end %>
                 </div>
               </a>
             <% end %>
@@ -26,15 +33,27 @@
       <div class="works-category-filer"><span class="font-black">All</span></div>
       <div class="works-nav-img"><img src="<%= asset_path('works-person@2x.png') %>"></div>
       <ul class="works-category accordion" data-accordion data-allow-all-closed="true">
-        <li class="accordion-item category-all"><a class="accordion-title" href="#">ALL</a></li>
-        <li class="accordion-item" data-accordion-item><a class="accordion-title" href="#">SHIFT</a>
-          <div class="accordion-content" data-tab-content><a href="#" data-tag="#ChiaHao">#ChiaHao</a><a href="#" data-tag="#BlueDesign">#BlueDesign</a><a href="#" data-tag="#LeoSa">#LeoSa</a><a href="#" data-tag="#ChiaHao">#ChiaHao</a><a href="#" data-tag="#BlueDesign">#BlueDesign</a><a href="#" data-tag="#LeoSa">#LeoSa</a><a href="#" data-tag="#ChiaHao">#ChiaHao</a><a href="#" data-tag="#BlueDesign">#BlueDesign</a><a href="#" data-tag="#ChiaHao">#ChiaHao</a>
-          </div>
-        </li>
-        <li class="accordion-item" data-accordion-item><a class="accordion-title" href="#">COOPERATIONS</a>
-          <div class="accordion-content" data-tab-content><a href="#" data-tag="#ChiaHao">#ChiaHao</a><a href="#" data-tag="#BlueDesign">#BlueDesign</a><a href="#" data-tag="#LeoSa">#LeoSa</a><a href="#" data-tag="#ChiaHao">#ChiaHao</a><a href="#" data-tag="#BlueDesign">#BlueDesign</a><a href="#" data-tag="#LeoSa">#LeoSa</a><a href="#" data-tag="#ChiaHao">#ChiaHao</a><a href="#" data-tag="#BlueDesign">#BlueDesign</a><a href="#" data-tag="#ChiaHao">#ChiaHao</a>
-          </div>
-        </li>
+        <li class="accordion-item category-all"><a class="accordion-title" href="/works">ALL</a></li>
+        <% if Tag.shift.size > 0 %>
+          <li class="accordion-item" data-accordion-item><a class="accordion-title" href="#">SHIFT</a>
+            <div class="accordion-content" data-tab-content>
+              <% Tag.shift.each do |shift_tag| %>
+                <%= link_to "##{shift_tag.name}", works_path(tag: shift_tag.name) %>
+                <!-- <a href="#" data-tag="#ChiaHao">#ChiaHao</a><a href="#" data-tag="#BlueDesign">#BlueDesign</a><a href="#" data-tag="#LeoSa">#LeoSa</a><a href="#" data-tag="#ChiaHao">#ChiaHao</a><a href="#" data-tag="#BlueDesign">#BlueDesign</a><a href="#" data-tag="#LeoSa">#LeoSa</a><a href="#" data-tag="#ChiaHao">#ChiaHao</a><a href="#" data-tag="#BlueDesign">#BlueDesign</a><a href="#" data-tag="#ChiaHao">#ChiaHao</a> -->
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+        <% if Tag.cooperation.size > 0 %>
+          <li class="accordion-item" data-accordion-item><a class="accordion-title" href="#">COOPERATIONS</a>
+            <div class="accordion-content" data-tab-content>
+              <% Tag.cooperation.each do |cooperation_tag| %>
+                <%= link_to "##{cooperation_tag.name}", works_path(tag: cooperation_tag.name) %>
+                <!-- <a href="#" data-tag="#ChiaHao">#ChiaHao</a><a href="#" data-tag="#BlueDesign">#BlueDesign</a><a href="#" data-tag="#LeoSa">#LeoSa</a><a href="#" data-tag="#ChiaHao">#ChiaHao</a><a href="#" data-tag="#BlueDesign">#BlueDesign</a><a href="#" data-tag="#LeoSa">#LeoSa</a><a href="#" data-tag="#ChiaHao">#ChiaHao</a><a href="#" data-tag="#BlueDesign">#BlueDesign</a><a href="#" data-tag="#ChiaHao">#ChiaHao</a> -->
+              <% end %>
+            </div>
+          </li>
+        <% end %>
       </ul>
     </div>
     <button class="map-more-top"></button>

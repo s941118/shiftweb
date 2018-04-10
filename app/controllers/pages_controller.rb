@@ -5,7 +5,11 @@ class PagesController < ApplicationController
 
   def works
   	authorize :work, :index?
-    @works = Work.all#.limit(params[:n])#publish
+    @works = if params[:tag].present? && Tag.find_by_name(params[:tag]).present?
+      Work.tagged_with(params[:tag])
+    else
+      Work.all
+    end.publish
   end
 
   def about

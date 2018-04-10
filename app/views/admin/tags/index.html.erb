@@ -21,7 +21,7 @@
         <% @tags.each do |tag| %>
           <tr>
             <td><%= tag.id %></td>
-            <td><%= tag.name %></td>
+            <td><%= raw tag.name %></td>
             <td><%= tag.category %></td>
             <td>
               <%= link_to admin_works_path(tag: tag.name) do %>

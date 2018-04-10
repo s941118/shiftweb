@@ -26,7 +26,7 @@
           <% end %>
           <div class="tag-hashtags">
             <% @work.top_tags.split(",").each do |top_tag| %>
-              <p>#<%= top_tag %></p>
+              <p>#<%= raw top_tag %></p>
             <% end %>
           </div>
           <div class="clearfix"></div>

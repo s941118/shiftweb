@@ -22,7 +22,7 @@
           <td><%= work.number %></td>
           <td><%= work.title %></td>
           <td><%= work.category %></td>
-          <td><%= work.top_tags_string %></td>
+          <td><%= raw work.top_tags_string %></td>
           <td><%= work.created_at.strftime("%F %H:%M") %></td>
           <td><%= timeago(work.updated_at) %></td>
           <td><%= render_work_status(work) %></td>

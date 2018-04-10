@@ -24,10 +24,10 @@ class Work < ApplicationRecord
 	def update_tags!
 		tags_text = []
 		self.contents.text.each do |content|
+			content.update_column(:processed_html, content.html.gsub(/(?:#([^\s,\.,\<\/]+))/,'<a href="/works?tag=\1">#\1</a>'))
 			all_text_in_content_html = Nokogiri::HTML(content.html).xpath("//text()").to_s.strip
-			tags_in_this_content = all_text_in_content_html.scan(/(?:#([^\s,\.]+))/).flatten #Nokogiri.parse(content.html).text.scan(/(?:#([^\s,\.]+))/).flatten
+			tags_in_this_content = all_text_in_content_html.scan(/(?:#([^\s,\.,\<\/]+))/).flatten #Nokogiri.parse(content.html).text.scan(/(?:#([^\s,\.]+))/).flatten
 			tags_text << tags_in_this_content
-			content.update_column(:processed_html, content.html.gsub(/(?:#([^\s,\.]+))/,'<a href="/tags/\1">#\1</a>'))
 		end
 		tags_text = tags_text.flatten.uniq
 		self.tag_list = tags_text
@@ -67,11 +67,11 @@ class Work < ApplicationRecord
 	accepts_nested_attributes_for :contents, allow_destroy: true, reject_if: proc { |attributes| attributes['html'].blank? || attributes['ordering'].blank? }
 
 	# 以下為協助資料維護相關
-	after_commit :clean_tags
+	# after_commit :clean_tags
 
-	def clean_tags
-		Tag.where(works_count: 0).destroy_all
-	end
+	# def clean_tags
+	# 	Tag.where(works_count: 0).destroy_all
+	# end
 
 	after_touch :update_ordering
 
