@@ -7,11 +7,13 @@
         <div class="work-des">
           <p>#1 / SHIFT work</p>
           <p class="work-title"><%= @work.title %></p>
-          <div class="work-tags">
-            <p class="work-year">#2018</p>
-            <p class="work-company">#SHIFT</p>
-            <p class="work-profile">#LeoSa</p>
-          </div>
+          <% if @work.top_tags.present? %>
+            <div class="work-tags">
+              <% @work.top_tags.split(",").each do |top_tag| %>
+                <p>#<%= raw top_tag %></p>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -24,11 +26,13 @@
               <p><%= @work.category %> work</p>
             </div>
           <% end %>
-          <div class="tag-hashtags">
-            <% @work.top_tags.split(",").each do |top_tag| %>
-              <p>#<%= raw top_tag %></p>
-            <% end %>
-          </div>
+          <% if @work.top_tags.present? %>
+            <div class="tag-hashtags">
+              <% @work.top_tags.split(",").each do |top_tag| %>
+                <p>#<%= raw top_tag %></p>
+              <% end %>
+            </div>
+          <% end %>
           <div class="clearfix"></div>
         </div>
         <% if @work.number.present? %>
@@ -73,10 +77,19 @@
     </div>
 
     <div class="mt-5" id="work_buttons_wrapper">
-      <%= link_to edit_admin_work_path(@work), class: "btn btn-success", id: "btn-edit-work" do %>
+      <% if @work.draft? %>
+        <%= link_to publish_admin_work_path(@work), method: :post, class: "btn btn-info", data: { toggle: "tooltip", placement: "left", title: "發佈作品" } do %>
+          <i class="material-icons">&#xE255;</i>
+        <% end %>
+      <% else %>
+        <%= link_to draft_admin_work_path(@work), method: :post, class: "btn btn-info", data: { toggle: "tooltip", placement: "left" ,title: "轉為草稿" } do %>
+          <i class="material-icons">&#xE149;</i>
+        <% end %>
+      <% end %>
+      <%= link_to edit_admin_work_path(@work), class: "btn btn-success", id: "btn-edit-work", data: { toggle: "tooltip", placement: "left", title: "編輯作品" } do %>
         <i class="material-icons">&#xE3C9;</i>
       <% end %>
-      <%= link_to [:admin, @work], method: :delete, data: { confirm: '無法還原，真的要刪除嗎？' }, class: "btn btn-danger", id: "btn-edit-work" do %>
+      <%= link_to [:admin, @work], method: :delete, data: { confirm: '無法還原，真的要刪除嗎？' }, class: "btn btn-danger", id: "btn-edit-work", data: { toggle: "tooltip", placement: "left", title: "刪除作品" } do %>
         <i class="material-icons">&#xE92B;</i>
       <% end %>
     </div>

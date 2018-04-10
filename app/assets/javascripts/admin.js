@@ -8,3 +8,7 @@
 //= require admin/ckeditor_config
 //= require admin/edit_work
 //= require admin/previewable
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})

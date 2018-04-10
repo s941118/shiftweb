@@ -46,15 +46,20 @@ class Admin::UsersController < AdminController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
-    flash[:success] = "刪除成功。"
-    if current_user == @user
-      authorize [:admin, :session], :destroy?
-      session.delete(:user_id)
-      @current_user = nil
-      redirect_to admin_login_path
-    else
+    if User.all.size <= 1
+      flash[:danger] = "至少要留一個帳號。"
       redirect_to admin_users_url
+    else
+      @user.destroy
+      flash[:success] = "刪除成功。"
+      if current_user == @user
+        authorize [:admin, :session], :destroy?
+        session.delete(:user_id)
+        @current_user = nil
+        redirect_to admin_login_path
+      else
+        redirect_to admin_users_url
+      end
     end
   end
 

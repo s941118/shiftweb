@@ -2,7 +2,7 @@
 	@p = Work.create({
 		number: Work.all.size + 1,
 		title: "Rise from Music",
-		category: "shift",
+		category: "SHIFT",
 		status: "publish"
 	})
 	@p.contents.create({

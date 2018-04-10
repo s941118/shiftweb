@@ -7,10 +7,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% ["work", "tag", "user"].each do |singular_name| %>
-      <li class="nav-item active">
+      <li class="nav-item <%= 'active' if controller_name == singular_name.pluralize %>">
         <a class="nav-link" href="/admin/<%= singular_name.pluralize %>"><%= singular_name.titleize.constantize.model_name.human %>管理<span class="sr-only">(current)</span></a>
       </li>
       <% end %>
+      <li class="nav-item">
+        <a class="nav-link" href="/">回到網站首頁</a>
+      </li>
     </ul>
     <% if @q.present? %>
       <%= search_form_for [:admin, @q], class: "form-inline my-2 my-lg-0" do |f| %>
