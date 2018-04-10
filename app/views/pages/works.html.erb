@@ -5,15 +5,19 @@
     <section class="works-map-wrapper">
       <div class="works-map">
         <div class="preview-wrapper">
-          <% @works.each do |work| %>
-            <a class="work-block work-block-hide" data-work-id="<%= work.id %>">
-              <div class="work-image"><img src="<%= asset_path('work'+rand(1..5).to_s+'.png') %>"></div>
-              <div class="work-des">
-                <p>#2 / SHIFT work</p>
-                <p class="work-title">Rise from Music</p>
-                <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div>
-              </div>
-            </a>
+          <% x = Work.x(params[:n]) %>
+          <% @works.each_slice(x).with_index do |x_works, x_index| %>
+            <% x_works.each_with_index do |work, index| %>
+              <a class="work-block work-block-hide" data-work-id="<%= work.id %>">
+                <div class="work-image"><img src="<%= asset_path('work'+rand(1..5).to_s+'.png') %>"></div>
+                <div class="work-des">
+                  <p>#<%= index + 1 + x * x_index %> / SHIFT work</p>
+                  <p class="work-title">Rise from Music</p>
+                  <div class="work-tags"><span class="work-year" data-year="#2018">#2018</span><span class="work-company" data-company="#SHIFT">#SHIFT</span><span class="work-profile" data-profile="#LeoSa">#LeoSa</span></div>
+                </div>
+              </a>
+            <% end %>
+            <div style="clear: both;"></div>
           <% end %>
         </div>
       </div>

@@ -5,7 +5,7 @@ class PagesController < ApplicationController
 
   def works
   	authorize :work, :index?
-    @works = Work.all
+    @works = Work.all#.limit(params[:n])#publish
   end
 
   def about

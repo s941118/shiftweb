@@ -496,6 +496,7 @@
 		}
 		.paragraph-image {
 			margin: 20px 0 0 0;
+			width: 100%;
 		}
 		@include for-tablet-landscape-up {
 			max-width: calc(100% - 300px);

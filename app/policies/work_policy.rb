@@ -4,6 +4,6 @@ class WorkPolicy < ApplicationPolicy
 	end
 
 	def show?
-		true
+		record.present? && record.publish?
 	end	
 end

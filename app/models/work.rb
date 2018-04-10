@@ -10,12 +10,24 @@ class Work < ApplicationRecord
 	has_one_attached :cover
 	attr_accessor :remove_cover
 
+	def self.x(n)
+		n ||= self.all.size
+		least_sqrt = Math.sqrt(n.to_f).to_i
+		all_size = n.to_f
+		if all_size + least_sqrt >= (least_sqrt + 1)**2
+			return least_sqrt + 1
+		elsif all_size > least_sqrt**2 - least_sqrt
+			return least_sqrt
+		end
+	end
+
 	def update_tags!
 		tags_text = []
 		self.contents.text.each do |content|
-			tags_in_this_content = Nokogiri.parse(content.html).text.scan(/(?:#([^\s,\.]+))/).flatten
+			all_text_in_content_html = Nokogiri::HTML(content.html).xpath("//text()").to_s.strip
+			tags_in_this_content = all_text_in_content_html.scan(/(?:#([^\s,\.]+))/).flatten #Nokogiri.parse(content.html).text.scan(/(?:#([^\s,\.]+))/).flatten
 			tags_text << tags_in_this_content
-			content.update_column(:processed_html, Nokogiri.parse(content.html).text.gsub(/(?:#([^\s,\.]+))/,'<a href="/tags/\1">#\1</a>'))
+			content.update_column(:processed_html, content.html.gsub(/(?:#([^\s,\.]+))/,'<a href="/tags/\1">#\1</a>'))
 		end
 		tags_text = tags_text.flatten.uniq
 		self.tag_list = tags_text
