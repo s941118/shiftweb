@@ -1,2 +1,23 @@
 @import "foundation";
 @import "styles";
+@font-face {
+	font-family: 'domus';
+  src: url(asset-path('assets/fonts/Font_BasicSansAlt/BasicSansAlt-Regular.otf'));
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+	font-family: 'domus';
+  src: url(asset-path('assets/fonts/Font_BasicSansAlt/BasicSansAlt-Bold.otf'));
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+	font-family: 'domus';
+  src: url(asset-path('assets/fonts/Font_BasicSansAlt/BasicSansAlt-ExtraLight.otf'));
+  font-weight: 100;
+  font-style: normal;
+}
+html, body {
+	font-family: domus;
+}
