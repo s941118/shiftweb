@@ -25,7 +25,7 @@
             <td><%= tag.category %></td>
             <td>
               <%= link_to admin_works_path(tag: tag.name) do %>
-                <span class="badge badge-pill badge-primary"><%= tag.works_count %></span>
+                <span class="badge badge-pill <%= tag.works_count == 0 ? 'badge-warning' : 'badge-primary' %>"><%= tag.works_count %></span>
               <% end %>
             </td>
             <td><%= image_tag(url_for(tag.icon), height: "100px") if tag.icon.attached? %></td>
@@ -39,8 +39,14 @@
                 <div class="dropdown-menu">
                   <%= link_to '檢視', [:admin, tag], class: "dropdown-item" %>
                   <%= link_to "編輯", edit_admin_tag_path(tag), class: "dropdown-item" %>
-                  <div class="dropdown-divider"></div>
-                  <%= link_to '刪除', [:admin, tag], method: :delete, data: { confirm: '確認刪除？' }, class: "dropdown-item" %>
+                  <% if tag.unused? %>
+                    <div class="dropdown-divider"></div>
+                    <% if tag.member? %>
+                      <%= link_to '刪除成員', [:admin, tag], method: :delete, data: { confirm: '確認要刪除成員？' }, class: "dropdown-item" %>
+                    <% else %>
+                      <%= link_to '刪除未使用', [:admin, tag], method: :delete, data: { confirm: '確認要刪除？' }, class: "dropdown-item" %>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
             </td>

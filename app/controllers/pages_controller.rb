@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   end
 
   def members
-    
+    @members = Tag.member
   end
 
   private
