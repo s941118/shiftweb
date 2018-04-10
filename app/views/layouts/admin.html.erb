@@ -3,12 +3,12 @@
   <head>
     <title><%= meta_title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'admin', media: 'all' %>
     <%= csrf_meta_tags %>
     <%#= favicon_link_tag "favicon.ico" %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
-    <%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'admin' %>
   </head>
   <body class='admin <%= "#{controller_name}-controller" %> <%= "#{action_name}-action" %>'>
     <%= render "admin/common/nav_top" if user_signed_in? %>
