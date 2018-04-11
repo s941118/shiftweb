@@ -13,10 +13,10 @@ class Tag < ApplicationRecord
 
 	# 以下為幫助產生對應 html
 	def icon_or_default
-		icon.attached? ? icon : "http://via.placeholder.com/375x531/333.jpg"
+		icon.attached? ? icon : "http://via.placeholder.com/350x450/333.jpg"
 	end
 	def member_bg_or_default
-		member_bg.attached? ? member_bg : "http://via.placeholder.com/375x531/333.jpg"
+		member_bg.attached? ? member_bg : "http://via.placeholder.com/350x450/333.jpg"
 	end
 	# 以上為幫助產生對應 html
 

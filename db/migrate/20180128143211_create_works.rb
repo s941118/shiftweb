@@ -5,6 +5,7 @@ class CreateWorks < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :category
       t.string :top_tags
+      t.datetime :work_date
       t.integer :tags_count, default: 0
 
       t.timestamps

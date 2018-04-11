@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2018_03_31_041520) do
     t.string "title"
     t.string "category"
     t.string "top_tags"
+    t.datetime "work_date"
     t.integer "tags_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

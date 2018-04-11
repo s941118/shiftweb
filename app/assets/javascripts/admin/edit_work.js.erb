@@ -372,7 +372,7 @@ $(document).on("click", ".content_wrapper_adjust_down", function(e) {
 
 $(document).on("keydown", "#article_title", function(e) {
 	// console.log(e.keyCode)
-	if (e.keyCode == 13) {
+	if (e.keyCode == 13 && e.target.value.split("\n") > 1) {
 		e.preventDefault()
 		$("div.content_wrapper").first().find("div[contenteditable='true']").focus()
 	}

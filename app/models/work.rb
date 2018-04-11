@@ -84,6 +84,12 @@ class Work < ApplicationRecord
   		content.update_column(:ordering, index)
   	end
   end
+
+  after_create :set_default_work_date!
+
+  def set_default_work_date!
+  	self.update_column(:work_date, self.created_at) unless self.work_date.present?
+  end
   # 以上為協助資料維護相關
 
   # 以下為幫助產生對應 html

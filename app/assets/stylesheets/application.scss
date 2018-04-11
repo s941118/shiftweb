@@ -1,11 +1,2 @@
 @import "foundation";
 @import "styles";
-@font-face {
-	font-family: 'domus';
-  src: url(asset-path('Font_BasicSansAlt/BasicSansAlt-Regular.otf'));
-  font-weight: normal;
-  font-style: normal;
-}
-html, body {
-	font-family: domus;
-}
