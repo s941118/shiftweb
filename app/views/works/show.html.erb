@@ -28,11 +28,9 @@
               <p><%= @work.category %> work</p>
             </div>
           <% end %>
-          <% if @work.top_tags.present? %>
+          <% if @work.work_date.present? %>
             <div class="tag-hashtags">
-              <% @work.top_tags.split(",").each do |top_tag| %>
-                <p>#<%= raw top_tag %></p>
-              <% end %>
+              <p class="work-year"><%= @work.work_date.to_date %></p>
             </div>
           <% end %>
           <div class="clearfix"></div>

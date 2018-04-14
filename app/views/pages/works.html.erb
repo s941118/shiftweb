@@ -7,12 +7,12 @@
         <div class="preview-wrapper">
           <% x = Work.x(params[:n]) %>
           <% if x > 0 %>
-            <% @works.each_slice(x).with_index do |x_works, x_index| %>
-              <% x_works.each_with_index do |work, index| %>
+            <% @works.each_slice(x) do |x_works| %>
+              <% x_works.each do |work| %>
                 <a class="work-block work-block-hide" data-work-id="<%= work.id %>">
                   <div class="work-image"><%= image_tag work.cover_or_default %></div>
                   <div class="work-des">
-                    <p>#<%= index + 1 + x * x_index %> / SHIFT work</p>
+                    <p>#<%= work.number %> / SHIFT work</p>
                     <%= simple_format work.title, class: "work-title" %>
                     <% if work.top_tags.present? %>
                       <div class="work-tags">
