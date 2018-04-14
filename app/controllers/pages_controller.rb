@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 	before_action :set_authorization
   def home
+    @latest_works = Work.order(work_date: :desc).limit(3)
   end
 
   def works

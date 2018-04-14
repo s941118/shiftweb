@@ -6,7 +6,7 @@
         <div class="work-image"><%= image_tag @work.cover_or_default %></div>
         <div class="work-des">
           <% if @work.category.present? %>
-            <p>#<%= @work.number %> / <%= @work.category %> work</p>
+            <p>#<%= @work.number.to_s.rjust(2, '0') %> / <%= @work.category %> work</p>
           <% end %>
           <p class="work-title"><%= @work.title %></p>
           <% if @work.top_tags.present? %>
