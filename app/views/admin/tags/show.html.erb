@@ -31,6 +31,20 @@
 
   <li href="#" class="list-group-item flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"><%= Tag.human_attribute_name("job_title") %></h5>
+    </div>
+    <p class="mb-1" style="font-size: 18px;"><%= @tag.job_title %></p>
+  </li>
+
+  <li href="#" class="list-group-item flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"><%= Tag.human_attribute_name("join_time") %></h5>
+    </div>
+    <p class="mb-1" style="font-size: 18px;"><%= @tag.join_time %></p>
+  </li>
+
+  <li href="#" class="list-group-item flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">使用於下列作品中</h5>
     </div>
     <p class="mb-1">
