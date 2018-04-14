@@ -13,7 +13,7 @@
                   <div class="work-image"><%= image_tag work.cover_or_default %></div>
                   <div class="work-des">
                     <p>#<%= index + 1 + x * x_index %> / SHIFT work</p>
-                    <p class="work-title"><%= work.title %></p>
+                    <%= simple_format work.title, class: "work-title" %>
                     <% if work.top_tags.present? %>
                       <div class="work-tags">
                         <% work.top_tags.split(",").each do |top_tag| %>
