@@ -8,15 +8,15 @@ class Admin::WorksController < AdminController
     authorize [:admin, :work], :index?
     works = @q.result(distinct: true)
     @works = if params[:tag].present?
-      works.tagged_with(params[:tag]).order(updated_at: :desc)
+      works.tagged_with(params[:tag])
     else
-      works.order(updated_at: :desc)
-    end
+      works
+    end.order(work_date: :desc)
   end
 
   # GET /works/1
   def show
-    @contents = Content.where(work_id: params[:id]).order(ordering: :asc)#.pluck(:html).join("")
+    @contents = Content.where(work_id: params[:id]).order(ordering: :asc).with_attached_image#.pluck(:html).join("")
   end
 
   # GET /works/new

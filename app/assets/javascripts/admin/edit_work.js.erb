@@ -179,7 +179,7 @@ function insert_embed_button_next_to(embed_content) {
 	var $embed_button = $embed_button_template.clone().removeClass("template")
 	$(embed_content).append($embed_button)
 	// console.log(`${embed_content.getAttribute("id")}'s height is ${embed_content.clientHeight}px now.`)
-	$embed_button.attr("style", `position: absolute; right: -30px; top: 49.5%;`)
+	$embed_button.attr("style", `position: absolute; right: 25px; top: 49.5%;`)
 	$embed_button.attr("id", `${embed_content.getAttribute("id")}_embed_button`)
 	$embed_button.find("a.content_wrapper_adjust").attr( "data-content-index", get_number_in(embed_content.getAttribute("id")) )
 }

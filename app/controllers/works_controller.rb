@@ -3,7 +3,7 @@ class WorksController < ApplicationController
 
   # GET /works/1
   def show
-    @contents = Content.where(work_id: params[:id]).order(ordering: :asc)
+    @contents = Content.where(work_id: params[:id]).order(ordering: :asc).with_attached_image
     unless params[:js] == "true"
       @works = Work.publish
       render "pages/works"
