@@ -6,22 +6,24 @@
       <div class="works-map">
         <div class="preview-wrapper">
           <% x = Work.x(params[:n]) %>
-          <% @works.each_slice(x).with_index do |x_works, x_index| %>
-            <% x_works.each_with_index do |work, index| %>
-              <a class="work-block work-block-hide" data-work-id="<%= work.id %>">
-                <div class="work-image"><%= image_tag work.cover_or_default %></div>
-                <div class="work-des">
-                  <p>#<%= index + 1 + x * x_index %> / SHIFT work</p>
-                  <p class="work-title"><%= work.title %></p>
-                  <% if work.top_tags.present? %>
-                    <div class="work-tags">
-                      <% work.top_tags.split(",").each do |top_tag| %>
-                        <span>#<%= raw top_tag %></span>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </div>
-              </a>
+          <% if x > 0 %>
+            <% @works.each_slice(x).with_index do |x_works, x_index| %>
+              <% x_works.each_with_index do |work, index| %>
+                <a class="work-block work-block-hide" data-work-id="<%= work.id %>">
+                  <div class="work-image"><%= image_tag work.cover_or_default %></div>
+                  <div class="work-des">
+                    <p>#<%= index + 1 + x * x_index %> / SHIFT work</p>
+                    <p class="work-title"><%= work.title %></p>
+                    <% if work.top_tags.present? %>
+                      <div class="work-tags">
+                        <% work.top_tags.split(",").each do |top_tag| %>
+                          <span>#<%= raw top_tag %></span>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                </a>
+              <% end %>
             <% end %>
           <% end %>
         </div>

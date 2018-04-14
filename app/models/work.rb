@@ -18,6 +18,8 @@ class Work < ApplicationRecord
 			return least_sqrt + 1
 		elsif all_size > least_sqrt**2 - least_sqrt
 			return least_sqrt
+		else
+			n.to_i
 		end
 	end
 
