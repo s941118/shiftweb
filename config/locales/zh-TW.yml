@@ -1,4 +1,23 @@
 zh-TW:
+  text:
+    index: 列表
+    cancel: 取消
+    show: 檢視
+    edit: 編輯
+    new: 新增
+    search: 搜尋
+    search_placeholder: 輸入關鍵字
+    destroy: 刪除
+    back: 返回
+    hint: 提示
+    attr_no_value: 尚未填寫
+    confirm_destroy: 確認刪除？
+    search_result: 搜尋結果
+    filter: 篩選器
+    apply: 應用
+    clear: 清除
+    filter:
+      id_eq: ID 等於
   activerecord:
     models:
       work:
@@ -7,6 +26,9 @@ zh-TW:
       tag:
         one: 標籤
         other: 標籤集
+      content:
+        one: 內文
+        other: 內文
       user:
         one: 使用者
         other: 使用者
@@ -24,6 +46,8 @@ zh-TW:
         works_count: 文章數量
         icon: 圖示
         member_bg: 成員背景圖
+      content:
+        processed_html: 內文
       user:
         name: 使用者名稱
         password: 密碼

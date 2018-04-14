@@ -1,11 +1,10 @@
 class Admin::TagsController < AdminController
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  before_action :set_search
 
   # GET /tags
   def index
     authorize [:admin, :tag], :index?
-    @search_param = :name_cont
-    @q = Tag.ransack(params[:q])
     tags = @q.result(distinct: true)
     @tags = tags.order(updated_at: :desc)
   end
@@ -66,6 +65,12 @@ class Admin::TagsController < AdminController
     def set_tag
       @tag = Tag.find(params[:id])
     	authorize [:admin, @tag]
+    end
+
+    def set_search
+      @q = Tag.ransack(params[:q])
+      @nav_search_symbol = :name_cont
+      @nav_search_placeholder = Tag.model_name.human + Tag.human_attribute_name("name")
     end
 
     # Only allow a trusted parameter "white list" through.

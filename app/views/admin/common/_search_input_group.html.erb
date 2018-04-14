@@ -1,0 +1,6 @@
+<%= f.search_field @nav_search_symbol, class: "form-control border-right-0", placeholder: @nav_search_placeholder || I18n.t('text.search_placeholder'), oninput: "$(this).parents('.input-group').find('#remove-input-icon').toggleClass('invisible', $(this).val().length === 0)" %>
+<div class="input-group-append">
+  <span class="input-group-text border-left-0 bg-white">
+    <span id="remove-input-icon" class="<%= 'invisible' unless params[:q].present? %>" onclick="$(this).parents('.input-group').find('.form-control').val('');$(this).addClass('invisible')" aria-hidden="true" style="cursor: pointer;">&times;</span>
+  </span>
+</div>

@@ -1,12 +1,11 @@
 class Admin::WorksController < AdminController
   before_action :set_work, only: [:show, :edit, :update, :destroy, :publish, :draft]
+  before_action :set_search
   layout 'edit_work', only: [:show, :edit, :update]
 
   # GET /works
   def index
     authorize [:admin, :work], :index?
-    @search_param = :title_or_tags_name_or_contents_processed_html_cont
-    @q = Work.ransack(params[:q])
     works = @q.result(distinct: true)
     @works = if params[:tag].present?
       works.tagged_with(params[:tag]).order(updated_at: :desc)
@@ -84,6 +83,12 @@ class Admin::WorksController < AdminController
     def set_work
       @work = Work.find(params[:id])
     	authorize [:admin, @work]
+    end
+
+    def set_search
+      @q = Work.ransack(params[:q])
+      @nav_search_symbol = :title_or_category_or_tags_name_or_contents_processed_html_cont
+      @nav_search_placeholder = Work.model_name.human + Work.human_attribute_name("title") + "、" + Work.human_attribute_name("category") + "、" + Tag.model_name.human  + Tag.human_attribute_name("name") + "、" + Content.human_attribute_name("processed_html")
     end
 
     # Only allow a trusted parameter "white list" through.
