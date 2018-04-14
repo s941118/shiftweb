@@ -18,266 +18,34 @@
         <div class="clearfix"></div>
       </div>
       <div class="member-thumbnail-wrap grid-x grid-margin-x member-thumbnail-hide">
-        <div class="member-thumbnail-block cell large-4">
-          <div class="member-card">
-            <div class="member-card-front">
-              <div class="front-left">
-                <p class="fcard-title">Producer</p>
-                <p class="fcard-name">HaimiTu</p>
-                <div class="front-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="fcard-role">Founder</p>
+        <% @members.each do |member| %>
+          <div class="member-thumbnail-block cell large-4">
+            <div class="member-card">
+              <div class="member-card-front">
+                <div class="front-left">
+                  <p class="fcard-title"><%= member.job_title %></p>
+                  <p class="fcard-name"><%= member.name %></p>
+                  <div class="front-bottom">
+                    <div class="divider bg-white"></div>
+                    <p class="fcard-role"><%= member.join_time %></p>
+                  </div>
                 </div>
+                <div class="front-right"><%= image_tag member.icon_or_default %></div>
               </div>
-              <div class="front-right"><img src="<%= asset_path('haimi1.png') %>"></div>
-            </div>
-            <div class="member-card-back">
-              <div class="back-left"><img src="<%= asset_path('haimi2.png') %>"></div>
-              <div class="back-right">
-                <p class="bcard-title">Producer</p>
-                <p class="bcard-name">HaimiTu</p>
-                <div class="back-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="bcard-role">Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="member-thumbnail-block cell large-4">
-          <div class="member-card">
-            <div class="member-card-front">
-              <div class="front-left">
-                <p class="fcard-title">Director</p>
-                <p class="fcard-name">LeoSa</p>
-                <div class="front-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="fcard-role">Founder</p>
-                </div>
-              </div>
-              <div class="front-right"><img src="<%= asset_path('haimi1.png') %>"></div>
-            </div>
-            <div class="member-card-back">
-              <div class="back-left"><img src="<%= asset_path('haimi2.png') %>"></div>
-              <div class="back-right">
-                <p class="bcard-title">Director</p>
-                <p class="bcard-name">LeoSa</p>
-                <div class="back-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="bcard-role">Founder</p>
+              <div class="member-card-back">
+                <div class="back-left"><%= image_tag member.member_bg_or_default %></div>
+                <div class="back-right">
+                  <p class="bcard-title"><%= member.job_title %></p>
+                  <p class="bcard-name"><%= member.name %></p>
+                  <div class="back-bottom">
+                    <div class="divider bg-white"></div>
+                    <p class="bcard-role"><%= member.join_time %></p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="member-thumbnail-block cell large-4">
-          <div class="member-card">
-            <div class="member-card-front">
-              <div class="front-left">
-                <p class="fcard-title">Visual Designer</p>
-                <p class="fcard-name">Liang</p>
-                <div class="front-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="fcard-role">Founder</p>
-                </div>
-              </div>
-              <div class="front-right"><img src="<%= asset_path('haimi1.png') %>"></div>
-            </div>
-            <div class="member-card-back">
-              <div class="back-left"><img src="<%= asset_path('haimi2.png') %>"></div>
-              <div class="back-right">
-                <p class="bcard-title">Visual Designer</p>
-                <p class="bcard-name">Liang</p>
-                <div class="back-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="bcard-role">Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="member-thumbnail-block cell large-4">
-          <div class="member-card">
-            <div class="member-card-front">
-              <div class="front-left">
-                <p class="fcard-title">Producer</p>
-                <p class="fcard-name">SamJi</p>
-                <div class="front-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="fcard-role">Joined 2015.1</p>
-                </div>
-              </div>
-              <div class="front-right"><img src="<%= asset_path('haimi1.png') %>"></div>
-            </div>
-            <div class="member-card-back">
-              <div class="back-left"><img src="<%= asset_path('haimi2.png') %>"></div>
-              <div class="back-right">
-                <p class="bcard-title">Producer</p>
-                <p class="bcard-name">SamJi</p>
-                <div class="back-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="bcard-role">Joined 2015.1</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="member-thumbnail-block cell large-4">
-          <div class="member-card">
-            <div class="member-card-front">
-              <div class="front-left">
-                <p class="fcard-title">Visual Designer</p>
-                <p class="fcard-name">LiangJi</p>
-                <div class="front-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="fcard-role">Joined 2015.1</p>
-                </div>
-              </div>
-              <div class="front-right"><img src="<%= asset_path('haimi1.png') %>"></div>
-            </div>
-            <div class="member-card-back">
-              <div class="back-left"><img src="<%= asset_path('haimi2.png') %>"></div>
-              <div class="back-right">
-                <p class="bcard-title">Visual Designer</p>
-                <p class="bcard-name">LiangJi</p>
-                <div class="back-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="bcard-role">Joined 2015.1</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="member-thumbnail-block cell large-4">
-          <div class="member-card">
-            <div class="member-card-front">
-              <div class="front-left">
-                <p class="fcard-title">Producer</p>
-                <p class="fcard-name">HaimiTu</p>
-                <div class="front-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="fcard-role">Founder</p>
-                </div>
-              </div>
-              <div class="front-right"><img src="<%= asset_path('haimi1.png') %>"></div>
-            </div>
-            <div class="member-card-back">
-              <div class="back-left"><img src="<%= asset_path('haimi2.png') %>"></div>
-              <div class="back-right">
-                <p class="bcard-title">Producer</p>
-                <p class="bcard-name">HaimiTu</p>
-                <div class="back-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="bcard-role">Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="member-thumbnail-block cell large-4">
-          <div class="member-card">
-            <div class="member-card-front">
-              <div class="front-left">
-                <p class="fcard-title">Director</p>
-                <p class="fcard-name">LeoSa</p>
-                <div class="front-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="fcard-role">Founder</p>
-                </div>
-              </div>
-              <div class="front-right"><img src="<%= asset_path('haimi1.png') %>"></div>
-            </div>
-            <div class="member-card-back">
-              <div class="back-left"><img src="<%= asset_path('haimi2.png') %>"></div>
-              <div class="back-right">
-                <p class="bcard-title">Director</p>
-                <p class="bcard-name">LeoSa</p>
-                <div class="back-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="bcard-role">Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="member-thumbnail-block cell large-4">
-          <div class="member-card">
-            <div class="member-card-front">
-              <div class="front-left">
-                <p class="fcard-title">Visual Designer</p>
-                <p class="fcard-name">Liang</p>
-                <div class="front-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="fcard-role">Founder</p>
-                </div>
-              </div>
-              <div class="front-right"><img src="<%= asset_path('haimi1.png') %>"></div>
-            </div>
-            <div class="member-card-back">
-              <div class="back-left"><img src="<%= asset_path('haimi2.png') %>"></div>
-              <div class="back-right">
-                <p class="bcard-title">Visual Designer</p>
-                <p class="bcard-name">Liang</p>
-                <div class="back-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="bcard-role">Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="member-thumbnail-block cell large-4">
-          <div class="member-card">
-            <div class="member-card-front">
-              <div class="front-left">
-                <p class="fcard-title">Producer</p>
-                <p class="fcard-name">SamJi</p>
-                <div class="front-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="fcard-role">Joined 2015.1</p>
-                </div>
-              </div>
-              <div class="front-right"><img src="<%= asset_path('haimi1.png') %>"></div>
-            </div>
-            <div class="member-card-back">
-              <div class="back-left"><img src="<%= asset_path('haimi2.png') %>"></div>
-              <div class="back-right">
-                <p class="bcard-title">Producer</p>
-                <p class="bcard-name">SamJi</p>
-                <div class="back-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="bcard-role">Joined 2015.1</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="member-thumbnail-block cell large-4">
-          <div class="member-card">
-            <div class="member-card-front">
-              <div class="front-left">
-                <p class="fcard-title">Visual Designer</p>
-                <p class="fcard-name">LiangJi</p>
-                <div class="front-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="fcard-role">Joined 2015.1</p>
-                </div>
-              </div>
-              <div class="front-right"><img src="<%= asset_path('haimi1.png') %>"></div>
-            </div>
-            <div class="member-card-back">
-              <div class="back-left"><img src="<%= asset_path('haimi2.png') %>"></div>
-              <div class="back-right">
-                <p class="bcard-title">Visual Designer</p>
-                <p class="bcard-name">LiangJi</p>
-                <div class="back-bottom">
-                  <div class="divider bg-white"></div>
-                  <p class="bcard-role">Joined 2015.1</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <% end %>
       </div>
     </section>
     <div class="clearfix"></div>

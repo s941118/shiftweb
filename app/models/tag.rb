@@ -8,13 +8,23 @@ class Tag < ApplicationRecord
 	attr_accessor :remove_member_bg
 	scope :shift, -> { where(category: "SHIFT") }
 	scope :cooperation, -> { where(category: "COOPERATION") }
+	scope :unused, -> { where(works_count: 0) }
+	scope :member, -> { where("job_title IS NOT NULL OR join_time IS NOT NULL") }
 
 	# 以下為幫助產生對應 html
 	def icon_or_default
-		icon.attached? ? icon : "http://via.placeholder.com/219x158/333.jpg"
+		icon.attached? ? icon : "http://via.placeholder.com/350x450/333.jpg"
 	end
 	def member_bg_or_default
-		member_bg.attached? ? member_bg : "http://via.placeholder.com/219x158/333.jpg"
+		member_bg.attached? ? member_bg : "http://via.placeholder.com/350x450/333.jpg"
 	end
 	# 以上為幫助產生對應 html
+
+	def member?
+		job_title.present? || join_time.present?
+	end
+
+	def unused?
+		works_count == 0
+	end
 end

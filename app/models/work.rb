@@ -67,11 +67,15 @@ class Work < ApplicationRecord
 	accepts_nested_attributes_for :contents, allow_destroy: true, reject_if: proc { |attributes| attributes['html'].blank? || attributes['ordering'].blank? }
 
 	# 以下為協助資料維護相關
-	# after_commit :clean_tags
+	after_commit :clean_tags!
 
-	# def clean_tags
-	# 	Tag.where(works_count: 0).destroy_all
-	# end
+	def clean_tags!
+		Tag.unused.each do |tag|
+			unless tag.member?
+				tag.destroy
+			end
+		end
+	end
 
 	after_touch :update_ordering
 
@@ -79,6 +83,12 @@ class Work < ApplicationRecord
   	self.contents.order(ordering: :asc).each_with_index do |content, index|
   		content.update_column(:ordering, index)
   	end
+  end
+
+  after_create :set_default_work_date!
+
+  def set_default_work_date!
+  	self.update_column(:work_date, self.created_at) unless self.work_date.present?
   end
   # 以上為協助資料維護相關
 

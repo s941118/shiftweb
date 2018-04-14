@@ -70,6 +70,6 @@ class Admin::TagsController < AdminController
 
     # Only allow a trusted parameter "white list" through.
     def tag_params
-      params.require(:tag).permit(:name, :category, :icon, :remove_icon, :member_bg, :remove_member_bg)
+      params.require(:tag).permit(:name, :job_title, :join_time, :category, :icon, :remove_icon, :member_bg, :remove_member_bg)
     end
 end

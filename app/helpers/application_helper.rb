@@ -1,6 +1,6 @@
 module ApplicationHelper
 	def meta_title
-    @page_title.present? ? "#{@page_title} | 鴻妍搏命" : "鴻妍搏命工作室"
+    @page_title.present? ? "#{@page_title} | SHIFT" : "SHIFT studio"
   end
 
 	def notice_message(opts = {})

@@ -9,7 +9,7 @@ class PagesController < ApplicationController
       Work.tagged_with(params[:tag])
     else
       Work.all
-    end.publish
+    end.publish.order(work_date: :asc)
   end
 
   def about
@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   end
 
   def members
-    
+    @members = Tag.member
   end
 
   private
