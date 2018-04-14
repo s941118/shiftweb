@@ -5,8 +5,13 @@ footer {
 	width: 100%;
 	height: auto;
 	position: relative;
-	padding: 70px 0 50px 0;
-	z-index: 3;
+	padding: 70px 20px 50px 20px;
+	z-index: 900;
+	@include for-phone-only {
+		background-size: 150%;
+		background-position: 50% -150%;
+		padding: 70px 20px 10px 20px;
+	}
 	.footer-sitemap {
 		float: left;
 		margin-left: 0%;
@@ -31,6 +36,7 @@ footer {
 			li {
 				list-style: none;
 				a {
+					font-family: "Basic Sans Alt-SemiBold";
 					color: $white;
 					font-size: 1.5em;
 					@include transition(all .3s);
@@ -52,6 +58,7 @@ footer {
 			margin-right: 10%;
 		}
 		p {
+			font-family: "Basic Sans Alt-SemiBold";
 			font-size: 1.5em;
 			margin-bottom: 5px;
 		}
@@ -112,6 +119,7 @@ footer {
 		position: absolute;
 		left: 15px;
 		bottom: 15px;
+		font-family: "Basic Sans Alt-Light";
 		@include for-phone-only {
 			position: relative;
 			text-align: center;

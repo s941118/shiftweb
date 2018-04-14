@@ -1,11 +1,13 @@
 <%= stylesheet_link_tag    'application', media: 'all' %>
-<div class="content barba-container content-loading admin-content" data-namespace="single-works">
+<div class="content barba-container content-loading" data-namespace="single-works">
   <div class="single-work-content">
     <div class="single-work-card single-work-card-hide">
       <div class="work-block">
         <div class="work-image"><%= image_tag @work.cover_or_default %></div>
         <div class="work-des">
-          <p>#1 / SHIFT work</p>
+          <% if @work.category.present? %>
+            <p>#<%= @work.number %> / <%= @work.category %> work</p>
+          <% end %>
           <p class="work-title"><%= @work.title %></p>
           <% if @work.top_tags.present? %>
             <div class="work-tags">
@@ -59,12 +61,6 @@
               <% end %>
             <% end %>
           <% end %>
-          <!-- <p class="paragraph-title">CLIENT<span> <a href="#">中央大學科學教育中心 </a></span></p>
-          <p class="paragraph-title">SERVICE<span>視覺識別策劃 VI Strategy | 使用介面規劃 UI design </span></p>
-          <p class="paragraph-title p-break">BRIEF</p>
-          <p>「台灣科學教育領域中,主要關注K-12孩童科學教育發展的中央大學科學教育中心,過去一直以台灣老氣的品牌形象呈現在孩童前,為了一改整體風格形象,中大科教決定以全新且整體的視覺來帶給學生們更多學習科學的動機。 </p>
-          <p class="paragraph-title p-break">SOLUTION</p>
-          <p>這次設計專案視覺主要傳達親近和諧的感覺，為了貼近K-12年齡層的學生，我們團隊最終決定藉著吉祥物「科科」去作為溝通與行銷的媒介，為了象徵性的代表六大活動的視覺，科科被設計在六種不同的活動情境，利用不同物件呈現從戶外主題活動到實驗室演示實驗的情境，成功地拉近親子與品牌間的距離，孩童們更主動的喜愛上科學，這正是利用視覺傳達成功解決問題與優化方法的案例。</p> -->
         </div>
       </div>
       <% if @contents.present? %>
@@ -75,7 +71,7 @@
         <% end %>
       <% end %>
     </div>
-
+    
     <div class="mt-5" id="work_buttons_wrapper">
       <% if @work.draft? %>
         <%= link_to publish_admin_work_path(@work), method: :post, class: "btn btn-info", data: { toggle: "tooltip", placement: "left", title: "發佈作品" } do %>

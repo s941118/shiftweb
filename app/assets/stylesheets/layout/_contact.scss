@@ -25,6 +25,7 @@
 				margin-left: 0;
 			}
 			span {
+				font-family: "Basic Sans Alt-Black";
 				display: inline-block;
 				font-size: 3.125em;
 				font-weight: bold;
@@ -41,6 +42,7 @@
 		@include for-phone-only {
 			padding-left: 20px;
 			padding-right: 20px;
+			padding-top: 10px;
 		}
 		.contact-box {
 			text-align: center;
@@ -58,13 +60,18 @@
 			}
 			.join-info {
 				margin-top: 50px;
+				@include for-phone-only {
+					margin-top: 10px;
+				}
 				p {
+					font-family: "Basic Sans Alt-Light";
 					text-align: center;
 					font-size: 1.25em;
 					margin-bottom: 0;
 					color: $white;
 				}
 				a {
+					font-family: "Basic Sans Alt-SemiBold";
 					text-align: center;
 					font-size: 1.5em;
 					display: block;
@@ -82,6 +89,7 @@
 			}
 			.contact-address {
 				p {
+					font-family: "Basic Sans Alt-Light";
 					color: $white;
 				}
 			}
@@ -90,7 +98,8 @@
 					width: 30px;
 					height: 30px;
 					display: inline-block;
-					margin-right: 30px;
+					margin-left: 15px;
+					margin-right: 15px;
 					vertical-align: top;
 					@include transition(all .3s);
 					svg {
@@ -121,7 +130,8 @@
 		.contact-form {
 			text-align: center;
 			input, textarea {
-				width: 350px;
+				width: 100%;
+				max-width: 350px;
 				margin: 0 auto;
 				height: 35px;
 				margin-bottom: 10px;
@@ -160,10 +170,12 @@
 			background: $black;
 			padding-top: 20px;
 			text-align: center;
+			margin-bottom: -1px;
 			@include for-phone-only {
 				margin-bottom: -70px;
 			}
 			span {
+				font-family: "Basic Sans Alt-Black";
 				padding: 30px 30px 0 30px;
 				background: $white;
 				font-size: 3.125em;
@@ -188,6 +200,7 @@
 				cursor: pointer;
 				@include transition(all .3s);
 				p {
+					font-family: "Basic Sans Alt-SemiBold";
 					font-size: 1.875em;
 					color: $white;
 				}
@@ -206,9 +219,21 @@
 			}
 			.advertising {
 				background: $blue url(asset-path('service-03.png')) center no-repeat;
+				@include for-640-up {
+					background-color: $black;
+				}
+				@include for-mid-foundation-up {
+					background-color: $blue;
+				}
 			}
 			.mv {
 				background: $black url(asset-path('service-05.png')) center no-repeat;
+				@include for-640-up {
+					background-color: $blue;
+				}
+				@include for-mid-foundation-up {
+					background-color: $black;
+				}
 			}
 			.photo, .record, .advertising, .mv {
 				padding-bottom: 360px;
@@ -221,12 +246,16 @@
 	width: 100%;
 	position: fixed;
 	top: 100%;
+	left: 0;
+	right: 0;
+	margin: auto;
 	text-align: center;
 	z-index: 700;
 	opacity: 0;
 	display: none;
 	overflow-y: scroll;
 	height: 100%;
+	padding: 0 15px;
 	.lightbox-overlay {
 		position: fixed;
 		top: 0;

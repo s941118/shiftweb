@@ -26,6 +26,9 @@
 		.divider {
 			width: 40px;
 			margin: 30px auto;
+			@include for-phone-only {
+				margin: 15px auto;
+			}
 		}
 		.new-work {
 			width: 230px;
@@ -36,7 +39,18 @@
 			@include transition(all .3s);
 			.new-work-des {
 				padding: 3% 5%;
+				font-family: "Basic Sans Alt-SemiBold";
+				@include for-phone-only {
+					padding: 3% 1%;
+				}
 				@include font(1em, normal, none, 1.2em);
+				.new-work-des-top {
+					span {
+						@include for-phone-only {
+							font-size: 0.938em;
+						}
+					}
+				}
 				.new-work-des-bottom {
 					margin-top: 5px;
 					.new-work-title {
@@ -44,6 +58,10 @@
 						line-height: 1em;
 						margin-bottom: 0;
 						color: $black;
+						font-family: "Basic Sans Alt-Black";
+						@include for-phone-only {
+							font-size: 0.875em;
+						}
 					}
 				}
 			}
@@ -86,7 +104,7 @@
 			display: none;
 			right: 25px;
 			bottom: 70px;
-			font-size: 1.5em;
+			font-size: 1.25em;
 			text-align: right;
 			margin-top: 20px;
 		}
@@ -99,8 +117,8 @@
 			width: 100%;
 			top: 100%;
 			padding: 0 0.9375em;
-			background-position: -120% 120%;
-			background-size: 120%;
+			background-position: -10% 120%;
+			background-size: 140%;
 			.new-work:first-of-type {
 				display: block;
 			}
@@ -124,7 +142,7 @@
 			.new-work-box {
 				right: 0;
 				left: 0;
-				top: -50px;
+				top: -40px;
 				width: 80%;
 				margin: auto;
 				min-height: 0;
@@ -149,7 +167,7 @@
 		}
 		@include for-mid-desktop-up {
 			width: 280px;
-			left: -250px;
+			left: -300px;
 			h2 {
 				@include font(1.75em, 700, none, 1.2em);
 			}
@@ -168,11 +186,15 @@
 				left: 300px;
 			}
 		}
+		@include for-big-desktop-up { 
+			left: -290px;
+			background: $black url(asset-path("newWorkBG.png")) 30% 120% no-repeat;
+		}
 	}
 	.new-work-wrap-open {
 		left: 0;
 		@include for-phone-only {
-			top: 50%;
+			top: 53%;
 		}
 	}
 	.c-info {
@@ -189,8 +211,8 @@
 			.c-info-number {
 				height: 85px;
 				span {
-					font-size: 4em;
-					top: 10px;
+					font-size: 4.5em;
+					top: 5px;
 				}
 			}	
 		}

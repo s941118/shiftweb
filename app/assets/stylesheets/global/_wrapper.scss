@@ -6,7 +6,7 @@
 	-webkit-font-smoothing: antialiased;
 	outline: none;
 	padding: 0;
-	word-break: keep-all;
+	// word-break: keep-all;
 }
 html {
 	height: 100%;
@@ -17,12 +17,11 @@ html {
 // }
 body {
 	background: #2c2824;
-	font-family: "jaf-domus",sans-serif;
+	font-family: "Basic Sans Alt-Light","Basic Sans Alt-Black","Basic Sans Alt-BlackIt","Basic Sans Alt-SemiBold",sans-serif;
 	height: 100%;
 	width: 100%;
 	font-size: 16px;
 	color: $black;
-	overflow-x: hidden;
 	word-break: break-word;
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
@@ -33,7 +32,7 @@ body {
 .content {
 	width: 100%;
 	height: 100%;
-	padding: 1.2%;
+	padding: 0px;
 	min-height: 100%;
 	@include for-phone-only {
 		padding: 2.4%;

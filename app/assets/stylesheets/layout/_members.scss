@@ -8,7 +8,6 @@
 	.members {
 		background: url(asset-path('member-hero.png')) center 0 no-repeat;
 		background-size: 100%;
-		background-attachment: fixed;
 		width: 100%;
 		max-width: 1440px;
 		margin: 0 auto;
@@ -20,17 +19,11 @@
 			padding-right: 0;
 			padding: 10px 20px 20px 20px;
 		}
-		@include for-mid-desktop-up {
-			padding: 65px 65px 20px 65px;
-		}
 		.member-head {
 			margin-top: 300px;
 			@include transition(all .3s);
 			@include for-phone-only {
 				width: 100%;
-			}
-			@include for-mid-desktop-up {
-				margin-top: 200px;
 			}
 			.member-title {
 				padding: 30px;
@@ -44,6 +37,7 @@
 					width: 100%;
 				}
 				p {
+					font-family: "Basic Sans Alt-Black";
 					font-weight: bold;
 					font-size: 3.125em;
 					line-height: 1.2;
@@ -68,7 +62,7 @@
 					margin: 0 15px;
 					padding: 5px 0;
 					background: $black;
-					@include radius(10px);
+					// @include radius(10px);
 					p {
 						font-size: 1.063em;
 						text-align: center;
@@ -97,12 +91,16 @@
 			&:after {
 				content: '';
 				display: block;
+				flex: 0 1 380px;
+				margin: 5px;
 			}
 			@include for-desktop-up {
 				justify-content: space-between;
 				&:after {
 					content: '';
-					display: none;
+					display: block;
+					flex: 0 1 370px;
+					margin: 5px;
 				}
 			}
 			
@@ -139,10 +137,12 @@
 						padding: 15px 20px;
 						position: relative;
 						.fcard-title {
+							font-family: "Basic Sans Alt-Light";
 							font-size: 0.938em;
 							margin-bottom: 5px;
 						}
 						.fcard-name {
+							font-family: "Basic Sans Alt-Black";
 							font-size: 1.875em;
 							line-height: 1;
 						}
@@ -153,6 +153,7 @@
 								margin-bottom: 5px;
 							}
 							.fcard-role {
+								font-family: "Basic Sans Alt-Light";
 								&:before {
 									content: '';
 									display: inline-block;
@@ -187,14 +188,17 @@
 						padding: 15px 20px;
 						position: relative;
 						.bcard-title {
+							font-family: "Basic Sans Alt-Light";
 							font-size: 0.938em;
 							margin-bottom: 5px;
 						}
 						.bcard-name {
+							font-family: "Basic Sans Alt-Black";
 							font-size: 1.875em;
 							line-height: 1;
 						}
 						.back-bottom {
+							font-family: "Basic Sans Alt-Light";
 							width: 100%;
 							margin-top: 100%;
 							.divider {
@@ -224,8 +228,8 @@
 				// 		@include transition(all .3s);
 				// 	}		
 				// }
-				@include for-phone-only {
-					&:nth-child(even) {
+				@include for-789-up {
+					&:nth-of-type(even) {
 						.member-card {
 							transform: rotateY(180deg);
 							.member-card-front p, .member-card-front .divider{
@@ -261,10 +265,12 @@
 		height: auto;
 		background: $black;
 		margin-bottom: 20px;
+		margin-top: 50px;
 		@include for-phone-only {
 			margin-bottom: 50px;
 		}
 		.join-title {
+			font-family: "Basic Sans Alt-Black";
 			padding: 25px;
 			background: $blue;
 			font-size: 3.125em;
@@ -289,11 +295,13 @@
 				width: 376px;
 			}
 			p {
+				font-family: "Basic Sans Alt-Light";
 				text-align: center;
 				font-size: 1.25em;
 				margin-bottom: 0;
 			}
 			a {
+				font-family: "Basic Sans Alt-SemiBold";
 				text-align: center;
 				font-size: 1.5em;
 				display: block;
@@ -307,5 +315,8 @@
 				margin: 5px;
 			}
 		}
+	}
+	.social-menu {
+		position: fixed;
 	}
 }

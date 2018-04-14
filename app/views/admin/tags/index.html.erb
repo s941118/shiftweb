@@ -10,7 +10,9 @@
         <th style="min-width: 70px;"><%= Tag.human_attribute_name('name') %></th>
         <th style="min-width: 90px;"><%= Tag.human_attribute_name('category') %></th>
         <th style="min-width: 80px;"><%= Tag.human_attribute_name('works_count') %></th>
+        <th style="min-width: 70px;"><%= Tag.human_attribute_name('member_info') %></th>
         <th style="min-width: 70px;"><%= Tag.human_attribute_name('icon') %></th>
+        <th style="min-width: 70px;"><%= Tag.human_attribute_name('member_bg') %></th>
         <th style="min-width: 100px;">建立於</th>
         <th style="min-width: 100px;">最後更新</th>
         <th></th>
@@ -22,14 +24,16 @@
           <tr>
             <td><%= tag.id %></td>
             <td><%= raw tag.name %></td>
-            <td><%= tag.category %></td>
+            <td><%= tag.category.present? ? tag.category : "不顯示" %></td>
             <td>
               <%= link_to admin_works_path(tag: tag.name) do %>
                 <span class="badge badge-pill <%= tag.works_count == 0 ? 'badge-warning' : 'badge-primary' %>"><%= tag.works_count %></span>
               <% end %>
             </td>
+            <td><%= tag.job_title %><br><%= tag.join_time %></td>
             <td><%= image_tag(url_for(tag.icon), height: "100px") if tag.icon.attached? %></td>
-            <td><%= tag.created_at.strftime("%F %T") %></td>
+            <td><%= image_tag(url_for(tag.member_bg), height: "100px") if tag.member_bg.attached? %></td>
+            <td><%= tag.created_at.strftime("%F %H:%M") %></td>
             <td><%= timeago(tag.updated_at) %></td>
             <td class="text-right">
               <div class="dropdown">

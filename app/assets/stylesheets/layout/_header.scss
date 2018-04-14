@@ -33,7 +33,8 @@ header {
 			margin: 1.25em;
 			display: inline-block;
 			a {
-				@include font(1.125em, 700, none, 1.2em);
+				font-family: "Basic Sans Alt-SemiBold";
+				@include font(1.313em, 600, none, 1.2em);
 				position: relative;
 				@include transition(all .3s);
 				@include for-mid-desktop-up {
@@ -50,7 +51,7 @@ header {
 	}
 	.works-nav {
 		width: 100%;
-		max-width: 500px;
+		max-width: 550px;
 		margin: 0 auto;
 		background: $black;
 		a {
@@ -62,6 +63,9 @@ header {
 			&:hover {
 				color: $blue;
 			}
+		}
+		@include for-mid-desktop-up {
+			max-width: 700px;
 		}
 	}
 }
@@ -76,7 +80,7 @@ header {
 	height: 46px;
 	overflow: hidden;
 	padding: 0;
-	display: none;
+	display: block;
 	@include radius(10px);
 	.mobile-menu {
 		ul {
@@ -86,7 +90,8 @@ header {
 				display: block;
 				margin: 0.75em 2em;
 				a {
-					@include font(1.125em, 700, none, 1.2em);
+					font-family: "Basic Sans Alt-SemiBold";
+					@include font(1.125em, 600, none, 1.2em);
 					white-space: nowrap;
 					@include transition(color .3s);
 					&:hover {
@@ -119,11 +124,14 @@ header {
 	width: auto;
 	height: auto;
 }
-@include for-phone-only {
+.nav-menu {
+	display: none;
+}
+@include for-small-desktop-up {
 	.nav-menu {
-		display: none;
+		display: block;
 	}
 	.mobile-nav {
-		display: block;
+		display: none;
 	}
 }

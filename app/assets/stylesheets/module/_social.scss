@@ -9,11 +9,13 @@
 	height: 46px;
 	overflow: hidden;
 	padding: 0;
+	display: none;
 	@include radius(46px);
 	// @include transition(all .3s);
 	.social-share {
 		margin: 45px 0 10px 0;
 		a {
+			font-family: "Basic Sans Alt-SemiBold";
 			display: block;
 			padding-bottom: 5px;
 			color: $white;
@@ -24,8 +26,8 @@
 			}
 		}
 	}
-	@include for-phone-only {
-		display: none;
+	@include for-small-desktop-up {
+		display: block;
 	}
 }
 .social-menu-open {

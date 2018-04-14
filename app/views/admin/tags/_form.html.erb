@@ -1,13 +1,15 @@
 <%= form_with model: [:admin, tag], local: true do |f| %>
   <div class="form-group mb-5 <%= tag.errors[:name].present? ? 'has-danger' : '' %>">
     <%= f.label :name, "名稱" %>
-    <%= f.text_field :name, class: "form-control #{tag.errors[:name].present? ? 'is-invalid' : ''}", readonly: true %>
+    <%= f.text_field :name, class: "form-control #{tag.errors[:name].present? ? 'is-invalid' : ''}", readonly: f.object.works_count > 0 %>
     <% if tag.errors[:name].present? %>
 	    <div class="invalid-feedback">
 	      <%= tag.errors[:name].join(", ") %>
 	    </div>
     <% end %>
-    <small id="nameHelp" class="form-text text-muted">名稱是透過文章內容建立，無法在此修改。</small>
+    <% if f.object.works_count > 0 %>
+      <small id="nameHelp" class="form-text text-muted">不可修改使用於作品中的標籤名稱。</small>
+    <% end %>
   </div>
   <div class="form-group mb-5 <%= tag.errors[:category].present? ? 'has-danger' : '' %>">
     <%= f.label :category, "側邊欄分類" %>

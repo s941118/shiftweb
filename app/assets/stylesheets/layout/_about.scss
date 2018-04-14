@@ -1,7 +1,9 @@
 .about-content {
 	position: relative;
+	overflow-x: hidden;
 	.about-content-info {
 		span {
+			font-family: "Basic Sans Alt-SemiBold";
 			color: $yellow;
 			font-size: 1.25em;
 			border: 1px solid $white;
@@ -9,10 +11,12 @@
 			@include radius(20px);
 		}
 		p {
+			font-family: "Basic Sans Alt-Light";
 			color: white;
 			font-size: 0.938em;
 		}
 		.about-title {
+			font-family: "Basic Sans Alt-BlackIt";
 			font-size: 4.5em;
 			font-weight: bold;
 			line-height: 1;
@@ -20,6 +24,7 @@
 			color: $yellow;
 		}
 		a {
+			font-family: "Basic Sans Alt-SemiBold";
 			font-size: 1.875em;
 			color: $yellow;
 			display: inline-block;
@@ -73,11 +78,14 @@
 			margin-left: 0;
 			width: 100%;
 			opacity: 1;
-			padding: 0 0.9375em;
+			padding: 0 2em;
 			@include transition(all .5s);
+			@include for-phone-only {
+				padding: 0 1.2em;
+			}
 			@include for-tablet-landscape-up {
 				float: left;
-				width: 45%;
+				width: 42%;
 				margin-left: 30px;
 				margin-top: 0;
 				padding: 0;
@@ -94,25 +102,55 @@
 	.strategy-block {
 		position: fixed;
 		top: 50px;
-		right: 2%;
+		right: 0;
+		left: 0;
+		margin: auto;
 		z-index: 1;
 		@include for-phone-only {
 			padding-top: 0;
 		}
 		img {
-			width: 50%;
+			position: absolute;
+			width: 600px;
 			float: right;
+			right: 10%;
 			@include transition(all .5s);
 			@include for-phone-only {
 				width: 100%;
 				float: none;
 			}
+			@include for-tablet-portrait-up {
+				right: auto;
+			}
+			@include for-desktop-up {
+				width: 50%;
+				max-width: 800px;
+			}
 		}
 		.strategy-flake {
 			position: absolute;
-			right: 5%;
+			right: 2%;
 			top: 15%;
 			width: 40%;
+			@include transition(all .5s);
+			@include for-phone-only {
+				width: 100%;
+				top: 110%;
+			}
+			@include for-tablet-portrait-up {
+				right: 2%;
+				width: 50%;
+				max-width: 800px;
+			}
+			@include for-desktop-up {
+				right: 5%;
+			}
+			@include for-mid-desktop-up {
+				right: 10%;
+			}
+			@include for-big-desktop-up {
+				right: 15%;
+			}
 		}
 		.strategy-info {
 			float: left;
@@ -126,13 +164,16 @@
 				width: 100%;
 				margin-top: 7%;
 				margin-right: 0;
-				padding: 0 0.9375em;
+				padding: 0 1.2em;
 				float: none;
 				margin-left: 0;
 				max-width: 100%;
 			}
 			@include for-tablet-landscape-up {
 				margin-left: 10%;
+			}
+			@include for-big-desktop-up {
+				margin-left: 20%;
 			}
 			p {
 				color: $blue;
@@ -146,7 +187,7 @@
 			}
 		}
 		.strategy-img-hide {
-			margin-right: -100%;
+			right: -100%;
 		}
 		.strategy-flake-hide {
 			right: -100%;
@@ -155,8 +196,15 @@
 			opacity: 0;
 		}
 	}
+	.block-hack {
+		height: 700px;
+		width: 100%;
+		background: none;
+		position: relative;
+		z-index: 2;
+	}
 	.performance-block {
-		margin-top: 700px;
+		// margin-top: 700px;
 		background: $yellow;
 		padding-top: 0;
 		position: relative;
@@ -174,7 +222,7 @@
 				width: 50%;
 			}
 			@include for-desktop-up {
-				margin-left: 0;
+				margin-left: 1em;
 				padding-top: 0;
 			}
 		}
@@ -187,8 +235,11 @@
 			margin-right: 0;
 			width: 100%;
 			opacity: 1;
-			padding: 0 0.9375em;
+			padding: 0 2em;
 			@include transition(all .5s);
+			@include for-phone-only {
+				padding: 0 1.2em;
+			}
 			@include for-small-desktop-up {
 				width: 43%;
 				margin-top: 2%;
@@ -236,10 +287,23 @@
 			position: relative;
 			background: url(asset-path('teamBG-grid.svg')) top left repeat;
 			background-size: 10px 10px;
+			width: 100%;
+			padding-bottom: 50%;
+			overflow: hidden;
+			@include for-phone-only {
+				padding-bottom: 100%;
+			}
 			img {
+				position: absolute;
 				margin-top: 30px;
 				width: 100%;
 				@include transition(all .5s);
+				@include for-phone-only {
+					width: 250%;
+					max-width: 250%;
+					left: -100px;
+					top: -50px;
+				}
 			}
 			&:after {
 				content: '';
@@ -257,6 +321,7 @@
 			margin: 0 auto;
 			max-width: 600px;
 			text-align: center;
+			padding: 0 1.2em;
 			@include transition(all .3s);
 			span {
 				display: inline-block;
@@ -298,6 +363,7 @@
 		height: 140px;
 		left: 0;
 		z-index: 2;
+		margin-top: -1px;
 		@include for-phone-only {
 			height: 50px;
 		}
@@ -309,6 +375,7 @@
 		height: 140px;
 		left: 0;
 		top: -140px;
+		margin-bottom: -1px;
 		@include for-phone-only {
 			height: 50px;
 			top: -50px;
