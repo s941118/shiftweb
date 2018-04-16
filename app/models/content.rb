@@ -26,10 +26,14 @@ class Content < ApplicationRecord
     end
 
     def embed_html_klass(type = nil)
-      if self.instagram? || type == "instagram"
-        "offset-md-3 col-md-6 text-center embed_content"
-      else
-        "offset-md-2 col-md-8 text-center embed_content #{'facebook' if self.facebook?}"
+      if youtube? || type == "youtube"
+        "text-center youtube"
+      elsif instagram? || type == "instagram"
+        "text-center instagram"
+      elsif facebook? || type == "facebook"
+        "text-center facebook"
+      elsif vimeo? || type == "vimeo"
+        "text-center vimeo"
       end
     end
 
@@ -44,6 +48,14 @@ class Content < ApplicationRecord
     # def embed?
     # 	iframe? || instagram? || facebook?
     # end
+
+    def vimeo?
+      html.to_s[/vimeo\.com\/video/].present?
+    end
+
+    def youtube?
+      html.to_s[/youtube\.com\/embed/].present?
+    end
 
     def iframe?
       html.to_s[/iframe/].present?

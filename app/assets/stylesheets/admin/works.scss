@@ -93,3 +93,24 @@ iframe {
 		word-break: keep-all;
 	}
 }
+.content_wrapper.embed_content {
+	margin: 20px -25px 0px -25px;
+	&.vimeo {
+		p { display: none; }
+	}
+}
+.content_wrapper.embed_content, div {
+	&.youtube, &.vimeo {
+		position: relative;
+		padding-bottom: 56.25%; /* 16:9 */
+		padding-top: 25px;
+		height: 0;
+		iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}

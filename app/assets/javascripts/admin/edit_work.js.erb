@@ -111,12 +111,13 @@ function paste_embed_html_and_reset($content_wrapper, $modal, $embed_url_input, 
 	remove_all_embed_button()
 	var rand_form_num = rand_num()
 	if (html.match(/fb-/)) {
-		// 加入 facebook 的 class 才知道調整寬窄時，要不要執行 FB.XFBML.parse
-		var $new_embed_content = $(`<div class='content_wrapper facebook ${window.content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
+		var $new_embed_content = $(`<div class='content_wrapper embed_content ${window.facebook_content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
 	} else if (html.match(/www\.instagram\.com\/embed\.js/)) {
-		var $new_embed_content = $(`<div class='content_wrapper ${window.instagram_content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
+		var $new_embed_content = $(`<div class='content_wrapper embed_content ${window.instagram_content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
+	} else if (html.match(/youtu/)) {
+		var $new_embed_content = $(`<div class='content_wrapper embed_content ${window.youtube_content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
 	} else {
-		var $new_embed_content = $(`<div class='content_wrapper ${window.content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
+		var $new_embed_content = $(`<div class='content_wrapper  embed_content${window.content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
 	}
 	if ($modal.attr("data-insert-position") === "before") {
 		$content_wrapper.before($new_embed_content)

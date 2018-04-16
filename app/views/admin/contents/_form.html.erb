@@ -1,5 +1,5 @@
 <% if content_form.object.embed? %>
-  <div class="content_wrapper <%= content_form.object.embed_html_klass %>" id="wrapper_<%= content_form.index %>">
+  <div class="content_wrapper embed_content <%= content_form.object.embed_html_klass %>" id="wrapper_<%= content_form.index %>">
 		<%= raw content_form.object.html %>
     <%= content_form.text_area :html, class: "d-none" %>
   </div>
