@@ -21,3 +21,28 @@ Work.all.each { |w| w.update_tags! }
 
 Tag.all.each { |tag| tag.update(category: "SHIFT") }
 5.times { Tag.find(rand(1..Tag.all.size)).update(category: "COOPERATION") }
+
+Tag.create({
+	name: "AAAA",
+	category: "COOPERATION",
+	job_title: "Producer#{rand(10)}",
+	join_time: "joined 2015 01."
+	})
+Tag.create({
+	name: "DDDD",
+	category: "COOPERATION",
+	job_title: "Producer#{rand(10)}",
+	join_time: "joined 2015 01."
+	})
+Tag.create({
+	name: "BBBB",
+	category: "SHIFT",
+	job_title: "Producer#{rand(10)}",
+	join_time: "joined 2015 01."
+	})
+Tag.create({
+	name: "CCCC",
+	category: "SHIFT",
+	job_title: "Producer#{rand(10)}",
+	join_time: "joined 2015 01."
+	})

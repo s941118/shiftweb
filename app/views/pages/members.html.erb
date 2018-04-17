@@ -18,7 +18,7 @@
         <div class="clearfix"></div>
       </div>
       <div class="member-thumbnail-wrap grid-x grid-margin-x member-thumbnail-hide">
-        <% Tag.member.each do |member| %>
+        <% Tag.member.order(category: :desc, name: :asc).each do |member| %>
           <div class="member-thumbnail-block cell large-4">
             <div class="member-card">
               <div class="member-card-front">

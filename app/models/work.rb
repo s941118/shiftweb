@@ -26,9 +26,15 @@ class Work < ApplicationRecord
 	def update_tags!
 		tags_text = []
 		self.contents.text.each do |content|
-			content.update_column(:processed_html, content.html.gsub(/(?:#([^\s,\.,\<\/]+))/,'<a href="/works?tag=\1">#\1</a>'))
+			# content.update_column(:processed_html, content.html.gsub(/(?:#([^\s,\.,\<\/[:space:]]+))/,'<a href="/works?tag=\1">#\1</a>'))
 			all_text_in_content_html = Nokogiri::HTML(content.html).xpath("//text()").to_s.strip
-			tags_in_this_content = all_text_in_content_html.scan(/(?:#([^\s,\.,\<\/]+))/).flatten #Nokogiri.parse(content.html).text.scan(/(?:#([^\s,\.]+))/).flatten
+			tags_in_this_content = all_text_in_content_html.scan(/(?:#([^\s,\.,\<\/[:space:]]+))/).flatten #Nokogiri.parse(content.html).text.scan(/(?:#([^\s,\.]+))/).flatten
+			processing_html = content.html
+			tags_in_this_content.each do |tag_name|
+				m = processing_html.match(/(##{tag_name})/)[1].gsub(/^#/,"")
+				processing_html = processing_html.gsub(/(##{tag_name})/, "<a href='/works?tag=#{m}'>##{m}</a>")
+			end
+			content.update_column(:processed_html, processing_html)
 			tags_text << tags_in_this_content
 		end
 		tags_text = tags_text.flatten.uniq

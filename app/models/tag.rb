@@ -9,7 +9,7 @@ class Tag < ApplicationRecord
 	scope :shift, -> { where(category: "SHIFT") }
 	scope :cooperation, -> { where(category: "COOPERATION") }
 	scope :unused, -> { where(works_count: 0) }
-	scope :member, -> { where("job_title IS NOT NULL OR join_time IS NOT NULL") }
+	scope :member, -> { where.not(job_title: "").where.not(join_time: "") }
 
 	# 以下為幫助產生對應 html
 	def icon_or_default
