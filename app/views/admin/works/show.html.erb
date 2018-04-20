@@ -66,7 +66,7 @@
           <% if content.img? %>
             <%= image_tag content.image, class: "paragraph-image" %>
           <% elsif content.embed? %>
-            <div class="<%= content.embed_html_klass %>">
+            <div class="embed_content <%= content.embed_html_klass %>">
               <%= raw content.html %>
             </div>
           <% end %>
