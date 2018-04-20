@@ -117,7 +117,7 @@ function paste_embed_html_and_reset($content_wrapper, $modal, $embed_url_input, 
 	} else if (html.match(/youtu/)) {
 		var $new_embed_content = $(`<div class='content_wrapper embed_content ${window.youtube_content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
 	} else {
-		var $new_embed_content = $(`<div class='content_wrapper  embed_content${window.content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
+		var $new_embed_content = $(`<div class='content_wrapper embed_content ${window.vimeo_content_embed_klass}' id='wrapper_${rand_form_num}'>${html}</div>`)		
 	}
 	if ($modal.attr("data-insert-position") === "before") {
 		$content_wrapper.before($new_embed_content)
