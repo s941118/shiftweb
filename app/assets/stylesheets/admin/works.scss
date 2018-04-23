@@ -67,7 +67,9 @@ textarea[name^='work[contents_attributes]'] {
 
 
 iframe {
-	max-width: 100% !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	// max-width: 100% !important;
 }
 
 .content_wrapper {

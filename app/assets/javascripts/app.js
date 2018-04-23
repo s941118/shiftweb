@@ -482,6 +482,8 @@ function initWorks() {
 		    			$('.single-work').removeClass('single-work-hide');
 		    			setTimeout(function(){
 		    				$('.single-work-card').removeClass('single-work-card-hide');
+		    				FB.XFBML.parse();
+		    				instgrm.Embeds.process();
 		    			}, 500);
 		    		}
 		    	});

@@ -224,15 +224,17 @@ $(document).on("click", "#get_embed_html", function () {
 	var $embed_url_input = $modal.find("#embedURL")
 	var url = $embed_url_input.val()
 	if (url.match(/insta/)) {
-		$.ajax({
-			url: `https://api.instagram.com/oembed/?url=${url}`,
-			method: "get",
-			dataType: "json"
-		}).done(function (data) {
-			var html = data.html
-			// insert_new_textarea_around($content_wrapper, $("#newElementModal").attr("data-insert-position"))
-			paste_embed_html_and_reset($content_wrapper, $modal, $embed_url_input, html)
-		})
+		// $.ajax({
+		// 	url: `https://api.instagram.com/oembed/?url=${url}`,
+		// 	method: "get",
+		// 	dataType: "json"
+		// }).done(function (data) {
+		// 	var html = data.html
+		// 	// insert_new_textarea_around($content_wrapper, $("#newElementModal").attr("data-insert-position"))
+		// 	paste_embed_html_and_reset($content_wrapper, $modal, $embed_url_input, html)
+		// })
+		var html = url
+		paste_embed_html_and_reset($content_wrapper, $modal, $embed_url_input, html)
 	} else if (url.match(/youtu/)) {
 		if (url.match(/watch\?v\=/)) {
 			var youtube_video_hash = url.split(/watch\?v\=/)[1]
