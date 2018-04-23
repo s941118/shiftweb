@@ -1,9 +1,18 @@
-.admin-paragragh-image {
-	margin: 20px -25px 0px -25px;
-}
-.admin-content {
-	padding: 0px !important;
-}
-.single-work-content .single-work-hide {
-	margin-top: 0 !important;
+body.admin.works-controller {
+	.admin-paragragh-image {
+		margin: 20px -25px 0px -25px;
+	}
+	.admin-content {
+		padding: 0px !important;
+	}
+	.single-work-content .single-work-hide {
+		margin-top: 0 !important;
+	}
+	text-align: initial;
+	.single-work-number-title-box {
+		direction: initial !important;
+		.single-work-number, .single-work-title {
+			float: right;
+		}
+	}
 }
