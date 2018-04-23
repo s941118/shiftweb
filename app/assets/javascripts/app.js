@@ -63,6 +63,19 @@ var About = Barba.BaseView.extend({
 		$('.mobile-nav').removeClass('mobile-nav-open', 300);
     }
 });
+var ErrorPage = Barba.BaseView.extend({
+    namespace: "error",
+    onEnter: function () {},
+    onEnterCompleted: function () {
+    	preloaderTimeline();
+        initError();
+    },
+    onLeave: function () {},
+    onLeaveCompleted: function () {
+    	$('.menu-button').removeClass('close');
+		$('.mobile-nav').removeClass('mobile-nav-open', 300);
+    }
+});
 function queue(start) {
 	var rest = [].splice.call(arguments, 1),
 	promise = $.Deferred();
@@ -78,6 +91,9 @@ function queue(start) {
 }
 function preloaderTimeline() {
 	$(window).load(function(){
+		$('.loader-gif').fadeTo('500', 0, function() {
+			$(this).hide();
+		});
 		var dUp = document.querySelector('.loader-bottom');
 	    var dDown = document.querySelector('.loader-top');
 	    var loadUp = anime({
@@ -90,7 +106,7 @@ function preloaderTimeline() {
 		  targets: dDown,
 		  height: '0%',
 		  easing: 'easeInSine',
-		  duration: 1500,
+		  duration: 1500,  
 		});
 	});
 }
@@ -101,6 +117,7 @@ $(function () {
 	Members.init();
 	Contact.init();
 	About.init();
+	ErrorPage.init();
 	Barba.Pjax.init();
     Barba.Prefetch.init();
     var FadeTransition = Barba.BaseTransition.extend({
@@ -112,6 +129,9 @@ $(function () {
 	 
 	  fadeOut: function() {
 	    return new Promise(function(resolve){
+	    	$('.loader-gif').fadeIn('1500', function(){
+	    		$('.loader-gif').fadeTo('1500', 1);
+	    	});
 		    var dDown = document.querySelector('.loader-top');
 		    anime({
 			  targets: dDown,
@@ -133,28 +153,9 @@ $(function () {
 	  },
 
 	  fadeIn: function() {
-	    
-	 //    var _this = this;
-	 //    var $el = $(this.newContainer);
-	 //    window.scrollTo(0,0)
-	 //    $(this.oldContainer).hide();
-	 //    var dDown = document.querySelector('.loader-bottom');
-	 //    var dUp = document.querySelector('.loader-top');
-	 //    anime({
-		//   targets: dDown,
-		//   height: '0%',
-		//   easing: 'easeInSine',
-		//   duration: 1000,
-		// });
-		// anime({
-		//   targets: dUp,
-		//   height: '0%',
-		//   easing: 'easeInSine',
-		//   duration: 1000,
-		//   complete: function(){
-		//   	_this.done();
-		//   }
-		// });
+	  	$('.loader-gif').fadeTo('500', 0, function() {
+			$(this).hide();
+		});
 		var _this = this;
 		var dUp = document.querySelector('.loader-bottom');
 	    var dDown = document.querySelector('.loader-top');
@@ -259,6 +260,72 @@ function initHome() {
 			$('.new-work').last().show();
 		}
 	});
+	setTimeout(function(){
+	    var $age = $(".c-info-number[name='age'] span");
+        var parts = $age.text().match(/^(\d+)(.*)/);
+        if (parts.length < 2) return;
+      
+        var scale = 20;
+        var delay = 50;
+        var end = 0+parts[1];
+        var next = 0;
+        var suffix = parts[2];
+        
+        var runUp = function() {
+          var show = Math.ceil(next);
+          $age.text(''+show+suffix);
+          if (show == end) return;
+          next = next + (end - next) / scale;
+          window.setTimeout(runUp, delay);
+        }
+        $age.css('opacity', '1');
+        runUp();
+	}, 3000);
+	setTimeout(function(){
+	    var $works = $(".c-info-number[name='works'] span");
+        var parts = $works.text().match(/^(\d+)(.*)/);
+        if (parts.length < 2) return;
+      
+        var scale = 20;
+        var delay = 50;
+        var end = 0+parts[1];
+        var next = 0;
+        var suffix = parts[2];
+        
+        var runUp = function() {
+          var show = Math.ceil(next);
+          $works.text(''+show+suffix);
+          if (show == end) return;
+          next = next + (end - next) / scale;
+          window.setTimeout(runUp, delay);
+        }
+        $works.css('opacity', '1');
+        runUp();
+        // second();
+	}, 4000);
+	setTimeout(function(){
+	    var $coop = $(".c-info-number[name='coop'] span");
+        var parts = $coop.text().match(/^(\d+)(.*)/);
+        if (parts.length < 2) return;
+      
+        var scale = 20;
+        var delay = 50;
+        var end = 0+parts[1];
+        var next = 0;
+        var suffix = parts[2];
+        
+        var runUp = function() {
+          var show = Math.ceil(next);
+          $coop.text(''+show+suffix);
+          if (show == end) return;
+          next = next + (end - next) / scale;
+          window.setTimeout(runUp, delay);
+        }
+        $coop.css('opacity', '1');
+        runUp();
+        // second();
+	}, 5000);
+	
 }
 function initWorks() {
 	initGlobal();
@@ -318,15 +385,15 @@ function initWorks() {
 	// 	$('.works-map-wrapper').kinetic('attach');
 	// });
 	$('.works-map').mousemove(function(){
-		if(($('.preview-wrapper').offset().top) > 0) {
-			$('.map-more-top').fadeOut();
-		} else {
+		if(($('.preview-wrapper').offset().top) < 0) {
 			$('.map-more-top').fadeIn();
-		}
-		if(($('.preview-wrapper').offset().left) > 0) {
-			$('.map-more-left').fadeOut();
 		} else {
+			$('.map-more-top').fadeOut();
+		}
+		if(($('.preview-wrapper').offset().left) < 0) {
 			$('.map-more-left').fadeIn();
+		} else {
+			$('.map-more-left').fadeOut();
 		}
 		if($('.preview-wrapper').offset().top + $('.preview-wrapper').height() < $(window).innerHeight()) {
 			$('.map-more-down').fadeOut();
@@ -429,6 +496,8 @@ function initWorks() {
 		   		$('.single-work-content').click(function(){
 	   				$(this).parent().removeClass('single-work-loader-up', {
 						complete: function() {
+							history.pushState(null, '', '/works');
+							$('.works-content').removeClass('blur');
 							$('.single-work-box').fadeOut();
 						    $('.single-work-box').promise().done(function(){
 							    $('.single-work-loader').html('');
@@ -596,20 +665,11 @@ function initAbout() {
 		if(teamImgTop - winTop < winHeight) {
 			$('.team-img').removeClass('team-img-hide');
 		}
-	});	
-	// var config = {
-	// 	viewFactor: 0.15,
-	// 	duration: 800,
-	// 	distance: "0px",
-	// 	scale: 0.8
-	// }
-
-	// window.sr = new ScrollReveal(config)
-	// var stratImg = {
-	// 	reset: false,
-	// 	origin: "right",
-	// 	distance: "-100%",
-	// 	duration: 1500
-	// }
-	// sr.reveal(".performance-block img", stratImg);	
+	});		
+}
+function initError() {
+	initGlobal();
+	setTimeout(function(){
+		window.location.replace("/");
+	}, 10000);
 }

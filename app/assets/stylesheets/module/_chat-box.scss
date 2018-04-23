@@ -17,7 +17,7 @@
 		left: 10px;
 		width: 40px;
 		height: 40px;
-		opacity: 0;
+		opacity: 1;
 		@include transition(opacity .3s);
 	}
 	&:before {
@@ -32,11 +32,6 @@
 		height: 200%;
 		background-color: $black;
 		transform: rotate(45deg);
-	}
-	&:hover {
-		img {
-			opacity: 1;
-		}	
 	}
 	.chat-img-open {
 		opacity: 1;

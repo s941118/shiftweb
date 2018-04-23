@@ -35,16 +35,18 @@
           <% end %>
           <div class="clearfix"></div>
         </div>
-        <% if @work.number.present? %>
-          <div class="single-work-number">
-            <p><%= @work.number %></p>
-          </div>
-        <% end %>
-        <% if @work.title.present? %>
-          <div class="single-work-title"> 
-            <%= simple_format @work.title %>
-          </div>
-        <% end %>
+        <div class="single-work-number-title-box">
+          <% if @work.number.present? %>
+            <div class="single-work-number">
+              <p><%= @work.number %></p>
+            </div>
+          <% end %>
+          <% if @work.title.present? %>
+            <div class="single-work-title"> 
+              <%= simple_format @work.title %>
+            </div>
+          <% end %>
+        </div>
         <div class="clearfix"></div>
         <div class="divider bg-black"></div>
         <div class="single-work-text">

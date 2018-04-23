@@ -1,5 +1,5 @@
 .index-content {
-	background: $yellow url(asset-path("indexBG.png")) center no-repeat;
+	background: $yellow url(asset-path('indexBG.png')) center no-repeat;
 	background-size: 85%;
 	width: 100%;
 	min-height: 100%;
@@ -7,13 +7,22 @@
 	@include for-phone-only {
 		background-size: 200%;
 	}
+	@include for-tablet-portrait-up {
+		background-size: 150%;
+	}
+	@include for-tablet-landscape-up {
+		background-size: 100%;
+	}
+	@include for-desktop-up {
+		background-size: 85%;
+	}
 	.new-work-wrap {
 		position: absolute;
 		left: -250px;
 		top: 0;
 		bottom: 0;
 		width: 230px;
-		background: $black url(asset-path("newWorkBG.png")) 30% 150% no-repeat;
+		background: $black url(asset-path('newWorkBG.png')) 30% 100% no-repeat;
 		background-size: 200%;
 		z-index: 10;
 		padding-top: 60px;
@@ -79,11 +88,6 @@
 			right: -80px;
 			top: 0;
 			@include transition(all .3s);
-			&:hover {
-				.new-work-button {
-					left: 15px;
-				}
-			}
 			.new-work-button {
 				position: absolute;
 				left: 10px;
@@ -95,6 +99,7 @@
 				top: 50%;
 				transform: rotate(0);
 				@include transition(all .3s);
+				animation: pop 1s infinite;
 			}
 			.new-work-button-open {
 				transform: rotate(180deg);
@@ -188,7 +193,7 @@
 		}
 		@include for-big-desktop-up { 
 			left: -290px;
-			background: $black url(asset-path("newWorkBG.png")) 30% 120% no-repeat;
+			background: $black url(asset-path('newWorkBG.png')) 30% 120% no-repeat;
 		}
 	}
 	.new-work-wrap-open {
@@ -199,10 +204,15 @@
 	}
 	.c-info {
 		position: absolute;
-		right: 1.2%;
+		right: 15px;
 		top: 50%;
     	transform: translateY(-50%);
     	background: none;
+    	span {
+    		font-family: "Basic Sans Alt-Black";
+    		opacity: 0;
+    		@include transition(opacity, .5s);
+    	}
     	@include for-phone-only {
 			display: none;
 		}
@@ -233,6 +243,7 @@
     			font-size: 0.875em;
     			font-weight: bold;
     			margin-bottom: 5px;
+    			font-family: "Basic Sans Alt-SemiBold";
     		}
     		.c-info-number {
     			position: relative;
@@ -260,5 +271,16 @@
 				border-color: transparent transparent $blue transparent;
     		}
     	}
+	}
+}
+@-webkit-keyframes pop {
+	0% {
+		left: 10px;	
+	}
+	50% {
+		left: 15px;		
+	}
+	100% {
+		left: 10px;
 	}
 }

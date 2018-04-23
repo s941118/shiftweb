@@ -41,6 +41,7 @@
 	top: 0;
 	left: 0;
 	background: $black;
+	overflow: hidden;
 }
 .loader-bottom {
 	z-index: 9999;
@@ -50,6 +51,20 @@
 	bottom: 0;
 	left: 0;
 	background: $black;
+	overflow: hidden;
+}
+.loader-gif {
+	position: fixed;
+	width: 150px;
+	// height: 220px;
+	background: url(asset-path('logo_loading.gif')) center center no-repeat;
+	background-size: 100%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	z-index: 10000;
 }
 .border-hack-top, .border-hack-bottom {
 	width: 100%;
@@ -59,7 +74,7 @@
 	z-index: 999;
 }
 .border-hack-top {
-	top: 0
+	top: 0;
 }
 .border-hack-bottom {
 	bottom: 0;

@@ -12,8 +12,8 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <meta property="og:description" content=""><meta name="apple-mobile-web-app-title" content="Shift Studio">
-	<meta name="application-name" content="Shift Studio">
-	<meta name="theme-color" content="#ffffff">
+    <meta name="application-name" content="Shift Studio">
+    <meta name="theme-color" content="#ffffff">
     <%= csrf_meta_tags %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -25,6 +25,7 @@
   </head>
 
   <body id="barba-wrapper">
+    <%= render "common/header" %>
     <%= yield %>
   </body>
 </html>

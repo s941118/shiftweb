@@ -34,12 +34,10 @@ header {
 			display: inline-block;
 			a {
 				font-family: "Basic Sans Alt-SemiBold";
-				@include font(1.313em, 600, none, 1.2em);
+				@include font(1.125em, 600, none, 1.2em);
 				position: relative;
+				color: white;
 				@include transition(all .3s);
-				@include for-mid-desktop-up {
-					font-size: 1.5em;
-				}
 				&:hover {
 					color: $blue;
 				}
@@ -51,7 +49,7 @@ header {
 	}
 	.works-nav {
 		width: 100%;
-		max-width: 550px;
+		max-width: 500px;
 		margin: 0 auto;
 		background: $black;
 		a {
@@ -71,7 +69,7 @@ header {
 }
 .mobile-nav {
 	z-index: 999;
-	position: absolute;
+	position: fixed;
 	right: 25px;
 	top: 25px;
 	background-color: $black;
@@ -92,6 +90,7 @@ header {
 				a {
 					font-family: "Basic Sans Alt-SemiBold";
 					@include font(1.125em, 600, none, 1.2em);
+					color: white;
 					white-space: nowrap;
 					@include transition(color .3s);
 					&:hover {

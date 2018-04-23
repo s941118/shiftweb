@@ -6,8 +6,9 @@
 	width: 100%;
 	height: auto;
 	.members {
-		background: url(asset-path('member-hero.png')) center 0 no-repeat;
-		background-size: 100%;
+		background: url(asset-path('member-hero.png')) no-repeat;
+		background-size: 1200px;
+		background-position: top right;
 		width: 100%;
 		max-width: 1440px;
 		margin: 0 auto;
@@ -17,7 +18,11 @@
 		@include for-phone-only {
 			padding-left: 0;
 			padding-right: 0;
-			padding: 10px 20px 20px 20px;
+			padding: 10px 0 20px 0;
+			background-size: 900px;
+		}
+		@include for-small-desktop-up {
+			background-size: 1440px;
 		}
 		.member-head {
 			margin-top: 300px;
@@ -67,12 +72,13 @@
 						font-size: 1.063em;
 						text-align: center;
 						margin-bottom: 0;
+						font-family: "Basic Sans Alt-SemiBold";
 					}
 					span {
 						display: inline-block;
+						font-family: "Basic Sans Alt-Black";
 						width: 100%;
 						font-size: 6em;
-						font-weight: bold;
 						text-align: center;
 						line-height: 1;
 						@include radius(10px);
