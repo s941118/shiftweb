@@ -24,18 +24,14 @@
       </div>
       <div class="c-info-box">
         <p class="font-black">Works</p>
-        <div class="c-info-number" name="works"><span class="font-white" data-value="61">61</span></div>
+        <div class="c-info-number" name="works"><span class="font-white" data-value="<%= Work.all.size %>"><%= Work.all.size %></span></div>
       </div>
       <div class="c-info-box">
         <p class="font-black">Cooperations</p>
-        <div class="c-info-number" name="coop"><span class="font-white" data-value="22">22</span></div>
+        <div class="c-info-number" name="coop"><span class="font-white" data-value="<%= Tag.member.size %>"><%= Tag.member.size %></span></div>
       </div>
     </section>
-    <div class="social-menu">
-      <button class="lines-button x" type="button" role="button" aria-label="Toggle Navigation"><span class="lines"></span></button>
-      <div class="social-share"><a href="#">Facebook</a><a href="#">Instagram</a></div>
-    </div>
-    <%= render "common/chat" %>
+    <%= render "common/social_and_chat" %>
     <div class="copyright">
       <p>© SHIFT 2018 Handcrafted with hard work and love by us</p>
     </div>
