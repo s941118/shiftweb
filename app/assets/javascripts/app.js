@@ -16,7 +16,8 @@ var Works = Barba.BaseView.extend({
     onEnter: function () {},
     onEnterCompleted: function () {
     	preloaderTimeline();
-        initWorks();
+			initWorks();
+			loadSingleWork();
     },
     onLeave: function () {},
     onLeaveCompleted: function () {
@@ -550,6 +551,13 @@ function initWorks() {
 	// 	$('.inner-preview-box').css({'margin-left': (Math.abs($('.preview-wrapper').offset().left - 260) / $('.preview-wrapper').innerWidth()) * 100 + '%'});
 	// 	console.log()
 	// }, 100);	
+}
+function loadSingleWork() {
+	var work_id_match = window.location.href.match(/works\/(\d+)/)
+  if (work_id_match !== null && work_id_match[1] > 0) {
+  	console.log("loading work" + work_id_match[1])
+    $(".work-block[data-work-id='" + work_id_match[1] + "']").trigger("click")
+  }	
 }
 function initMembers() {
 	initGlobal();
