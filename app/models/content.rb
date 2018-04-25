@@ -38,7 +38,7 @@ class Content < ApplicationRecord
     end
 
     def img_html_klass
-      "img_content admin-paragragh-image"
+      "img_content admin-paragraph-image"
     end
 
     def self.default_wrapper_klass

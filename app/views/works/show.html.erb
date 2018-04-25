@@ -52,22 +52,21 @@
         <div class="single-work-text">
           <% if @contents.present? %>
             <% @contents.each do |content| %>
-              <p class="paragraph-title"><%= raw content.processed_html %></p>
+              <% if content.img? %>
+                <div class="embed_content">
+                  <%= image_tag content.image, class: "paragraph-image", style: "margin-top: 0px;" %>
+                </div>
+              <% elsif content.embed? %>
+                <div class="embed_content <%= content.embed_html_klass %>">
+                  <%= raw content.html %>
+                </div>
+              <% else %>
+                <%= raw content.processed_html %>
+              <% end %>
             <% end %>
           <% end %>
         </div>
       </div>
-      <% if @contents.present? %>
-        <% @contents.each do |content| %>
-          <% if content.img? %>
-            <%= image_tag content.image, class: "paragraph-image" %>
-          <% elsif content.embed? %>
-            <div class="embed_content <%= content.embed_html_klass %>">
-              <%= raw content.html %>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
     </div>
   </div>
 </div>
