@@ -102,7 +102,7 @@ class Work < ApplicationRecord
 
   # 以下為幫助產生對應 html
 	def cover_or_default
-		cover.attached? ? cover : "http://via.placeholder.com/1400x788/333.jpg"
+		cover.attached? ? cover.service_url : "http://via.placeholder.com/1400x788/333.jpg"
 	end
 	# 以上為幫助產生對應 html
 end

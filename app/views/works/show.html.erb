@@ -20,13 +20,7 @@
       </div>
     </div>
     <div class="single-work single-work-hide">
-      <div class="single-work-main-img">
-        <% if @work.cover.attached? %>
-          <%= image_tag url_for(@work.cover) %>
-        <% else %>
-          <%= image_tag "http://via.placeholder.com/1400x788/333.jpg" %>
-        <% end %>
-      </div>
+      <div class="single-work-main-img"><%= image_tag @work.cover_or_default %></div>
       <div class="single-work-text-box">
         <div class="single-work-tags">
           <% if @work.category.present? %>
