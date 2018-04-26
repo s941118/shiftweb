@@ -10,8 +10,8 @@
               <% x_works.each do |work| %>
                 <a class="work-block work-block-hide" data-work-id="<%= work.id %>">
                   <div class="work-image">
-                    <% if @work.cover.attached? %>
-                      <%= image_tag url_for(@work.cover) %>
+                    <% if work.cover.attached? %>
+                      <%= image_tag url_for(work.cover) %>
                     <% else %>
                       <%= image_tag "http://via.placeholder.com/1400x788/333.jpg" %>
                     <% end %>
