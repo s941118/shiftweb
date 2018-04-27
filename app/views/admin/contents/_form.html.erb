@@ -5,7 +5,7 @@
   </div>
 <% elsif content_form.object.img? %>
   <div class="content_wrapper <%= content_form.object.img_html_klass %>" id="wrapper_<%= content_form.index %>">
-    <%= image_tag raw url_for(content_form.object.image) %>
+    <%= image_tag content_form.object.image.variant(resize: Content.resize_string) %>
     <%= content_form.text_area :html, class: "d-none" %>
   </div>
 <% else %>

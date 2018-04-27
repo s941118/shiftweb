@@ -50,6 +50,12 @@ class Admin::WorksController < AdminController
       if ActiveModel::Type::Boolean.new.cast work_params[:remove_cover]
         @work.cover.purge_later
       end
+      # @work.cover.variant(resize: "4096x4096").processed.service_url if @work.cover.attached?
+      # if @work.contents.img.size > 0
+      #   @work.contents.img.each do |content|
+      #     content.image.variant(resize: "4096x4096").processed.service_url
+      #   end
+      # end
       # @work.touch # 因為 ordering 不再是相對加一，而是每次更新，所以好像不需要順過了？
       flash[:success] = "更新成功。 "
       redirect_to [:admin, @work]

@@ -6,7 +6,7 @@
       <div class="divider bg-white"></div>
       <% @latest_works.each do |work| %>
         <%= link_to work_path(work), class: "new-work font-black" do %>
-          <div class="new-work-image"><%= image_tag work.cover_or_default %></div>
+          <div class="new-work-image"><%= image_tag work.cover_thumbnail_or_default %></div>
           <div class="new-work-des">
             <div class="new-work-des-top"><span class="new-work-serial">#<%= work.number.to_s.rjust(2, '0') %></span>/<span class="new-work-tag"><%= work.category %> Work</span></div>
             <div class="new-work-des-bottom">

@@ -6,6 +6,15 @@ class Content < ApplicationRecord
 
   enum usage: { text: 0, embed: 1, img: 2 }
 
+  def self.resize_string(type = nil)
+    case type
+    when "thumbnail"
+      "512x512"
+    else
+      "2048x2048"
+    end
+  end
+
   # 以下為協助資料維護相關
     before_save :remove_fb_data_width
 

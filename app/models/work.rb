@@ -102,7 +102,11 @@ class Work < ApplicationRecord
 
   # 以下為幫助產生對應 html
 	def cover_or_default
-		cover.attached? ? cover.service_url : "http://via.placeholder.com/1400x788/333.jpg"
+		cover.attached? ? cover.variant(resize: Content.resize_string) : "http://via.placeholder.com/1400x788/333.jpg"
+	end
+
+	def cover_thumbnail_or_default
+		cover.attached? ? cover.variant(resize: Content.resize_string("thumbnail")) : "http://via.placeholder.com/1400x788/333.jpg"
 	end
 	# 以上為幫助產生對應 html
 end

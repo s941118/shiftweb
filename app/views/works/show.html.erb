@@ -3,7 +3,7 @@
   <div class="single-work-content">
     <div class="single-work-card single-work-card-hide">
       <div class="work-block">
-        <div class="work-image"><%= image_tag @work.cover_or_default %></div>
+        <div class="work-image"><%= image_tag @work.cover_thumbnail_or_default %></div>
         <div class="work-des">
           <% if @work.category.present? %>
             <p>#<%= @work.number %> / <%= @work.category %> work</p>
@@ -54,7 +54,7 @@
             <% @contents.each do |content| %>
               <% if content.img? %>
                 <div class="embed_content">
-                  <%= image_tag content.image, class: "paragraph-image", style: "margin-top: 0px;" %>
+                  <%= image_tag content.image.variant(resize: Content.resize_string), class: "paragraph-image", style: "margin-top: 0px;" %>
                 </div>
               <% elsif content.embed? %>
                 <div class="embed_content <%= content.embed_html_klass %>">

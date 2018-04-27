@@ -9,7 +9,7 @@
             <% @works.each_slice(x) do |x_works| %>
               <% x_works.each do |work| %>
                 <a class="work-block work-block-hide" data-work-id="<%= work.id %>">
-                  <div class="work-image"><%= image_tag work.cover_or_default %></div>
+                  <div class="work-image"><%= image_tag work.cover_thumbnail_or_default %></div>
                   <div class="work-des">
                     <p>#<%= work.number %> / SHIFT work</p>
                     <%= simple_format work.title, class: "work-title" %>
