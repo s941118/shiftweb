@@ -18,7 +18,7 @@ class PagesController < ApplicationController
   end
 
   def members
-    @members = Tag.member
+    @members = Tag.member.with_attached_icon.with_attached_member_bg
   end
 
   private

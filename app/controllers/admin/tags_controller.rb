@@ -6,7 +6,7 @@ class Admin::TagsController < AdminController
   def index
     authorize [:admin, :tag], :index?
     tags = @q.result(distinct: true)
-    @tags = tags.order(updated_at: :desc)
+    @tags = tags.order(updated_at: :desc).with_attached_icon.with_attached_member_bg
   end
 
   # GET /tags/1
