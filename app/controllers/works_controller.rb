@@ -5,7 +5,7 @@ class WorksController < ApplicationController
   def show
     @contents = Content.where(work_id: params[:id]).order(ordering: :asc).with_attached_image
     unless params[:js] == "true"
-      @works = Work.publish
+      @works = Work.publish.order(work_date: :desc)
       render "pages/works"
     end
   end

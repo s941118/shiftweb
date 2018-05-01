@@ -10,7 +10,7 @@ class PagesController < ApplicationController
       Work.tagged_with(params[:tag])
     else
       Work.all
-    end.publish.order(work_date: :asc)
+    end.publish.order(work_date: :desc)
   end
 
   def about
