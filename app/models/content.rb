@@ -1,5 +1,5 @@
 class Content < ApplicationRecord
-  belongs_to :work, inverse_of: :contents
+  belongs_to :work, inverse_of: :contents, touch: true
   validates_presence_of :work
   validates :html, :ordering, presence: true
   has_one_attached :image
