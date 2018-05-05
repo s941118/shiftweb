@@ -22,3 +22,9 @@ iframe {
 	margin-left: auto !important;
 	margin-right: auto !important;
 }
+
+@media only screen and (max-width: 414px) {
+	*{
+    -webkit-overflow-scrolling: touch;
+	}
+}
