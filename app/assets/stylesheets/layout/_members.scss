@@ -6,11 +6,11 @@
 	width: 100%;
 	height: auto;
 	.members {
-		background: url(asset-path('member-hero.png')) no-repeat;
+		background: url(asset-path('teamBG.png')) no-repeat;
 		background-size: 1200px;
-		background-position: top right;
+		background-position: top center;
 		width: 100%;
-		max-width: 1440px;
+		max-width: 1280px;
 		margin: 0 auto;
 		height: auto;
 		padding: 300px 20px 20px 20px;
@@ -32,7 +32,7 @@
 			}
 			.member-title {
 				padding: 30px;
-				width: 400px;
+				width: 450px;
 				height: auto;
 				background-color: $black;
 				float: left;
@@ -47,6 +47,10 @@
 					font-size: 3.125em;
 					line-height: 1.2;
 					margin-bottom: 0;
+					text-transform: uppercase;
+					@include for-phone-only {
+						font-size: 2.75em;
+					}
 				}
 			}
 			.member-title-hide {
@@ -90,8 +94,8 @@
 			}
 		}
 		.member-thumbnail-wrap {
-			margin-top: 75px;
-			max-width: 1440px;
+			margin: 75px auto 0 auto;
+			max-width: 1280px;
 			justify-content: center;
 			@include transition(all .3s);
 			&:after {
@@ -234,26 +238,26 @@
 				// 		@include transition(all .3s);
 				// 	}		
 				// }
-				@include for-789-up {
-					&:nth-of-type(even) {
-						.member-card {
-							transform: rotateY(180deg);
-							.member-card-front p, .member-card-front .divider{
-								opacity: 0;
-								@include transition(all .3s);
-							}	
-						}
-					}		
-				}
-				@include for-tablet-portrait-up {
-					&:hover .member-card {
-						transform: rotateY(180deg);	
-						.member-card-front p, .member-card-front .divider{
-							opacity: 0;
-							@include transition(all .3s);
-						}		
-					}
-				}
+				// @include for-789-up {
+				// 	&:nth-of-type(even) {
+				// 		.member-card {
+				// 			transform: rotateY(180deg);
+				// 			.member-card-front p, .member-card-front .divider{
+				// 				opacity: 0;
+				// 				@include transition(all .3s);
+				// 			}	
+				// 		}
+				// 	}		
+				// }
+				// @include for-tablet-portrait-up {
+				// 	&:hover .member-card {
+				// 		transform: rotateY(180deg);	
+				// 		.member-card-front p, .member-card-front .divider{
+				// 			opacity: 0;
+				// 			@include transition(all .3s);
+				// 		}		
+				// 	}
+				// }
 				@include for-desktop-up {
 					width: 350px;
 				}

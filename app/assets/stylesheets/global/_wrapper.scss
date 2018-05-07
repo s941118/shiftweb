@@ -27,6 +27,7 @@ body {
 	-moz-hyphens: auto;
 	hyphens: auto;
 	margin: 0;
+	overscroll-behavior-y: none;
 	// display: none;
 }
 .content {

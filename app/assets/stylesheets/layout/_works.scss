@@ -20,7 +20,7 @@
 		}
 	}
 	.work-nav-arrow-open {
-		left: 210px;
+		left: 200px;
 		transform: rotate(180deg);
 	}
 	.works-nav {
@@ -33,9 +33,6 @@
 		top: 16.2%;
 		// overflow: auto;
 		@include transition(all .3s);
-		.work-nav-arrow {
-
-		}
 		.works-category-filer {
 			height: 70px;
 			width: 100%;
@@ -162,7 +159,7 @@
 			}
 		}
 		@include for-phone-only {
-			top: 10%;
+			top: 15%;
 			left: -180px;
 		}
 	}
@@ -469,7 +466,7 @@
 			}
 			.single-work-number-title-box {
 				vertical-align: bottom;
-				// direction: rtl;
+				direction: rtl;
 				@include for-phone-only {
 					direction: ltr;
 				}
@@ -495,7 +492,6 @@
 			}
 			.single-work-number {
 				display: inline-block;
-				float: right;
 				@include for-phone-only {
 					float: none;
 				}
@@ -587,4 +583,57 @@
 	top: 0;
 	position: relative;
 	opacity: 1;
+}
+.works-tutorial-wrapper {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(44,40,36,.9);
+	z-index: 999;
+	display: none;
+	@include for-phone-only {
+		display: block;
+	}
+	.works-tutorial-box {
+		width: 100%;
+		max-width: 580px;
+		margin: 100px auto 0 auto;
+		background: $black;
+		@include radius(10px);
+		text-align: center;
+		img {
+			height: 300px;
+			width: auto;
+			margin: 15px auto;
+		}
+		p {
+			font-family: "Basic Sans Alt-SemiBold";
+			font-size: 1em;
+			color: white;
+			max-width: 250px;
+			margin: 0 auto;
+		}
+		p:first-of-type {
+			font-size: 1.25em;
+			span {
+				font-family: "Basic Sans Alt-Black";
+				color: $yellow;
+				font-size: 1.125em;
+			}
+		}
+		button {
+			margin: 20px auto;
+			background: $white;
+			width: 250px;
+			font-family: "Basic Sans Alt-SemiBold";
+			font-size: 1.25em;
+			padding: 5px 0;
+			@include radius(10px);
+		}
+	}
+}
+.works-tutorial-wrapper-hide {
+	display: none;
 }

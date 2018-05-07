@@ -4,8 +4,8 @@
 	@include transition(all .5s);
 	.contact-header-wrap {
 		padding-top: 230px;
-		background: $white center no-repeat;
-		background-image: url(asset-path('contactBG.png'));
+		background: $white right center no-repeat;
+		background-image: url(../images/contactBG.png);
 		background-size: cover;
 		position: relative;
 		.contact-shadow-hack {
@@ -199,45 +199,60 @@
 				padding: 0.9375em;
 				cursor: pointer;
 				@include transition(all .3s);
-				p {
+				button {
 					font-family: "Basic Sans Alt-SemiBold";
-					font-size: 1.875em;
+					font-size: 1.5em;
 					color: $white;
+					background: $blue;
+					width: 100%;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					padding: 5px 0;
+					@include transition(all .3s);
+					&:after {
+						content: '>';
+						display: inline-block;
+						border: 1px solid $white;
+						height: 20px;
+						width: 20px;
+						@include radius(10px);
+						font-size: 0.875em;
+						vertical-align: text-top;
+						line-height: 0.7;
+						white-space: pre;
+						margin-left: 10px;
+						margin-top: 6px;
+					}
 				}
 				&:hover {
 					background-color: $yellow;
-					p {
+					button {
 						color: $black;
+						&:after {
+							border: 1px solid $black;
+						}
 					}
 				}
 			}
 			.photo {
-				background: $blue url(asset-path('service-04.png')) center no-repeat;
+				background: $black url(../images/service-04.png) center no-repeat;
 			}
 			.record {
-				background: $black url(asset-path('service-02.png')) center no-repeat;
+				background: $black url(../images/service-02.png) center no-repeat;
 			}
 			.advertising {
-				background: $blue url(asset-path('service-03.png')) center no-repeat;
-				@include for-640-up {
-					background-color: $black;
-				}
-				@include for-mid-foundation-up {
-					background-color: $blue;
-				}
+				background: $black url(../images/service-03.png) center no-repeat;
 			}
 			.mv {
-				background: $black url(asset-path('service-05.png')) center no-repeat;
-				@include for-640-up {
-					background-color: $blue;
-				}
-				@include for-mid-foundation-up {
-					background-color: $black;
-				}
+				background: $black url(../images/service-05.png) center no-repeat;
 			}
 			.photo, .record, .advertising, .mv {
 				padding-bottom: 360px;
 				background-size: cover;
+				margin: 0 10px 10px 10px;
+				position: relative;
 			}
 		}
 	}

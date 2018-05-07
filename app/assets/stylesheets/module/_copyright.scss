@@ -9,11 +9,12 @@
 		color: white;
 	}
 	@include for-phone-only {
-		width: 40%;
-		p {
-			padding-left: 1.25em;
-			text-align: left;
-			font-size: 0.75em;
-		}
+		display: none;
+		// width: 40%;
+		// p {
+		// 	padding-left: 1.25em;
+		// 	text-align: left;
+		// 	font-size: 0.75em;
+		// }
 	}
 }
