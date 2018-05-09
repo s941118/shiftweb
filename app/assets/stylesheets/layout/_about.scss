@@ -302,7 +302,7 @@
 		z-index: 2;
 		.team-img {
 			position: relative;
-			background: $white url(../images/teamBG-grid.svg) top left repeat;
+			background: $white url(asset-path('teamBG-grid.svg')) top left repeat;
 			background-size: 10px 10px;
 			width: 100%;
 			padding-bottom: 50%;
