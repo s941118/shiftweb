@@ -5,7 +5,7 @@
 	.contact-header-wrap {
 		padding-top: 230px;
 		background: $white right center no-repeat;
-		background-image: url(../images/contactBG.png);
+		background-image: url(asset-path('contactBG.png'));
 		background-size: cover;
 		position: relative;
 		.contact-shadow-hack {
@@ -237,16 +237,16 @@
 				}
 			}
 			.photo {
-				background: $black url(../images/service-04.png) center no-repeat;
+				background: $black url(asset-path('service-04.png')) center no-repeat;
 			}
 			.record {
-				background: $black url(../images/service-02.png) center no-repeat;
+				background: $black url(asset-path('service-02.png')) center no-repeat;
 			}
 			.advertising {
-				background: $black url(../images/service-03.png) center no-repeat;
+				background: $black url(asset-path('service-03.png')) center no-repeat;
 			}
 			.mv {
-				background: $black url(../images/service-05.png) center no-repeat;
+				background: $black url(asset-path('service-05.png')) center no-repeat;
 			}
 			.photo, .record, .advertising, .mv {
 				padding-bottom: 360px;

@@ -466,7 +466,7 @@
 			}
 			.single-work-number-title-box {
 				vertical-align: bottom;
-				direction: rtl;
+				// direction: rtl;
 				@include for-phone-only {
 					direction: ltr;
 				}
@@ -492,6 +492,7 @@
 			}
 			.single-work-number {
 				display: inline-block;
+				float: right;
 				@include for-phone-only {
 					float: none;
 				}
