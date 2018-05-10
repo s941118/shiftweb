@@ -108,5 +108,9 @@ class Work < ApplicationRecord
 	def cover_thumbnail_or_default
 		cover.attached? ? cover.variant(resize: Content.resize_string("thumbnail")) : "http://via.placeholder.com/1400x788/333.jpg"
 	end
+
+	def og_image
+		cover.attached? ? cover.variant(resize: Content.resize_string("thumbnail")).service_url : "http://via.placeholder.com/1400x788/333.jpg"
+	end
 	# 以上為幫助產生對應 html
 end

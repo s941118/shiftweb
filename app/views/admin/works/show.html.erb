@@ -1,25 +1,12 @@
 <%= stylesheet_link_tag    'application', media: 'all' %>
 <div class="content barba-container content-loading" data-namespace="single-works">
   <div class="single-work-content">
-    <div class="single-work-card single-work-card-hide">
-      <div class="work-block">
-        <div class="work-image"><%= image_tag @work.cover_thumbnail_or_default %></div>
-        <div class="work-des">
-          <% if @work.category.present? %>
-            <p>#<%= @work.number %> / <%= @work.category %> work</p>
-          <% end %>
-          <%= simple_format @work.title, class: "work-title" %>
-          <% if @work.top_tags.present? %>
-            <div class="work-tags">
-              <% @work.top_tags.split(",").each do |top_tag| %>
-                <p>#<%= raw top_tag %></p>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
+    <div class="single-work-card">
+      <div class="work-block text-white">
+        <%= @work.outline %>
       </div>
     </div>
-    <div class="single-work single-work-hide">
+    <div class="single-work">
       <div class="single-work-main-img"><%= image_tag @work.cover_or_default %></div>
       <div class="single-work-text-box">
         <div class="single-work-tags">

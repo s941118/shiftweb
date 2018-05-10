@@ -99,6 +99,6 @@ class Admin::WorksController < AdminController
 
     # Only allow a trusted parameter "white list" through.
     def work_params
-      params.require(:work).permit(:title, :cover, :remove_cover, :category, :top_tags, :number, :work_date, contents_attributes: [ :id, :html, :ordering, :usage, :_destroy, :wrapper_klass ])
+      params.require(:work).permit(:title, :cover, :remove_cover, :outline, :category, :top_tags, :number, :work_date, contents_attributes: [ :id, :html, :ordering, :usage, :_destroy, :wrapper_klass ])
     end
 end

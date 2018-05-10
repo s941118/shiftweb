@@ -1,6 +1,11 @@
 <%= stylesheet_link_tag 'application', media: 'all' %>
 <%= form_with(model: [:admin, @work], local: true, class: "mb-5") do |f| %>
   <div class="single-work-content">
+    <div class="single-work-card">
+      <div class="work-block">
+        <%= f.text_area :outline, rows: 7, placeholder: "文章摘要，此方塊內放滿且無換行，字數約一百字。" %>
+      </div>
+    </div>
   	<div class="single-work" id="form_content">
       <div class="single-work-main-img">
         <%= f.file_field :cover, class: "d-none previewable" %>

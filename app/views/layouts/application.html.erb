@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:site_name" content="Shift Studio">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Shift Studio">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
-    <meta property="og:description" content=""><meta name="apple-mobile-web-app-title" content="Shift Studio">
+    <meta property="og:title" content="<%= @work.present? ? @work.title : 'Shift Studio' %>">
+    <meta property="og:url" content="<%= @work.present? ? request.original_url : '' %>">
+    <meta property="og:image" content="<%= @work.present? ? @work.og_image : '' %>">
+    <meta property="og:description" content="<%= @work.present? ? @work.outline : '' %>"><meta name="apple-mobile-web-app-title" content="Shift Studio">
     <meta name="application-name" content="Shift Studio">
     <meta name="theme-color" content="#ffffff">
 
