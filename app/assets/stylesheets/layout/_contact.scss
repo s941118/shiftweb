@@ -190,7 +190,8 @@
 		}
 		.service-process-block {
 			padding: 9%;
-			background: $white;
+			background: $white url(asset-path('teamBG-grid.svg')) top left repeat;
+			background-size: 10px 10px;;
 			@include for-phone-only {
 				padding-top: 100px;
 			}

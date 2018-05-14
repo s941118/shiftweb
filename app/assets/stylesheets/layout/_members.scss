@@ -157,8 +157,9 @@
 							line-height: 1;
 						}
 						.front-bottom {
-							width: 100%;
-							margin-top: 100%;
+							width: 76%;
+							position: absolute;
+							bottom: 0;
 							.divider {
 								margin-bottom: 5px;
 							}
@@ -209,8 +210,9 @@
 						}
 						.back-bottom {
 							font-family: "Basic Sans Alt-Light";
-							width: 100%;
-							margin-top: 100%;
+							width: 76%;
+							position: absolute;
+							bottom: 0;
 							.divider {
 								margin-bottom: 5px;
 							}
@@ -231,13 +233,13 @@
 						width: 50%;
 					}
 				}
-				// &:hover .member-card {
-				// 	transform: rotateY(180deg);	
-				// 	.member-card-front p, .member-card-front .divider{
-				// 		opacity: 0;
-				// 		@include transition(all .3s);
-				// 	}		
-				// }
+				&:hover .member-card {
+					transform: rotateY(180deg);	
+					.member-card-front p, .member-card-front .divider{
+						opacity: 0;
+						@include transition(all .3s);
+					}		
+				}
 				// @include for-789-up {
 				// 	&:nth-of-type(even) {
 				// 		.member-card {

@@ -440,7 +440,7 @@
 			}
 		}
 		.single-work-text-box {
-			padding: 25px 25px 15px 25px;
+			padding: 25px 25px 0 25px;
 			.single-work-tags {
 				.tag-company {
 					font-family: "Basic Sans Alt-SemiBold";
@@ -593,14 +593,15 @@
 	right: 0;
 	background: rgba(44,40,36,.9);
 	z-index: 999;
-	display: none;
+	opacity: 1;
+	@include transition(all .3s);
 	@include for-phone-only {
 		display: block;
 	}
 	.works-tutorial-box {
 		width: 100%;
 		max-width: 580px;
-		margin: 100px auto 0 auto;
+		margin: 50px auto 0 auto;
 		background: $black;
 		@include radius(10px);
 		text-align: center;
@@ -636,5 +637,5 @@
 	}
 }
 .works-tutorial-wrapper-hide {
-	display: none;
+	opacity: 0;
 }
