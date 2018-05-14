@@ -10,7 +10,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="<%= @work.present? ? @work.title : 'Shift Studio' %>">
     <meta property="og:url" content="<%= @work.present? ? request.original_url : '' %>">
-    <meta property="og:image" content="<%= @work.present? && @work.cover.attached? ? url_for(@work.og_image) : asset_path('error.png') %>">
+    <meta property="og:image" content="<%= @work.present? && @work.cover.attached? ? root_url[0..-2] + url_for(@work.og_image) : root_url[0..-2] + asset_path('error.png') %>">
     <meta property="og:description" content="<%= @work.present? ? @work.outline : 'Innovation, Stability, Integration, Young Influence' %>"><meta name="apple-mobile-web-app-title" content="Shift Studio">
     <meta name="application-name" content="Shift Studio">
     <meta name="theme-color" content="#ffffff">
