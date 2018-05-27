@@ -13,9 +13,8 @@ class PagesController < ApplicationController
     end.publish.order(work_date: :desc)
   end
 
-  def about
-    
-  end
+  def about ; end
+  def contact ; end
 
   def members
     @members = Tag.member.with_attached_icon.with_attached_member_bg
