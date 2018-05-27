@@ -16,11 +16,11 @@ module ApplicationHelper
 
   def render_og_image
     if action_name.in? ["contact", "home", "about", "members"]
-      root_url[0..-2] + asset_path "#{action_name}.jpg"
+      root_url[0..-2] + asset_path("#{action_name}.jpg")
     elsif controller_name == "works"
       @work.present? && @work.cover.attached? ? root_url[0..-2] + url_for(@work.og_image) : root_url[0..-2] + asset_path('error.png')
     else
-      root_url[0..-2] + asset_path "error.png"
+      root_url[0..-2] + asset_path("error.png")
     end
   end
 end
