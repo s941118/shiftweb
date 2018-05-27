@@ -9,7 +9,7 @@
     <meta property="og:site_name" content="Shift Studio">
     <meta property="og:type" content="website">
     <meta property="og:title" content="<%= @work.present? ? @work.title : 'Shift Studio' %>">
-    <meta property="og:url" content="<%= @work.present? ? request.original_url : '' %>">
+    <meta property="og:url" content="<%= request.original_url %>">
     <meta property="og:image" content="<%= render_og_image %>">
     <meta property="og:description" content="<%= @work.present? ? @work.outline : 'Innovation, Stability, Integration, Young Influence' %>"><meta name="apple-mobile-web-app-title" content="Shift Studio">
     <meta name="application-name" content="Shift Studio">

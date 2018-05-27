@@ -755,6 +755,6 @@ function initError() {
 	initGlobal();
 	$(".sound-player").remove();
 	setTimeout(function(){
-		window.location.replace("/index.html");
+		window.location.replace("/");
 	}, 10000);
 }
