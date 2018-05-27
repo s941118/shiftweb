@@ -5,7 +5,7 @@ var Home = Barba.BaseView.extend({
     	preloaderTimeline();
         initHome();
         setTimeout(function(){
-		    $.playSound("audio/backgroundAudio.wav");
+		    $.playSound("audios/backgroundAudio.wav");
 		}, 3000);
     },
     onLeave: function () {},
@@ -99,7 +99,7 @@ function preloaderTimeline() {
 			$(this).hide();
 		});
 		setTimeout(function(){
-		    $.playSound("audio/flip.wav");
+		    $.playSound("audios/flip.wav");
 		}, 500);
 		var dUp = document.querySelector('.loader-bottom');
 	    var dDown = document.querySelector('.loader-top');
@@ -164,7 +164,7 @@ $(function () {
 			$(this).hide();
 		});
 		setTimeout(function(){
-		    $.playSound("audio/flip.wav");
+		    $.playSound("audios/flip.wav");
 		}, 1000);
 		var _this = this;
 		var dUp = document.querySelector('.loader-bottom');
@@ -266,7 +266,7 @@ function initGlobal() {
         }
     });
 	$('a, button, .keyreply-launcher').click(function(){
-		$.playSound("audio/button.wav");
+		$.playSound("audios/button.wav");
 	});
 
 }
