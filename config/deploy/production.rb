@@ -42,7 +42,7 @@ server "13.125.166.172", user: "deploy", roles: %w{app db web}
 # Global options
 # --------------
  set :ssh_options, {
-   keys: %w(/home/hungmi/.ssh/id_rsa),
+   keys: %w(/Users/hungmi/.ssh/id_rsa),
    forward_agent: false,
    auth_methods: %w(publickey)
  }
