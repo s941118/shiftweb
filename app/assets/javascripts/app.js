@@ -634,6 +634,22 @@ function loadSingleWork() {
 function initMembers() {
 	initGlobal();
 	$(".sound-player").remove();
+	var config = {
+		viewFactor: 0.15,
+		duration: 800,
+		distance: "0px",
+		scale: 0.8,
+		beforeReveal: function (domEl) { console.log(1) }, // 當啟動顯示前，則執行此函式
+		beforeReset: function (domEl) { console.log(2) }, // 當重啟前，則執行此函式
+		afterReveal: function (domEl) { console.log(3) }, // 當啟動後，則執行此函式
+		afterReset: function (domEl) { console.log(4) } // 當重啟後，則執行此函式
+	}
+
+	window.sr = new ScrollReveal(config)
+	var block = {
+		reset: true,
+	}
+	sr.reveal(".member-thumbnail-block", block);
 	if($('.content').not('.content-loading')) {
 		setTimeout(function(){
 			$('.member-title').removeClass('member-title-hide');
@@ -644,22 +660,9 @@ function initMembers() {
 		setTimeout(function(){
 			$('.member-thumbnail-wrap').removeClass('member-thumbnail-hide')
 		}, 2400);
-		var config = {
-			viewFactor: 0.15,
-			duration: 800,
-			distance: "0px",
-			scale: 0.8,
-			beforeReveal: function (domEl) { console.log(1) }, // 當啟動顯示前，則執行此函式
-			beforeReset: function (domEl) { console.log(2) }, // 當重啟前，則執行此函式
-			afterReveal: function (domEl) { console.log(3) }, // 當啟動後，則執行此函式
-			afterReset: function (domEl) { console.log(4) } // 當重啟後，則執行此函式
-		}
-
-		window.sr = new ScrollReveal(config)
-		var block = {
-			reset: true,
-		}
-		sr.reveal(".member-thumbnail-block", block);
+		setTimeout(function(){
+			sr.reveal(".member-thumbnail-block", block);
+		}, 2400);
 	};
 }
 function initContact() {
