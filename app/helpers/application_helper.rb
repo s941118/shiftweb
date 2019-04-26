@@ -15,7 +15,9 @@ module ApplicationHelper
   end
 
   def render_og_image
-    if action_name.in? ["contact", "home", "about", "members"]
+    if action_name == "works"
+      "https://shift-static-assets.s3-accelerate.amazonaws.com/works.png"
+    elsif action_name.in? ["contact", "about", "home", "members"]
       root_url[0..-2] + asset_path("#{action_name}.jpg")
     elsif controller_name == "works"
       @work.present? && @work.cover.attached? ? root_url[0..-2] + url_for(@work.og_image) : root_url[0..-2] + asset_path('error.png')
