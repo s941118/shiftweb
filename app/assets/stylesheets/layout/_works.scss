@@ -137,6 +137,16 @@
 						color: $white;
 					}
 				}
+				::-webkit-scrollbar {
+			    height: 0px;
+			    width: 8px;
+			  }
+
+			  ::-webkit-scrollbar-thumb {
+			    margin-right: 3px; border-radius: 3px;
+			    background-color: rgba(0,0,0,.5);
+			    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+			  }
 			}
 			.accordion-item.is-active {
 				&:after {
