@@ -192,8 +192,13 @@ $(function () {
 	Barba.Pjax.cacheEnabled = false;
 
 });
-
 function initGlobal() {
+	Barba.Dispatcher.on('initStateChange', function () {
+	    if (Barba.HistoryManager.history.length <= 1) {
+	        return;
+	    }
+	    triggerGTMorGA()
+	});
 	$(window).load(function(){
 		$('.content').removeClass('content-loading');
 	});
@@ -512,6 +517,7 @@ function initWorks() {
 			$('.works-content').addClass('blur');
 				$('.single-work-loader').load('/works/' + $workBlock.attr('data-work-id') + '?js=true .single-work-content', function(){
 		    		history.pushState(null, '', '/works/' + $workBlock.attr('data-work-id'));
+		    		triggerGTMorGA()
 		    		var coverImage = $('.single-work-main-img img');
 		    		var loadedImgNum = 0;
 		    		coverImage.on('load', function(){
@@ -765,4 +771,18 @@ function initError() {
 	setTimeout(function(){
 		window.location.replace("/");
 	}, 10000);
+}
+function triggerGTMorGA() {
+	if (typeof gtag === 'function') {
+        // send statics by Google Analytics(gtag.js)
+        gtag('config', 'GTM-WCWGN6N', {'page_path': location.pathname});
+    } else {
+        // send statics by Google Analytics(analytics.js) or Google Tag Manager
+        if (typeof ga === 'function') {
+            var trackers = ga.getAll();
+            trackers.forEach(function (tracker) {
+                ga(tracker.get('name') + '.send', 'pageview', location.pathname);
+            });
+        }
+    }
 }
