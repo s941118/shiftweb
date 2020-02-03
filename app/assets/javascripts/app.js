@@ -266,7 +266,7 @@ function initGlobal() {
         }
     });
 	$('a, button, .keyreply-launcher').click(function(){
-		$.playSound("audios/button.wav");
+		$.playSound("/audios/button.wav");
 	});
 
 }
