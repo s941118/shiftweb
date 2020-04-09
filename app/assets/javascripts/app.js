@@ -165,7 +165,7 @@ $(function () {
 		});
 		setTimeout(function(){
 		    $.playSound("audios/flip.wav");
-		}, 1000);
+		}, 100);
 		var _this = this;
 		var dUp = document.querySelector('.loader-bottom');
 	    var dDown = document.querySelector('.loader-top');
@@ -270,7 +270,8 @@ function initGlobal() {
             $(".sound-player").remove();
         }
     });
-	$('a, button, .keyreply-launcher').click(function(){
+    $('a, button, .keyreply-launcher').off('click.playsound')
+	$('a, button, .keyreply-launcher').on('click.playsound', function(e){
 		$.playSound("/audios/button.wav");
 	});
 
