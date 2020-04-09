@@ -5,6 +5,9 @@ var Home = Barba.BaseView.extend({
     	preloaderTimeline();
         initHome();
         setTimeout(function(){
+        	if (isSafari()) {
+        		$('.audio-wave span').addClass('audio-pause');
+        	}
 		    $.playSound("audios/backgroundAudio.wav");
 		}, 3000);
     },
@@ -259,12 +262,18 @@ function initGlobal() {
 
     $.extend({
         playSound: function () {
-            return $(
+        	if (isSafari() && arguments[0] != "audios/backgroundAudio.wav") {
+        		// safari 只留下背景歌曲，其他音效不反應
+        		console.log("no sound on safari")
+        		return false
+        	} else {
+        		return $(
                    '<audio class="sound-player" autoplay="autoplay" style="display:none;">'
                      + '<source src="' + arguments[0] + '" />'
                      + '<embed src="' + arguments[0] + '" hidden="true" autostart="true" loop="false"/>'
                    + '</audio>'
                  ).appendTo('body');
+        	}
         },
         stopSound: function () {
             $(".sound-player").remove();
@@ -786,4 +795,7 @@ function triggerGTMorGA() {
             });
         }
     }
+}
+function isSafari() {
+	return /^((?!chrome|android).)*safari/i.test(navigator.userAgent)	
 }
