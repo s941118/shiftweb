@@ -197,7 +197,7 @@ function initGlobal() {
 	    if (Barba.HistoryManager.history.length <= 1) {
 	        return;
 	    }
-	    triggerGTMorGA()
+	    // triggerGTMorGA()
 	});
 	$(window).load(function(){
 		$('.content').removeClass('content-loading');
@@ -518,7 +518,7 @@ function initWorks() {
 			$('.works-content').addClass('blur');
 				$('.single-work-loader').load('/works/' + $workBlock.attr('data-work-id') + '?js=true .single-work-content', function(){
 		    		history.pushState(null, '', '/works/' + $workBlock.attr('data-work-id'));
-		    		triggerGTMorGA()
+		    		// triggerGTMorGA()
 		    		var coverImage = $('.single-work-main-img img');
 		    		var loadedImgNum = 0;
 		    		coverImage.on('load', function(){
