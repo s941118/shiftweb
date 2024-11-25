@@ -150,7 +150,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (0.9.0)
     mimemagic (0.3.2)
-    mini_magick (4.8.0)
+    mini_magick (4.9.4)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     mini_racer (0.2.9)
@@ -284,7 +284,7 @@ DEPENDENCIES
   chromedriver-helper
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
-  mini_magick (~> 4.8)
+  mini_magick (~> 4.9)
   mini_racer (= 0.2.9)
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
